@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import Button from '../components/Button';
+import { Button } from '../components/Button';
 
 const IndexPage = ({ data, errors }) => (
   <main>
