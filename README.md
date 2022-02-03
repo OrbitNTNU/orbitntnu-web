@@ -8,6 +8,10 @@ Sanity:
 
 `npm install -g @sanity/cli`
 
+### Recommended addons
+
+PostCSS Language Support Plugin
+
 ### Running Locally
 
 1. `cd sanity`
