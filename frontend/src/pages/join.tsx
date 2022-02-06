@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navbar } from '../components/Navbar';
+import { Layout } from '../templates/Layout';
 
 const Join = () => (
-  <main>
-    <Navbar />
+  <Layout>
     <h1>Join</h1>
-  </main>
+  </Layout>
 );
 
 export default Join;

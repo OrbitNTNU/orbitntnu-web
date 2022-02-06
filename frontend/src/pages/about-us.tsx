@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navbar } from '../components/Navbar';
+import { Layout } from '../templates/Layout';
 
 const AboutUs = () => (
-  <main>
-    <Navbar />
+  <Layout>
     <h1>About Us</h1>
-  </main>
+  </Layout>
 );
 
 export default AboutUs;
