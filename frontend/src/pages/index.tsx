@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import { Button } from '../components/Button';
+import { Navbar } from '../components/Navbar';
 
 const IndexPage = ({ data, errors }) => (
   <main>
     <title>Home Page</title>
+
+    <Navbar />
 
     <Button label='Knapp' />
 
