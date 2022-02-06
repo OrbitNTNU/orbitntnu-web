@@ -24,7 +24,7 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
     <React.Fragment>
       <div className='absolute w-full h-screen top-0 right-0 bg-black opacity-30' />
 
-      <div className='absolute w-1/2 h-screen right-0 top-0 bg-black opacity-100 text-right p-4'>
+      <div className='absolute w-1/2 h-screen right-0 top-0 bg-black opacity-100 text-right p-4 z-10'>
         <FaTimes
           onClick={handleToggle}
           className='absolute top-8 right-4 cursor-pointer'
