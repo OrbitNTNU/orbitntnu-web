@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navbar } from '../components/Navbar';
+import { Layout } from '../templates/Layout';
 
 const Teams = () => (
-  <main>
-    <Navbar />
+  <Layout>
     <h1>Teams</h1>
-  </main>
+  </Layout>
 );
 
 export default Teams;

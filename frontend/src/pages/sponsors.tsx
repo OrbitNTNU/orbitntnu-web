@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navbar } from '../components/Navbar';
+import { Layout } from '../templates/Layout';
 
 const Sponsors = () => (
-  <main>
-    <Navbar />
+  <Layout>
     <h1>Sponsors</h1>
-  </main>
+  </Layout>
 );
 
 export default Sponsors;
