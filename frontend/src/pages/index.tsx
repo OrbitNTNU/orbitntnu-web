@@ -1,31 +1,9 @@
-import * as React from 'react';
-import { graphql } from 'gatsby';
-import { Button } from '../components/Button';
-import { Navbar } from '../components/Navbar';
-import { Footer } from '../components/Footer';
-import { Layout } from '../templates/Layout';
+import * as React from "react";
 
-const IndexPage = ({ data, errors }) => (
-  <Layout>
-    <Button label='Knapp' />
-
-    {data.categories.edges.map((category, _id) => (
-      <p key={_id}>{category.node.title}</p>
-    ))}
-  </Layout>
+const IndexPage = () => (
+  <main className="flex justify-center">
+    <h1 className="text-2xl font-bold mt-4">Orbit NTNU 🔥</h1>
+  </main>
 );
-
-export const query = graphql`
-  query TestQuery {
-    categories: allSanityCategory {
-      edges {
-        node {
-          title
-          description
-        }
-      }
-    }
-  }
-`;
 
 export default IndexPage;
