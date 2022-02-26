@@ -11,14 +11,14 @@ export const Navbar = () => {
   const handleToggle = () => setToggle(!toggle);
 
   return (
-    <nav className="text-white p-4 m-4 fixed top-0 left-0 w-full">
-      <div className="bg-black opacity-80 w-full h-full absolute top-0 left-0 z-0" />
+    <nav className="text-white p-2 fixed top-0 left-0 w-full z-50">
+      <div className="bg-black w-full h-full absolute top-0 left-0 z-0" />
 
       <Link to="/">
         <StaticImage
           src="../../images/orbitimage.png"
           alt="Orbit"
-          className="w-32"
+          className="w-24 ml-4"
           placeholder="none"
         />
       </Link>
@@ -30,7 +30,7 @@ export const Navbar = () => {
       ) : (
         <FaBars
           onClick={handleToggle}
-          className="absolute right-16 top-8 cursor-pointer"
+          className="absolute right-16 top-5 cursor-pointer"
         />
       )}
     </nav>
