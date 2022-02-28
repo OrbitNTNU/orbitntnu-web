@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ef12d58e-6936-4291-9f29-76761f05b90e/deploy-status)](https://app.netlify.com/sites/keen-davinci-769980/deploys)
+
 # orbitntnu-web
 
 [orbitntnu.com](https://orbitntnu.com) is a website for the student orannization Orbit NTNU.
@@ -5,6 +7,8 @@
 ## Project Status
 
 Under development 👩‍🔧
+
+Live @ [dev.orbitntnu.com](https://dev.orbitntnu.com)
 
 ## Development
 
@@ -59,8 +63,8 @@ yarn start
 
 ### Deploying
 
-Work in progress.
+The project automaticly deploys any changes on `main`.
 
 ### Hosting
 
-Work in progress.
+This project uses Netlify hosting.
