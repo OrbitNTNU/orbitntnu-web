@@ -63,7 +63,7 @@ yarn start
 
 ### Deploying
 
-The project automaticly deploys any changes on `main`.
+Any changes made to the `main` branch in the repository will automaticly be built and deployed.
 
 ### Hosting
 
