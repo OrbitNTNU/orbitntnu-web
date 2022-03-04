@@ -1,10 +1,14 @@
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: ['Roboto Condensed', 'sans-serif'],
+      sans: ["Roboto Condensed", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      maxWidth: {
+        64: "256px",
+      },
+    },
   },
   plugins: [],
 };

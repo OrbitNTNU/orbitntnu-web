@@ -6,9 +6,8 @@ import { AboutUsBanner } from "../components/AboutUsBanner";
 
 const IndexPage = ({ data, errors }) => (
   <Layout>
-    <h1>Hello</h1>
-    {/**
     <LandingHero />
+    {/**
     <AboutUsBanner />
      * 
      */}

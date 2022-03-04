@@ -11,7 +11,7 @@ export const Navbar = () => {
   const handleToggle = () => setToggle(!toggle);
 
   return (
-    <nav className="text-white p-2  w-full z-50">
+    <nav className="text-white p-2 mb-2  w-full z-50">
       <Link to="/">
         <StaticImage
           src="../../images/orbitimage.png"
