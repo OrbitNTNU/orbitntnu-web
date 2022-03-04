@@ -1,5 +1,5 @@
 import React from "react";
-import { BannerLink } from "../BannerLink/BannerLink";
+import { BannerLink } from "../BannerLink";
 
 export const BannerLinkList = () => (
   <ul>
