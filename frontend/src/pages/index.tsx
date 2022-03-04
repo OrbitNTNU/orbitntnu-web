@@ -7,10 +7,7 @@ import { AboutUsBanner } from "../components/AboutUsBanner";
 const IndexPage = ({ data, errors }) => (
   <Layout>
     <LandingHero />
-    {/**
     <AboutUsBanner />
-     * 
-     */}
     {/**
     {data.categories.edges.map((category, _id) => (
       <p key={_id}>{category.node.title}</p>
