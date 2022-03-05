@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { StaticImage } from 'gatsby-plugin-image';
-import { OpenNav } from './OpenNav';
-import { FaBars } from '@react-icons/all-files/fa/FaBars';
-import { Link } from 'gatsby';
+import React, { useState } from "react";
+import { StaticImage } from "gatsby-plugin-image";
+import { OpenNav } from "./OpenNav";
+import { FaBars } from "@react-icons/all-files/fa/FaBars";
+import { Link } from "gatsby";
+import { LinkList } from "./LinkList";
 
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -10,13 +11,13 @@ export const Navbar = () => {
   const handleToggle = () => setToggle(!toggle);
 
   return (
-    <nav className='bg-black text-white p-4'>
-      <Link to='/'>
+    <nav className="text-white p-2 mb-2  w-full z-50">
+      <Link to="/">
         <StaticImage
-          src='../../images/orbitimage.png'
-          alt='Orbit'
-          className='w-32'
-          placeholder='none'
+          src="../../images/orbitimage.png"
+          alt="Orbit"
+          className="w-24 ml-4 mt-4"
+          placeholder="none"
         />
       </Link>
 
@@ -25,7 +26,7 @@ export const Navbar = () => {
       ) : (
         <FaBars
           onClick={handleToggle}
-          className='absolute right-4 top-8 cursor-pointer'
+          className="absolute right-4 top-8 cursor-pointer"
         />
       )}
     </nav>
