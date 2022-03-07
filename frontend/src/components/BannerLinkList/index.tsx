@@ -1,16 +1,25 @@
 import React from "react";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 import { BannerLink } from "../BannerLink";
 
-export const BannerLinkList = () => (
+interface BannerLinkListProps {
+  links: {
+    url: string;
+    title: string;
+    image: {
+      asset: {
+        gatsbyImageData: IGatsbyImageData;
+      };
+    };
+  }[];
+}
+
+export const BannerLinkList = ({ links }: BannerLinkListProps) => (
   <ul>
-    <li className="px-4 py-2">
-      <BannerLink />
-    </li>
-    <li className="px-4 py-2">
-      <BannerLink />
-    </li>
-    <li className="px-4 py-2">
-      <BannerLink />
-    </li>
+    {links.map((link) => (
+      <li key={link.title} className="px-4 py-2">
+        <BannerLink link={link} />
+      </li>
+    ))}
   </ul>
 );
