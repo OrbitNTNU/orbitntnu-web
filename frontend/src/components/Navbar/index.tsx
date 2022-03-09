@@ -46,12 +46,10 @@ export const Navbar = () => {
         Join
       </Link>
 
-      {!toggle && (
-        <FaBars
-          onClick={handleToggle}
-          className="absolute right-8 top-8 cursor-pointer"
-        />
-      )}
+      <FaBars
+        onClick={handleToggle}
+        className="absolute right-8 top-8 cursor-pointer"
+      />
 
       <CSSTransition
         in={toggle}
