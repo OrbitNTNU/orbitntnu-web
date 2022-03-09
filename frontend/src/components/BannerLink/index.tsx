@@ -20,9 +20,9 @@ export const BannerLink = ({ link }: BannerLinkProps) => (
       <GatsbyImage
         image={link.image.asset.gatsbyImageData}
         alt="banner"
-        className="w-full h-32 transition-all duration-500 group-hover:opacity-80"
+        className="w-full h-32 md:h-48 transition-all duration-500 group-hover:opacity-80"
       />
-      <p className="absolute bottom-2 left-4 font-bold transition-all duration-500  group-hover:bottom-4">
+      <p className="absolute bottom-2 left-4 font-bold md:text-xl transition-all duration-500 group-hover:bottom-4">
         {link.title}
       </p>
     </div>
