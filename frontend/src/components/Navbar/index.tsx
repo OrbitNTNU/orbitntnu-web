@@ -22,7 +22,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="text-white p-2 mb-2  w-full z-50">
+    <nav className="text-white p-2 mb-2  w-full z-50 absolute top-0 left-0">
       <Link to="/">
         <StaticImage
           src="../../images/orbitimage.png"

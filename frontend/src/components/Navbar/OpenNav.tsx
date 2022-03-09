@@ -29,7 +29,7 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
         onClick={handleToggle}
       />
 
-      <div className="absolute w-1/2 h-screen right-0 top-0 bg-black opacity-100 text-right p-8 z-10">
+      <div className="absolute w-1/2 md:w-2/6 h-screen right-0 top-0 bg-black opacity-100 text-right p-8 z-10">
         <FaTimes
           onClick={handleToggle}
           className="absolute top-8 right-8 cursor-pointer"

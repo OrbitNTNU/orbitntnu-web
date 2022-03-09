@@ -19,21 +19,24 @@ export const LandingHero = ({ topText, mobileImage }: LandingHeroProps) => {
   return (
     <div className="relative">
       {width > 640 ? (
-        <video autoPlay loop className="w-screen opacity-80">
+        <video autoPlay loop className="w-screen opacity-70">
           <source src={OrbitCompilation} type="video/mp4" />
         </video>
       ) : (
         <GatsbyImage
           image={mobileImage.asset.gatsbyImageData}
           alt="Engineers Working"
+          className="opacity-70"
         />
       )}
+      {/*
       <h1
-        className="absolute top-4 left-4 text-3xl p-2 bg-gray-900 bg-opacity-50 
-      font-black uppercase max-w-64 md:top-16 md:left-1/4 md:-ml-32 md:max-w-md md:text-6xl"
+        className="absolute top-16 left-4 text-3xl p-2 font-black uppercase max-w-64 
+        md:top-32 md:left-1/4 md:-ml-32 md:max-w-md md:text-6xl"
       >
         {topText}
       </h1>
+       */}
     </div>
   );
 };
