@@ -15,9 +15,9 @@ interface BannerLinkListProps {
 }
 
 export const BannerLinkList = ({ links }: BannerLinkListProps) => (
-  <ul>
+  <ul className="flex flex-col justify-center items-center">
     {links.map((link) => (
-      <li key={link.title} className="px-4 py-2">
+      <li key={link.title} className="px-4 py-2 md:max-w-4xl">
         <BannerLink link={link} />
       </li>
     ))}
