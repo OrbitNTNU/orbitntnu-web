@@ -1,35 +1,40 @@
-import React from 'react';
-import { FaTimes } from '@react-icons/all-files/fa/FaTimes';
-import { Link } from 'gatsby';
+import React from "react";
+import { FaTimes } from "@react-icons/all-files/fa/FaTimes";
+import { Link } from "gatsby";
 
 interface OpenNavProps {
-  handleToggle: (toggle: boolean) => void;
+  handleToggle: () => void;
 }
 
 export const OpenNav = ({ handleToggle }: OpenNavProps) => {
   const links = [
-    { text: 'Home', slug: '/' },
-    { text: 'Missions', slug: '/missions' },
-    { text: 'Teams', slug: '/teams' },
-    { text: 'About Us', slug: '/about-us' },
-    { text: 'Sponsors', slug: '/sponsors' },
-    { text: 'Contact', slug: '/contact' },
-    { text: 'Join', slug: '/join' },
+    { text: "Home", slug: "/" },
+    { text: "SelfieSat-1", slug: "/selfiesat" },
+    { text: "FramSat-1", slug: "/framsat" },
+    { text: "SubOrbital", slug: "/suborbital" },
+    { text: "Teams", slug: "/teams" },
+    { text: "About Us", slug: "/about" },
+    { text: "Sponsors", slug: "/sponsors" },
+    { text: "Contact", slug: "/contact" },
+    { text: "Join", slug: "/join" },
   ];
 
   const getSelectedStatus = (slug: string) =>
-    window.location.pathname === slug ? 'text-orange-400' : '';
+    window.location.pathname === slug ? "text-sky-400" : "";
 
   return (
-    <React.Fragment>
-      <div className='absolute w-full h-screen top-0 right-0 bg-black opacity-30' />
+    <div className="transition-all duration-500">
+      <div
+        className="absolute w-full h-screen top-0 right-0 bg-black opacity-30 z-10"
+        onClick={handleToggle}
+      />
 
-      <div className='absolute w-1/2 h-screen right-0 top-0 bg-black opacity-100 text-right p-4 z-10'>
+      <div className="absolute w-1/2 h-screen right-0 top-0 bg-black opacity-100 text-right p-8 z-10">
         <FaTimes
           onClick={handleToggle}
-          className='absolute top-8 right-4 cursor-pointer'
+          className="absolute top-8 right-8 cursor-pointer"
         />
-        <ul className='pt-16'>
+        <ul className="pt-16">
           {links.map((link) => (
             <li
               key={link.slug}
@@ -40,6 +45,6 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
           ))}
         </ul>
       </div>
-    </React.Fragment>
+    </div>
   );
 };

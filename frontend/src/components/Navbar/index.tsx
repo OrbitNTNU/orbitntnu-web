@@ -3,12 +3,17 @@ import { StaticImage } from "gatsby-plugin-image";
 import { OpenNav } from "./OpenNav";
 import { FaBars } from "@react-icons/all-files/fa/FaBars";
 import { Link } from "gatsby";
-import { LinkList } from "./LinkList";
 
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false);
 
-  const handleToggle = () => setToggle(!toggle);
+  const handleToggle = () => {
+    setToggle(!toggle);
+
+    toggle
+      ? (document.body.style.overflow = "unset")
+      : (document.body.style.overflow = "hidden");
+  };
 
   const links = [
     { name: "SELFIESAT", url: "/selfiesat" },
