@@ -10,6 +10,12 @@ export const Navbar = () => {
 
   const handleToggle = () => setToggle(!toggle);
 
+  const links = [
+    { name: "SELFIESAT", url: "/selfiesat" },
+    { name: "FRAMSAT", url: "/framsat" },
+    { name: "SUBORBITAL", url: "/suborbital" },
+  ];
+
   return (
     <nav className="text-white p-2 mb-2  w-full z-50">
       <Link to="/">
@@ -21,12 +27,24 @@ export const Navbar = () => {
         />
       </Link>
 
+      <ul className="invisible inline-block mt-5 ml-8 md:visible">
+        {links.map((link) => (
+          <Link key={link.name} to={link.url}>
+            <li className="inline-block mr-4">{link.name}</li>
+          </Link>
+        ))}
+      </ul>
+
+      <Link to="/join" className="invisible absolute right-16 top-7 md:visible">
+        Join
+      </Link>
+
       {toggle ? (
         <OpenNav handleToggle={handleToggle} />
       ) : (
         <FaBars
           onClick={handleToggle}
-          className="absolute right-4 top-8 cursor-pointer"
+          className="absolute right-8 top-8 cursor-pointer"
         />
       )}
     </nav>
