@@ -20,10 +20,10 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
   ];
 
   const getSelectedStatus = (slug: string) =>
-    window.location.pathname === slug ? "text-sky-400" : "";
+    window.location.pathname === slug ? "border-b-2" : "";
 
   return (
-    <div className="transition-all duration-500">
+    <div>
       <div
         className="absolute w-full h-screen top-0 right-0 bg-black opacity-30 z-10"
         onClick={handleToggle}
@@ -36,11 +36,13 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
         />
         <ul className="pt-16">
           {links.map((link) => (
-            <li
-              key={link.slug}
-              className={`mb-2 text-xl ${getSelectedStatus(link.slug)}`}
-            >
-              <Link to={link.slug}>{link.text}</Link>
+            <li key={link.slug} className="mb-2 text-xl">
+              <Link
+                to={link.slug}
+                className={`font-thin ${getSelectedStatus(link.slug)}`}
+              >
+                {link.text}
+              </Link>
             </li>
           ))}
         </ul>

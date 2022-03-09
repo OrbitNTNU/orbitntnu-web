@@ -3,6 +3,8 @@ import { StaticImage } from "gatsby-plugin-image";
 import { OpenNav } from "./OpenNav";
 import { FaBars } from "@react-icons/all-files/fa/FaBars";
 import { Link } from "gatsby";
+import { CSSTransition } from "react-transition-group";
+import "./navbar.css";
 
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -44,14 +46,21 @@ export const Navbar = () => {
         Join
       </Link>
 
-      {toggle ? (
-        <OpenNav handleToggle={handleToggle} />
-      ) : (
+      {!toggle && (
         <FaBars
           onClick={handleToggle}
           className="absolute right-8 top-8 cursor-pointer"
         />
       )}
+
+      <CSSTransition
+        in={toggle}
+        timeout={300}
+        unmountOnExit
+        class-names="alert"
+      >
+        <OpenNav handleToggle={handleToggle} />
+      </CSSTransition>
     </nav>
   );
 };
