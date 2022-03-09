@@ -8,9 +8,6 @@ import { graphql } from "gatsby";
 const IndexPage = ({ data }) => {
   const { sanityLandingPage } = data;
 
-  return null;
-
-  /**
   return (
     <Layout>
       <LandingHero
@@ -26,8 +23,6 @@ const IndexPage = ({ data }) => {
       <BannerLinkList links={sanityLandingPage.links} />
     </Layout>
   );
-   * 
-   */
 };
 
 export const query = graphql`

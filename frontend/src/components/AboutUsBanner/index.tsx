@@ -25,7 +25,7 @@ export const AboutUsBanner = ({
       alt="earth black backdrop"
       className="w-full"
     />
-    <div className="absolute top-16 w-64 text-center">
+    <div className="absolute top-1/2 -mt-32 max-w-64 text-center">
       <h2 className="text-4xl font-bold">{title}</h2>
       <p className="mb-2">{aboutText}</p>
       <Button label={buttonText} />
