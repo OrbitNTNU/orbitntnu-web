@@ -9,21 +9,36 @@ export default {
       title: "Title",
     },
     {
+      name: "email",
+      type: "string",
+      title: "Email",
+    },
+    {
       name: "adress",
       type: "string",
       title: "Adress",
     },
     {
+      name: "room",
+      type: "string",
+      title: "Room",
+    },
+    {
+      name: "postal",
+      type: "string",
+      title: "Postal code",
+    },
+    {
       name: "missionLinks",
       title: "Mission Links",
       type: "array",
-      of: [{ type: "string" }],
+      of: [{ type: "textLink" }],
     },
     {
       name: "otherLinks",
       title: "Other Links",
       type: "array",
-      of: [{ type: "string" }],
+      of: [{ type: "textLink" }],
     },
     {
       name: "soMeLinks",

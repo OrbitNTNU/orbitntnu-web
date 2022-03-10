@@ -1,7 +1,37 @@
 import React from "react";
-import { StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
+import { graphql, Link, useStaticQuery } from "gatsby";
 
 export const Footer = () => {
+  const { sanityFooter } = useStaticQuery(graphql`
+    query FooterComponentQuery {
+      sanityFooter {
+        title
+        adress
+        room
+        postal
+        email
+        otherLinks {
+          title
+          url
+        }
+        missionLinks {
+          title
+          url
+        }
+        soMeLinks {
+          url
+          title
+          image {
+            asset {
+              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+            }
+          }
+        }
+      }
+    }
+  `);
+
   const year = new Date().getFullYear();
 
   return (
@@ -17,26 +47,27 @@ export const Footer = () => {
 
           <div className="mb-4 text-sm md:text-base">
             <p className="font-bold">Orbit NTNU</p>
-            <p>O.S Bragstad plass 2B</p>
-            <p>4 etg. Rom B406</p>
-            <p>7034 Trondheim</p>
+            <p>{sanityFooter.email}</p>
+            <p>{sanityFooter.adress}</p>
+            <p>{sanityFooter.room}</p>
+            <p>{sanityFooter.postal}</p>
           </div>
 
           <div className="flex gap-16 md:absolute md:top-8 md:right-0">
             <ul>
-              <li className="py-2">About US</li>
-              <li className="py-2">Blog</li>
-              <li className="py-2">Gallery</li>
-              <li className="py-2">Sponsors</li>
-              <li className="py-2">Contact</li>
-              <li className="py-2">Team</li>
-              <li className="py-2">Join</li>
+              {sanityFooter.otherLinks.map((link) => (
+                <li key={link.title} className="py-2">
+                  <Link to={link.url}>{link.title}</Link>
+                </li>
+              ))}
             </ul>
 
             <ul>
-              <li className="py-2">SELFISAT</li>
-              <li className="py-2">FRAMSAT-1</li>
-              <li className="py-2">SUBORBITAL</li>
+              {sanityFooter.missionLinks.map((link) => (
+                <li key={link.title} className="py-2 uppercase">
+                  <Link to={link.url}>{link.title}</Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -46,21 +77,15 @@ export const Footer = () => {
         <div className="max-w-4xl relative m-auto">
           <p>Orbit NTNU © {year}</p>
           <div className="flex absolute -top-1 right-4 gap-4">
-            <StaticImage
-              src="../../images/github.png"
-              alt="github"
-              className="w-8"
-            />
-            <StaticImage
-              src="../../images/instagram.png"
-              alt="instagram"
-              className="w-8"
-            />
-            <StaticImage
-              src="../../images/facebook.png"
-              alt="facebook"
-              className="w-8"
-            />
+            {sanityFooter.soMeLinks.map((link) => (
+              <a href={link.url} key={link.title}>
+                <GatsbyImage
+                  image={link.image.asset.gatsbyImageData}
+                  alt="SoMe"
+                  className="w-8"
+                />
+              </a>
+            ))}
           </div>
         </div>
       </div>

@@ -10,8 +10,15 @@ import landingPage from "./landingPage";
 import cardLink from "./cardLink";
 import footer from "./footer";
 import someLink from "./someLink";
+import textLink from "./textLink";
 
 export default createSchema({
   name: "pages",
-  types: schemaTypes.concat([landingPage, cardLink, footer, someLink]),
+  types: schemaTypes.concat([
+    landingPage,
+    cardLink,
+    footer,
+    someLink,
+    textLink,
+  ]),
 });
