@@ -17,7 +17,7 @@ export const LandingHero = ({ topText, mobileImage }: LandingHeroProps) => {
   const { width } = useWindowSize();
 
   return (
-    <div className="relative">
+    <div className="relative" data-scroll-section>
       {width > 640 ? (
         <video autoPlay loop className="w-screen opacity-70">
           <source src={OrbitCompilation} type="video/mp4" />
