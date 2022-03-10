@@ -1,22 +1,15 @@
-import * as React from 'react';
-import { Link } from 'gatsby';
-import { Layout } from '../templates/Layout';
+import React from "react";
+import { Layout } from "../templates/Layout";
+import { Header } from "../components/Header";
 
-const NotFoundPage = () => {
-  return (
-    <Layout>
-      <h1>Page not found</h1>
-      <p>
-        Sorry{' '}
-        <span role='img' aria-label='Pensive emoji'>
-          😔
-        </span>{' '}
-        we couldn’t find what you were looking for.
-        <br />
-        <Link to='/'>Go home</Link>.
-      </p>
-    </Layout>
-  );
-};
+const NotFoundPage = () => (
+  <Layout>
+    <Header
+      title="Orbit NTNU"
+      name="404"
+      text="We could not find the page you were looking for."
+    />
+  </Layout>
+);
 
 export default NotFoundPage;
