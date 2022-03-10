@@ -1,23 +1,28 @@
 import React from "react";
 import { FaTimes } from "@react-icons/all-files/fa/FaTimes";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 
 interface OpenNavProps {
   handleToggle: () => void;
 }
 
 export const OpenNav = ({ handleToggle }: OpenNavProps) => {
-  const links = [
-    { text: "Home", slug: "/" },
-    { text: "SelfieSat-1", slug: "/selfiesat" },
-    { text: "FramSat-1", slug: "/framsat" },
-    { text: "SubOrbital", slug: "/suborbital" },
-    { text: "Teams", slug: "/teams" },
-    { text: "About Us", slug: "/about" },
-    { text: "Sponsors", slug: "/sponsors" },
-    { text: "Contact", slug: "/contact" },
-    { text: "Join", slug: "/join" },
-  ];
+  const { sanityFooter } = useStaticQuery(graphql`
+    query OpenNavComponentQuery {
+      sanityFooter {
+        missionLinks {
+          title
+          url
+        }
+        otherLinks {
+          title
+          url
+        }
+      }
+    }
+  `);
+
+  const links = [...sanityFooter.missionLinks, ...sanityFooter.otherLinks];
 
   const getSelectedStatus = (slug: string) =>
     window.location.pathname === slug ? "border-b-2" : "";
@@ -35,14 +40,23 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
           className="absolute top-8 right-8 cursor-pointer"
         />
         <ul className="pt-16">
+          <li className="mb-2 text-xl">
+            <Link
+              to="/"
+              className={`font-thin ${getSelectedStatus("/")}`}
+              onClick={handleToggle}
+            >
+              Home
+            </Link>
+          </li>
           {links.map((link) => (
-            <li key={link.slug} className="mb-2 text-xl">
+            <li key={link.url} className="mb-2 text-xl">
               <Link
-                to={link.slug}
-                className={`font-thin ${getSelectedStatus(link.slug)}`}
+                to={link.url}
+                className={`font-thin ${getSelectedStatus(link.title)}`}
                 onClick={handleToggle}
               >
-                {link.text}
+                {link.title}
               </Link>
             </li>
           ))}
