@@ -8,7 +8,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ title, name, text }: HeaderProps) => (
-  <header className="relative">
+  <header className="relative -mb-8">
     <StaticImage
       src="../../images/mobile-hero.png"
       alt="Engineers Working"
