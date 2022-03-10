@@ -20,11 +20,13 @@ export const AboutUsBanner = ({
   buttonText,
   image,
 }: AboutUsBannerProps) => (
-  <section className="relative flex justify-center">
+  <section className="relative flex justify-center" data-scroll-section>
     <GatsbyImage
       image={image.asset.gatsbyImageData}
       alt="earth black backdrop"
       className="w-full md:max-w-3xl"
+      data-scroll
+      data-scroll-speed="2"
     />
     <div className="absolute top-1/2 -mt-32 max-w-64 text-center md:max-w-xl">
       <h2 className="text-4xl font-bold md:text-6xl">{title}</h2>
