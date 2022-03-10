@@ -24,8 +24,10 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
 
   const links = [...sanityFooter.missionLinks, ...sanityFooter.otherLinks];
 
-  const getSelectedStatus = (slug: string) =>
-    window.location.pathname === slug ? "border-b-2" : "";
+  const getSelectedStatus = (url: string) => {
+    console.log(url);
+    return window.location.pathname === url ? "border-b-2" : "";
+  };
 
   return (
     <div>
@@ -53,7 +55,7 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
             <li key={link.url} className="mb-2 text-xl">
               <Link
                 to={link.url}
-                className={`font-thin ${getSelectedStatus(link.title)}`}
+                className={`font-thin ${getSelectedStatus(link.url)}`}
                 onClick={handleToggle}
               >
                 {link.title}
