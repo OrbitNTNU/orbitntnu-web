@@ -40,6 +40,7 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
               <Link
                 to={link.slug}
                 className={`font-thin ${getSelectedStatus(link.slug)}`}
+                onClick={handleToggle}
               >
                 {link.text}
               </Link>
