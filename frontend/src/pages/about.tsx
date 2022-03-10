@@ -1,6 +1,5 @@
 import React from "react";
 import { Header } from "../components/Header";
-import { Navbar } from "../components/Navbar";
 import { Layout } from "../templates/Layout";
 
 const AboutUs = () => (
