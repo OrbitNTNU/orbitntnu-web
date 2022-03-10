@@ -19,7 +19,7 @@ export const Header = ({ title, name, text }: HeaderProps) => (
         {title}
       </h1>
       <h2 className="font-bold text-4xl uppercase lg:text-7xl">{name}</h2>
-      <p className="font-base max-w-64 lg:text-xl lg:max-w-xs">{text}</p>
+      <p className="font-base max-w-64 lg:text-xl lg:max-w-xs ml-1">{text}</p>
     </div>
   </header>
 );
