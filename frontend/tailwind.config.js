@@ -8,6 +8,9 @@ module.exports = {
       maxWidth: {
         64: "256px",
       },
+      width: {
+        194: "48rem",
+      },
     },
   },
   plugins: [],
