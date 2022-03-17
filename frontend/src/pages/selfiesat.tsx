@@ -1,15 +1,13 @@
 import React from "react";
-import { Header } from "../components/Header";
 import { Layout } from "../templates/Layout";
+import { SelfieSatHeader } from "./selfiesat/SelfieSatHeader/SelfieSatHeader";
 
 const SelfieSat = () => (
   <Layout>
-    <Header
+    <SelfieSatHeader
       title="Orbit NTNU"
       name="SELFIESAT-1"
-      text="Orbit is run with both technical and non-technical support from our sponsors. 
-      We are very grateful for the support we receive, and are always looking for new companies 
-      to work with. Want to be a part of our journey? Send an email to cmo@orbitntnu.com!"
+      text="The worlds first selfie taking satellitte."
     />
   </Layout>
 );
