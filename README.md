@@ -25,6 +25,11 @@ Live @ [dev.orbitntnu.com](https://dev.orbitntnu.com)
 - [Sanity](https://www.sanity.io/)
   - CMS used to manage the websites content ✅
 
+#### Dependencies
+
+- [locomotive-scroll](https://github.com/locomotivemtl/locomotive-scroll)
+- [react-countdown](https://www.npmjs.com/package/react-countdown)
+
 ### Installation
 
 ```bash
