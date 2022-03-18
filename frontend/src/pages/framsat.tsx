@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout } from "../templates/Layout";
-import { FramSatHeader } from "./framsat/FramSatHeader";
+import { FramSatHeader } from "../views/framsat/FramSatHeader";
 
 const FramSat = () => (
   <Layout>
