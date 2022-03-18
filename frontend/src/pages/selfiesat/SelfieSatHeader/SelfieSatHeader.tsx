@@ -50,12 +50,12 @@ export const SelfieSatHeader = ({ title, name, text }: SelfieSatHeader) => {
           <Countdown date={launchDate} renderer={renderer} />
           <p className="ml-1 mt-2 font-thin md:font-normal">Until launch</p>
         </div>
-        <StaticImage
-          src="../../../images/selfiesat.png"
-          alt="Selfiesast"
-          className="absolute z-0"
-        />
       </div>
+      <StaticImage
+        src="../../../images/selfiesat.png"
+        alt="Selfiesast"
+        className="absolute z-0 md:right-32 md:top-12 md:max-w-sm"
+      />
     </header>
   );
 };
