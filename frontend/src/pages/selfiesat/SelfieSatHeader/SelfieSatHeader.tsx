@@ -54,7 +54,7 @@ export const SelfieSatHeader = ({ title, name, text }: SelfieSatHeader) => {
       <StaticImage
         src="../../../images/selfiesat.png"
         alt="Selfiesast"
-        className="absolute z-0 md:right-32 md:top-12 md:max-w-sm"
+        className="absolute top-16 right-16 w-64 z-0 md:right-32 md:top-12 md:max-w-sm md:w-full"
       />
     </header>
   );
