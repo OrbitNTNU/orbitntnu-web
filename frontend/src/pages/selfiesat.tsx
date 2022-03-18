@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout } from "../templates/Layout";
-import { SelfieSatHeader } from "./selfiesat/SelfieSatHeader/SelfieSatHeader";
+import { SelfieSatHeader } from "./selfiesat/SelfieSatHeader";
 
 const SelfieSat = () => (
   <Layout>
