@@ -9,8 +9,8 @@ interface SelfieSatHeader {
 }
 
 const CountdownBox = ({ num, type }: { num: number; type: string }) => (
-  <div className="mr-4 bg-gray-800 bg-opacity-60 flex flex-col text-center w-16 h-16">
-    <span className="text-2xl mt-1">{num}</span>
+  <div className="mr-4 bg-gray-800 bg-opacity-60 flex flex-col text-center w-16 h-16 md:w-24 md:h-24 justify-center">
+    <span className="text-2xl mt-1 md:text-4xl">{num}</span>
     <span className="font-thin">{type}</span>
   </div>
 );
@@ -45,10 +45,10 @@ export const SelfieSatHeader = ({ title, name, text }: SelfieSatHeader) => {
           {title}
         </h1>
         <h2 className="font-bold text-4xl uppercase ">{name}</h2>
-        <p className="font-base max-w-64 ml-1">{text}</p>
+        <p className="max-w-64 ml-1">{text}</p>
         <div>
           <Countdown date={launchDate} renderer={renderer} />
-          <p className="ml-1 mt-2 font-thin">Until launch</p>
+          <p className="ml-1 mt-2 font-thin md:font-normal">Until launch</p>
         </div>
       </div>
     </header>
