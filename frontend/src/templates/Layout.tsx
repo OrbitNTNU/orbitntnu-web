@@ -33,7 +33,10 @@ export const Layout = ({ children, location }) => {
         <link rel="icon" href={favicon} />
       </Helmet>
       <Navbar />
+      {/**
+       * Temprorarily removed due to a lot of bugs.
       <Scroll callbacks={location} />
+       */}
       <div data-scroll-container>
         {children}
         <Footer />
