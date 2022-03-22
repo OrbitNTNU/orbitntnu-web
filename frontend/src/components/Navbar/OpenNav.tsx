@@ -25,7 +25,6 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
   const links = [...sanityFooter.missionLinks, ...sanityFooter.otherLinks];
 
   const getSelectedStatus = (url: string) => {
-    console.log(url);
     return window.location.pathname === url ? "border-b-2" : "";
   };
 

@@ -11,6 +11,8 @@ import cardLink from "./cardLink";
 import footer from "./footer";
 import someLink from "./someLink";
 import textLink from "./textLink";
+import member from "./member";
+import team from "./team";
 
 export default createSchema({
   name: "pages",
@@ -20,5 +22,7 @@ export default createSchema({
     footer,
     someLink,
     textLink,
+    member,
+    team,
   ]),
 });
