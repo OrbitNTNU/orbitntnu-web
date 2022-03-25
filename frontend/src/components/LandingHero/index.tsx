@@ -21,16 +21,18 @@ export const LandingHero = ({ topText, mobileImage }: LandingHeroProps) => {
   return (
     <div className="relative" data-scroll-section>
       {width > 640 ? (
-        <video
-          autoPlay
-          loop
-          muted
-          className="w-screen opacity-70"
-          poster={PlaceholderImage}
-        >
-          <source src={OrbitCompilationMp4} type="video/mp4" />
-          <source src={OrbitCompilationOgv} type="video/ogg" />
-        </video>
+        <div className="w-full h-full min-h-screen">
+          <video
+            autoPlay
+            loop
+            muted
+            className="w-screen opacity-70"
+            poster={PlaceholderImage}
+          >
+            <source src={OrbitCompilationMp4} type="video/mp4" />
+            <source src={OrbitCompilationOgv} type="video/ogg" />
+          </video>
+        </div>
       ) : (
         <GatsbyImage
           image={mobileImage.asset.gatsbyImageData}
