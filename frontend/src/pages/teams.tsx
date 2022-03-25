@@ -8,6 +8,8 @@ import { IGatsbyImageData } from "gatsby-plugin-image";
 export interface Member {
   name: string;
   title: string;
+  email?: string;
+  phone?: string;
   image: {
     asset: {
       gatsbyImageData: IGatsbyImageData;
@@ -64,6 +66,8 @@ export const query = graphql`
           }
           name
           title
+          phone
+          email
         }
         name
         description
