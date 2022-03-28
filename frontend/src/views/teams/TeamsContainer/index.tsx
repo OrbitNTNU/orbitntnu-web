@@ -14,7 +14,7 @@ export const TeamsContainer = ({
   selectedTeam,
   setSelectedTeam,
 }: TeamsContainerProps) => (
-  <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
+  <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-5xl md:justify-center m-auto">
     <Filter
       teams={teams}
       selectedTeam={selectedTeam}
