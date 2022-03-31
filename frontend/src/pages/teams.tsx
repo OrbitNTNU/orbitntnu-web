@@ -4,6 +4,7 @@ import { Layout } from "../templates/Layout";
 import { graphql } from "gatsby";
 import { TeamsContainer } from "../views/teams/TeamsContainer";
 import { IGatsbyImageData } from "gatsby-plugin-image";
+import firebase from "gatsby-plugin-firebase";
 
 export interface Member {
   name: string;
@@ -33,6 +34,14 @@ const Teams = ({ data }) => {
       setSelectedTeam(teams[0]);
     }
   }, []);
+
+  useEffect(() => {
+    if (!firebase) {
+      return;
+    }
+
+    firebase.analytics().logEvent("visited_teams_page");
+  }, [firebase]);
 
   return (
     <Layout>
