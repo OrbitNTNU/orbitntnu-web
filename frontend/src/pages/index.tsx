@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout } from "../templates/Layout";
 import { LandingHero } from "../components/LandingHero";
 import { AboutUsBanner } from "../components/AboutUsBanner";
 import { BannerLinkList } from "../components/BannerLinkList";
 import { graphql } from "gatsby";
+import firebase from "gatsby-plugin-firebase";
 
 const IndexPage = ({ data }) => {
   const { sanityLandingPage } = data;
+
+  useEffect(() => {
+    if (!firebase) {
+      return;
+    }
+
+    firebase.analytics().logEvent("visited_homepage");
+  }, [firebase]);
 
   return (
     <Layout>
