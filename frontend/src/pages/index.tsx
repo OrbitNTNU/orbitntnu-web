@@ -14,7 +14,7 @@ const IndexPage = ({ data }) => {
       return;
     }
 
-    firebase.analytics().logEvent("visited_homepage");
+    firebase.analytics().logEvent("visited_home_page");
   }, [firebase]);
 
   return (
