@@ -7,10 +7,10 @@ interface ButtonLinkProps {
 }
 
 export const ButtonLink = ({ label, url }: ButtonLinkProps) => (
-  <Link
-    to={url}
+  <a
+    href={url}
     className="bg-blue-600 font-bold py-2 px-4 w-32 text-center md:text-xl block"
   >
     {label}
-  </Link>
+  </a>
 );
