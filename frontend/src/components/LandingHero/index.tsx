@@ -2,7 +2,7 @@ import React from "react";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import OrbitCompilationMp4 from "../../images/tmpvideo.mp4";
 import OrbitCompilationOgv from "../../images/tmpvideo.ogv";
-import PlaceholderImage from "../../images/mobile-hero.png";
+import PlaceholderImage from "../../images/black-image.png";
 import { useWindowSize } from "../../utils/hooks/useWindowSize";
 import { GatsbyImage } from "gatsby-plugin-image";
 
