@@ -13,6 +13,7 @@ import someLink from "./someLink";
 import textLink from "./textLink";
 import member from "./member";
 import team from "./team";
+import position from "./position";
 
 export default createSchema({
   name: "pages",
@@ -24,5 +25,6 @@ export default createSchema({
     textLink,
     member,
     team,
+    position,
   ]),
 });
