@@ -26,7 +26,7 @@ export interface Team {
 
 const Teams = ({ data }) => {
   const [selectedTeam, setSelectedTeam] = useState<Team>(null);
-  const { allSanityTeam } = data;
+  const { sanityTeamsPage, allSanityTeam } = data;
 
   useEffect(() => {
     const teams = allSanityTeam.nodes;
@@ -46,11 +46,10 @@ const Teams = ({ data }) => {
   return (
     <Layout>
       <Header
-        title="Orbit NTNU"
-        name="Teams"
-        text="Orbit is run with both technical and non-technical support from our sponsors. 
-      We are very grateful for the support we receive, and are always looking for new companies 
-      to work with. Want to be a part of our journey? Send an email to cmo@orbitntnu.com!"
+        title={sanityTeamsPage.fadedTitle}
+        name={sanityTeamsPage.title}
+        text={sanityTeamsPage.topText}
+        image={sanityTeamsPage.topImage}
       />
       {selectedTeam && (
         <TeamsContainer
@@ -65,6 +64,28 @@ const Teams = ({ data }) => {
 
 export const query = graphql`
   query TeamsPageQuery {
+    sanityTeamsPage {
+      topText
+      topImage {
+        asset {
+          gatsbyImageData
+        }
+      }
+      title
+      fadedTitle
+    }
+    allSanityPosition {
+      nodes {
+        title
+        text
+        positionLink
+        image {
+          asset {
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+          }
+        }
+      }
+    }
     allSanityTeam {
       nodes {
         members {

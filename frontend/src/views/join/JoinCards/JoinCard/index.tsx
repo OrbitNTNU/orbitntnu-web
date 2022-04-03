@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  GatsbyImage,
-  IGatsbyImageData,
-  StaticImage,
-} from "gatsby-plugin-image";
-import { ButtonLink } from "../ButtonLink";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { ButtonLink } from "../../../../components/ButtonLink";
 
 interface JoinCardProps {
   title: string;
