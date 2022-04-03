@@ -1,17 +1,22 @@
 import React from "react";
-import { StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 
 interface HeaderProps {
   title: string;
   name: string;
   text: string;
+  image: {
+    asset: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+  };
 }
 
-export const Header = ({ title, name, text }: HeaderProps) => (
+export const Header = ({ title, name, text, image }: HeaderProps) => (
   <header className="relative -mb-8" data-scroll-section>
-    <StaticImage
-      src="../../images/obc-working.png"
-      alt="Engineers Working"
+    <GatsbyImage
+      image={image.asset.gatsbyImageData}
+      alt="Join Page Header"
       className="w-full h-96 relative opacity-50 lg:w-auto md:h-[28rem]"
     />
     <div className="flex flex-col absolute top-20 left-6 lg:top-1/4 lg:left-64">
