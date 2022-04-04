@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import { Layout } from "../templates/Layout";
 import { Header } from "../components/Header";
 import firebase from "gatsby-plugin-firebase";
+import { graphql } from "gatsby";
 
-const NotFoundPage = () => {
+const NotFoundPage = ({ data }) => {
+  const { sanityNotFoundPage } = data;
+
   useEffect(() => {
     if (!firebase) {
       return;
@@ -15,11 +18,28 @@ const NotFoundPage = () => {
   return (
     <Layout>
       <Header
-        title="Orbit NTNU"
-        name="404"
-        text="We could not find the page you were looking for."
+        title={sanityNotFoundPage.fadedTitle}
+        name={sanityNotFoundPage.title}
+        text={sanityNotFoundPage.topText}
+        image={sanityNotFoundPage.topImage}
       />
     </Layout>
   );
 };
+
+export const query = graphql`
+  query NotFoundPageQuery {
+    sanityNotFoundPage {
+      topText
+      topImage {
+        asset {
+          gatsbyImageData
+        }
+      }
+      title
+      fadedTitle
+    }
+  }
+`;
+
 export default NotFoundPage;
