@@ -3,6 +3,7 @@ import { Header } from "../components/Header";
 import { Layout } from "../templates/Layout";
 import firebase from "gatsby-plugin-firebase";
 import { graphql } from "gatsby";
+import { MainSponsorSection } from "../views/sponsors/MainSponsorSection";
 
 const Sponsors = ({ data }) => {
   const { sanitySponsorsPage } = data;
@@ -23,6 +24,7 @@ const Sponsors = ({ data }) => {
         text={sanitySponsorsPage.topText}
         image={sanitySponsorsPage.topImage}
       />
+      <MainSponsorSection {...sanitySponsorsPage} />
     </Layout>
   );
 };
@@ -30,14 +32,38 @@ const Sponsors = ({ data }) => {
 export const query = graphql`
   query SponsorsPageQuery {
     sanitySponsorsPage {
+      title
+      fadedTitle
       topText
+      mainSponsorName
+      mainSponsorDescription
       topImage {
         asset {
           gatsbyImageData
         }
       }
-      title
-      fadedTitle
+      sponsors {
+        type
+        title
+        sponsor {
+          caption
+          asset {
+            gatsbyImageData
+          }
+        }
+      }
+      mainSponsorLargeImage {
+        caption
+        asset {
+          gatsbyImageData
+        }
+      }
+      mainSponsorImage {
+        caption
+        asset {
+          gatsbyImageData
+        }
+      }
     }
   }
 `;
