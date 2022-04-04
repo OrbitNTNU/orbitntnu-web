@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout } from "../templates/Layout";
 import { MissionText } from "../views/selfiesat/MissionText";
 import { SelfieSatHeader } from "../views/selfiesat/SelfieSatHeader";
 import { Specs } from "../views/selfiesat/Specs";
 import { FadeInSection } from "../components/FadeInSection";
 import firebase from "gatsby-plugin-firebase";
+import blogComponent from "../components/BlogComponent";
 
 const SelfieSat = () => {
   useEffect(() => {
@@ -14,6 +15,26 @@ const SelfieSat = () => {
 
     firebase.analytics().logEvent("visited_selfiesat_page");
   }, [firebase]);
+
+  const makePost = (BaseComponent) => (props) => {
+    const newProps = { ...props };
+    return <BaseComponent {...newProps} />;
+  };
+  const BlogPost = makePost(blogComponent);
+
+  const initialBlogs = [
+    {
+      title: "hello world",
+      image: "sanityAboutPage.image2.asset.gatsbyImageData",
+    },
+    {
+      title: "fghhfhghg",
+      image: "sanityAboutPage.image1.asset.gatsbyImageData",
+    },
+    { title: "bek", image: "sanityAboutPage.image2.asset.gatsbyImageData" },
+  ];
+
+  const [posts, setPosts] = useState(initialBlogs);
 
   return (
     <Layout>
@@ -28,6 +49,8 @@ const SelfieSat = () => {
       <FadeInSection>
         <Specs />
       </FadeInSection>
+
+      <BlogPost title={posts[0].title} image={posts[0].image}></BlogPost>
     </Layout>
   );
 };
