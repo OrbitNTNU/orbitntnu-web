@@ -19,26 +19,32 @@ import notFoundPage from "./notFoundPage";
 import blogPage from "./blogPage";
 import galleryPage from "./galleryPage";
 import suborbitalPage from "./suborbitalPage";
+import sponsor from "./sponsor";
+import mainSponsorImage from "./mainSponsorImage";
+import mainSponsorLargeImage from "./mainSponsorLargeImage";
 
 export default createSchema({
   name: "pages",
   types: schemaTypes.concat([
     landingPage,
+    aboutPage,
+    sponsorsPage,
+    contactPage,
+    teamsPage,
+    joinPage,
+    blogPage,
+    galleryPage,
+    suborbitalPage,
+    notFoundPage,
+    position,
     cardLink,
     footer,
     someLink,
     textLink,
     member,
     team,
-    position,
-    joinPage,
-    aboutPage,
-    contactPage,
-    teamsPage,
-    sponsorsPage,
-    notFoundPage,
-    blogPage,
-    galleryPage,
-    suborbitalPage,
+    sponsor,
+    mainSponsorImage,
+    mainSponsorLargeImage,
   ]),
 });
