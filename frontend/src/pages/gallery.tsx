@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import { Header } from "../components/Header";
 import { Layout } from "../templates/Layout";
 import firebase from "gatsby-plugin-firebase";
+import { graphql } from "gatsby";
 
-const Gallery = () => {
+const Gallery = ({ data }) => {
+  const { sanityGalleryPage } = data;
+
   useEffect(() => {
     if (!firebase) {
       return;
@@ -12,17 +15,33 @@ const Gallery = () => {
     firebase.analytics().logEvent("visited_gallery_page");
   }, [firebase]);
 
+  // Dummy comment
+
   return (
     <Layout>
       <Header
-        title="Orbit NTNU"
-        name="Gallery"
-        text="Orbit is run with both technical and non-technical support from our sponsors. 
-      We are very grateful for the support we receive, and are always looking for new companies 
-      to work with. Want to be a part of our journey? Send an email to cmo@orbitntnu.com!"
+        title={sanityGalleryPage.fadedTitle}
+        name={sanityGalleryPage.title}
+        text={sanityGalleryPage.topText}
+        image={sanityGalleryPage.topImage}
       />
     </Layout>
   );
 };
+
+export const query = graphql`
+  query GalleryPageQuery {
+    sanityGalleryPage {
+      topText
+      topImage {
+        asset {
+          gatsbyImageData
+        }
+      }
+      title
+      fadedTitle
+    }
+  }
+`;
 
 export default Gallery;

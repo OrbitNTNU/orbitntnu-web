@@ -15,6 +15,10 @@ import aboutPage from "./aboutPage";
 import contactPage from "./contactPage";
 import teamsPage from "./teamsPage";
 import sponsorsPage from "./sponsorsPage";
+import notFoundPage from "./notFoundPage";
+import blogPage from "./blogPage";
+import galleryPage from "./galleryPage";
+import suborbitalPage from "./suborbitalPage";
 
 export default createSchema({
   name: "pages",
@@ -32,5 +36,9 @@ export default createSchema({
     contactPage,
     teamsPage,
     sponsorsPage,
+    notFoundPage,
+    blogPage,
+    galleryPage,
+    suborbitalPage,
   ]),
 });
