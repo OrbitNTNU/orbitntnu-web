@@ -25,5 +25,31 @@ export default {
       type: "image",
       description: "Top Image Shown On Page",
     },
+    {
+      name: "mainSponsorName",
+      type: "string",
+      title: "Main Sponsor Name",
+    },
+    {
+      name: "mainSponsorDescription",
+      type: "string",
+      title: "Main Sponsor Description",
+    },
+    {
+      name: "mainSponsorImage",
+      title: "Main Sponsor Image",
+      type: "mainSponsorImage",
+    },
+    {
+      name: "mainSponsorLargeImage",
+      title: "Main Sponsor Large Image",
+      type: "mainSponsorLargeImage",
+    },
+    {
+      name: "sponsors",
+      title: "Sponsors",
+      type: "array",
+      of: [{ type: "sponsor" }],
+    },
   ],
 };
