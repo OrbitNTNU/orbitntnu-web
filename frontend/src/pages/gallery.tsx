@@ -15,8 +15,6 @@ const Gallery = ({ data }) => {
     firebase.analytics().logEvent("visited_gallery_page");
   }, [firebase]);
 
-  // Dummy comment
-
   return (
     <Layout>
       <Header
