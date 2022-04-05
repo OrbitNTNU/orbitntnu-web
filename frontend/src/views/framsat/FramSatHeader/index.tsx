@@ -15,7 +15,7 @@ export const FramSatHeader = ({ title, name, text }: FramSatHeader) => {
   return (
     <header className="relative -mb-8" data-scroll-section>
       <StaticImage
-        src="../../../images/stars.png"
+        src="../../../images/selfiesat-in-space.png"
         alt="Stars"
         className="w-full h-96 relative opacity-70 lg:w-auto md:h-[28rem]"
       />
@@ -27,14 +27,9 @@ export const FramSatHeader = ({ title, name, text }: FramSatHeader) => {
         <p className="max-w-64 ml-1 z-10">{text}</p>
         <div className="z-10">
           <Countdown date={launchDate} renderer={CountdownRenderer} />
-          <p className="ml-1 mt-2 font-thin md:font-normal">Until launch</p>
+          <p className="ml-1 mt-2 font-thin md:font-normal">UNTIL LAUNCH</p>
         </div>
       </div>
-      <StaticImage
-        src="../../../images/framsat.png"
-        alt="Framsat"
-        className="absolute top-16 right-16 w-64 z-0 md:right-32 md:top-20 md:max-w-sm md:w-full"
-      />
     </header>
   );
 };
