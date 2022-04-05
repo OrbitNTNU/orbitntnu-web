@@ -31,10 +31,11 @@ export const MainSponsorSection = ({
       className="w-48 mt-2 mx-auto"
     />
     <FadeInSection>
-      <figure className="bg-yellow-300 p-8 m-4">
+      <figure className="bg-yellow-300 p-8 m-4 md:max-w-lg md:mx-auto md:flex md:flex-col">
         <GatsbyImage
           image={mainSponsorLargeImage.asset.gatsbyImageData}
           alt={mainSponsorLargeImage.caption}
+          className="md:max-w-xs md:mx-auto"
         />
         <p className="text-black mt-4">{mainSponsorDescription}</p>
       </figure>
