@@ -7,7 +7,7 @@ interface JoinCardsProps {
   positions: {
     title: string;
     text: string;
-    applyLink: string;
+    positionLink: string;
     image: {
       asset: {
         gatsbyImageData: IGatsbyImageData;
@@ -25,7 +25,7 @@ export const JoinCards = ({ sectionTitle, positions }: JoinCardsProps) => (
           key={position.title}
           title={position.title}
           text={position.text}
-          applyLink={position.applyLink}
+          applyLink={position.positionLink}
           image={position.image}
         />
       ))}

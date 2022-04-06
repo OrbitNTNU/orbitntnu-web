@@ -73,10 +73,10 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="bg-gray-800 p-8 ">
+      <div className="bg-gray-800 py-8 px-4 sm:px-8">
         <div className="max-w-4xl relative m-auto">
           <p>Orbit NTNU © {year}</p>
-          <div className="flex absolute -top-1 right-4 gap-4">
+          <div className="flex absolute -top-1 right-4 gap-2 sm:gap-4">
             {sanityFooter.soMeLinks.map((link) => (
               <a href={link.url} key={link.title}>
                 <GatsbyImage
