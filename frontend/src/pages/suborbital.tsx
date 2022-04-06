@@ -3,6 +3,9 @@ import { Header } from "../components/Header";
 import { Layout } from "../templates/Layout";
 import firebase from "gatsby-plugin-firebase";
 import { graphql } from "gatsby";
+import { FadeInSection } from "../components/FadeInSection";
+import { MissionText } from "../views/selfiesat/MissionText";
+import { Specs } from "../views/selfiesat/Specs";
 
 const SubOrbital = ({ data }) => {
   const { sanitySuborbitalPage } = data;
@@ -23,6 +26,12 @@ const SubOrbital = ({ data }) => {
         text={sanitySuborbitalPage.topText}
         image={sanitySuborbitalPage.topImage}
       />
+      <FadeInSection>
+        <MissionText />
+      </FadeInSection>
+      <FadeInSection>
+        <Specs />
+      </FadeInSection>
     </Layout>
   );
 };
