@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { Layout } from "../templates/Layout";
 import { FramSatHeader } from "../views/framsat/FramSatHeader";
 import firebase from "gatsby-plugin-firebase";
+import { FadeInSection } from "../components/FadeInSection";
+import { MissionText } from "../views/selfiesat/MissionText";
+import { Specs } from "../views/selfiesat/Specs";
 
 const FramSat = () => {
   useEffect(() => {
@@ -19,6 +22,12 @@ const FramSat = () => {
         name="FRAMSAT-1"
         text="Bringing space closer to home"
       />
+      <FadeInSection>
+        <MissionText />
+      </FadeInSection>
+      <FadeInSection>
+        <Specs />
+      </FadeInSection>
     </Layout>
   );
 };
