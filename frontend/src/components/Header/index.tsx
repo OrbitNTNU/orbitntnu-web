@@ -17,7 +17,7 @@ export const Header = ({ title, name, text, image }: HeaderProps) => (
     <GatsbyImage
       image={image.asset.gatsbyImageData}
       alt="Join Page Header"
-      className="w-screen h-96 relative opacity-50  md:h-[28rem] object-cover"
+      className="w-full h-96 relative opacity-50 md:h-[28rem]"
     />
     <div className="flex flex-col absolute top-20 left-6 lg:top-1/4 lg:left-64">
       <h1 className="text-gray-300 font-thin text-2xl uppercase -mb-2">
