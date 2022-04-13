@@ -25,10 +25,7 @@ const AboutUs = ({ data }) => {
         text={sanityAboutPage.topText}
         image={sanityAboutPage.topImage}
       />
-      <section
-        className="mt-24 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto"
-        data-scroll-section
-      >
+      <section className="mt-24 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
         <div className="md:flex md:gap-8 md:basis-0">
           <div>
             <h2 className="text-2xl md:text-4xl">{sanityAboutPage.header1}</h2>

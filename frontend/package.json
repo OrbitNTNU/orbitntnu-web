@@ -27,7 +27,6 @@
     "gatsby-source-filesystem": "^4.6.0",
     "gatsby-source-sanity": "^7.3.2",
     "gatsby-transformer-sharp": "^4.6.0",
-    "locomotive-scroll": "^4.1.4",
     "react": "^17.0.1",
     "react-countdown": "^2.3.2",
     "react-device-detect": "^2.1.2",

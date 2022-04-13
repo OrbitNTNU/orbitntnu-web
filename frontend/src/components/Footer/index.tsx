@@ -35,7 +35,7 @@ export const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer data-scroll-section>
+    <footer>
       <div className="bg-gray-900 p-8 mt-8 md:h-96">
         <div className="relative max-w-4xl m-auto">
           <StaticImage

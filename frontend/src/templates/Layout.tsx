@@ -3,9 +3,7 @@ import Helmet from "react-helmet";
 import favicon from "../images/orbit-logo-small.png";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
-import "../styles/locomotive-scroll.css";
 import { graphql, useStaticQuery } from "gatsby";
-import { Scroll } from "../components/LocomotiveScroll";
 
 export const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -33,11 +31,7 @@ export const Layout = ({ children }) => {
         <link rel="icon" href={favicon} />
       </Helmet>
       <Navbar />
-      {/**
-       * Temprorarily removed due to a lot of bugs.
-      <Scroll callbacks={location} />
-       */}
-      <div data-scroll-container>
+      <div>
         {children}
         <Footer />
       </div>

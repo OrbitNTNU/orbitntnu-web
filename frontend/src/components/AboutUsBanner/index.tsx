@@ -21,14 +21,12 @@ export const AboutUsBanner = ({
   buttonText,
   image,
 }: AboutUsBannerProps) => (
-  <section className="relative flex justify-center" data-scroll-section>
+  <section className="relative flex justify-center">
     <FadeInSection>
       <GatsbyImage
         image={image.asset.gatsbyImageData}
         alt="earth black backdrop"
         className="w-full md:max-w-3xl"
-        data-scroll
-        data-scroll-speed="2"
       />
     </FadeInSection>
     <div className="absolute top-1/2 -mt-32 max-w-64 text-center md:max-w-xl">

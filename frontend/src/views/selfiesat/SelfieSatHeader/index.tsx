@@ -13,7 +13,7 @@ export const SelfieSatHeader = ({ title, name, text }: SelfieSatHeader) => {
   const launchDate = new Date(2022, 6, 1, 10);
 
   return (
-    <header className="relative -mb-8" data-scroll-section>
+    <header className="relative -mb-8">
       <StaticImage
         src="../../../images/selfiesat-in-space.png"
         alt="Stars"
