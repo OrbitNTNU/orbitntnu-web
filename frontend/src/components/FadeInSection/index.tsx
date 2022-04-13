@@ -1,14 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./FadeInSection.css";
 
-export const FadeInSection: React.FC = ({ children }) => {
+interface FadeInSectionProps {
+  dissapear?: boolean;
+}
+
+export const FadeInSection: React.FC<FadeInSectionProps> = ({
+  children,
+  dissapear,
+}) => {
   const [isVisible, setVisible] = useState(false);
   const domRef = useRef();
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(
-        (entry) => entry.isIntersecting && setVisible(entry.isIntersecting)
+        (entry) =>
+          (entry.isIntersecting || dissapear) &&
+          setVisible(entry.isIntersecting)
       );
     });
     observer.observe(domRef.current);
