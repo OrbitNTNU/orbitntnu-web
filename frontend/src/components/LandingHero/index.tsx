@@ -19,7 +19,7 @@ export const LandingHero = ({ topText, mobileImage }: LandingHeroProps) => {
   const { width } = useWindowSize();
 
   return (
-    <div className="relative" data-scroll-section>
+    <div className="relative">
       {width > 640 ? (
         <div className="w-full h-full min-h-screen">
           <video

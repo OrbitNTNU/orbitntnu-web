@@ -13,7 +13,7 @@ export const FramSatHeader = ({ title, name, text }: FramSatHeader) => {
   const launchDate = new Date(2023, 1, 6, 10);
 
   return (
-    <header className="relative -mb-8" data-scroll-section>
+    <header className="relative -mb-8">
       <StaticImage
         src="../../../images/selfiesat-in-space.png"
         alt="Stars"

@@ -13,7 +13,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ title, name, text, image }: HeaderProps) => (
-  <header className="relative -mb-8" data-scroll-section>
+  <header className="relative -mb-8">
     <GatsbyImage
       image={image.asset.gatsbyImageData}
       alt="Join Page Header"

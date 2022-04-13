@@ -27,7 +27,6 @@ Live @ [dev.orbitntnu.com](https://dev.orbitntnu.com)
 
 #### Dependencies
 
-- [locomotive-scroll](https://github.com/locomotivemtl/locomotive-scroll)
 - [react-countdown](https://www.npmjs.com/package/react-countdown)
 
 ### Installation
