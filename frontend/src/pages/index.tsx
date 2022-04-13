@@ -29,6 +29,9 @@ const IndexPage = ({ data }) => {
         buttonText={sanityLandingPage.aboutSectionButtonText}
         image={sanityLandingPage.aboutSectionImage}
       />
+      <h2 className="text-center text-2xl mt-8 mb-2 md:text-4xl md:mt-0">
+        MISSIONS
+      </h2>
       <BannerLinkList links={sanityLandingPage.links} />
     </Layout>
   );
