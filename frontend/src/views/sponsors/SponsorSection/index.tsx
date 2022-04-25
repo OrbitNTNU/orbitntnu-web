@@ -19,10 +19,12 @@ export const SponsorSection = ({ sponsors, type }: SponsorSectionProps) => (
           className="w-48 mx-auto mb-16 md:w-full md:max-w-64"
         >
           <FadeInSection key={sponsor.title} dissapear>
-            <GatsbyImage
-              image={sponsor.sponsor.asset.gatsbyImageData}
-              alt={sponsor.sponsor.caption}
-            />
+            <a href={sponsor.url} target="_blank" rel="noopener noreferrer">
+              <GatsbyImage
+                image={sponsor.sponsor.asset.gatsbyImageData}
+                alt={sponsor.sponsor.caption}
+              />
+            </a>
           </FadeInSection>
         </figure>
       ))}
