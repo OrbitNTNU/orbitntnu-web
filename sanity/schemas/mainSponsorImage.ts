@@ -2,6 +2,7 @@ export default {
   title: "Main Sponsor Image",
   name: "mainSponsorImage",
   type: "image",
+  url: "string",
   options: {
     hotspot: true,
   },

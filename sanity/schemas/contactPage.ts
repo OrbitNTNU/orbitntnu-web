@@ -25,5 +25,20 @@ export default {
       type: "image",
       description: "Top Image Shown On Page",
     },
+    {
+      name: "contentSectionTitle",
+      type: "string",
+      title: "Content Section Title",
+    },
+    {
+      name: "contentSectionTitle2",
+      type: "string",
+      title: "Content Section Title 2",
+    },
+    {
+      name: "contentSectionEmail",
+      type: "string",
+      title: "Content Section Email",
+    },
   ],
 };
