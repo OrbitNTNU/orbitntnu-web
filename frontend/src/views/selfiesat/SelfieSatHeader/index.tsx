@@ -10,7 +10,7 @@ interface SelfieSatHeader {
 }
 
 export const SelfieSatHeader = ({ title, name, text }: SelfieSatHeader) => {
-  const launchDate = new Date(2022, 6, 1, 10);
+  const launchDate = new Date(2022, 5, 25, 10);
 
   return (
     <header className="relative -mb-8">
