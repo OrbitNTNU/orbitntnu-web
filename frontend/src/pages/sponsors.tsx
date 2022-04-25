@@ -16,6 +16,7 @@ interface Sponsors {
 export interface Sponsor {
   title: string;
   type: string;
+  url: string;
   sponsor: {
     caption: string;
     asset: {
@@ -80,6 +81,7 @@ export const query = graphql`
       sponsors {
         type
         title
+        url
         sponsor {
           caption
           asset {

@@ -9,6 +9,11 @@ export default {
       title: "Title",
     },
     {
+      name: "url",
+      type: "string",
+      title: "Url",
+    },
+    {
       title: "Type",
       name: "type",
       type: "string",
