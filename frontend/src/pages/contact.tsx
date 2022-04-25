@@ -3,6 +3,7 @@ import { Header } from "../components/Header";
 import { Layout } from "../templates/Layout";
 import firebase from "gatsby-plugin-firebase";
 import { graphql } from "gatsby";
+import { ContactSection } from "../views/contact/ContactSection";
 
 const Contact = ({ data }) => {
   const { sanityContactPage } = data;
@@ -19,9 +20,12 @@ const Contact = ({ data }) => {
     <Layout>
       <Header
         title={sanityContactPage.fadedTitle}
-        name={sanityContactPage.title}
-        text={sanityContactPage.topText}
         image={sanityContactPage.topImage}
+      />
+      <ContactSection
+        contentSectionTitle={sanityContactPage.contentSectionTitle}
+        contentSectionTitle2={sanityContactPage.contentSectionTitle2}
+        contentSectionEmail={sanityContactPage.contentSectionEmail}
       />
     </Layout>
   );
@@ -38,6 +42,9 @@ export const query = graphql`
       }
       title
       fadedTitle
+      contentSectionTitle2
+      contentSectionTitle
+      contentSectionEmail
     }
   }
 `;
