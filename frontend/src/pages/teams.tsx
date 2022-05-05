@@ -11,7 +11,7 @@ export interface Member {
   title: string;
   email?: string;
   phone?: string;
-  image: {
+  image?: {
     asset: {
       gatsbyImageData: IGatsbyImageData;
     };

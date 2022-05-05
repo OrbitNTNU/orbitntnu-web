@@ -44,7 +44,7 @@ const AboutUs = ({ data }) => {
           <GatsbyImage
             image={sanityAboutPage.image2.asset.gatsbyImageData}
             alt="Image 2"
-            className="mb-8 md:my-16"
+            className="mb-8 md:my-8"
           />
         </FadeInSection>
 
@@ -71,6 +71,7 @@ const AboutUs = ({ data }) => {
             <GatsbyImage
               image={sanityAboutPage.image4.asset.gatsbyImageData}
               alt="Image 4"
+              className="md:w-80"
             />
           </FadeInSection>
         </div>

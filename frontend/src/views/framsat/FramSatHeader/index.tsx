@@ -15,7 +15,7 @@ export const FramSatHeader = ({ title, name, text }: FramSatHeader) => {
   return (
     <header className="relative -mb-8">
       <StaticImage
-        src="../../../images/selfiesat-in-space.png"
+        src="../../../images/space.jpg"
         alt="Stars"
         className="w-full h-96 relative opacity-70 md:h-[28rem]"
       />

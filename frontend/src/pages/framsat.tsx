@@ -3,8 +3,8 @@ import { Layout } from "../templates/Layout";
 import { FramSatHeader } from "../views/framsat/FramSatHeader";
 import firebase from "gatsby-plugin-firebase";
 import { FadeInSection } from "../components/FadeInSection";
-import { MissionText } from "../views/selfiesat/MissionText";
-import { Specs } from "../views/selfiesat/Specs";
+import { MissionText } from "../views/framsat/MissionText";
+import { Specs } from "../views/framsat/Specs";
 
 const FramSat = () => {
   useEffect(() => {

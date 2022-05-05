@@ -36,7 +36,7 @@ export const Footer = () => {
 
   return (
     <footer>
-      <div className="bg-gray-900 p-8 mt-8 md:h-96">
+      <div className="bg-gray-900 p-8 mt-8 md:h-80">
         <div className="relative max-w-4xl m-auto">
           <StaticImage
             src="../../images/orbitimage.png"
