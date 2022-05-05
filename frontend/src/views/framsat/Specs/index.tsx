@@ -17,7 +17,7 @@ export const Specs = () => (
     </h2>
     <div className="flex flex-col justify-center md:flex-row-reverse">
       <StaticImage
-        src="../../../images/selfiesatopen.png"
+        src="../../../images/framsat-render.png"
         alt="Open SelfieSat"
         className="max-w-64 m-auto"
       />
