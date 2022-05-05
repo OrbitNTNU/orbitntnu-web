@@ -3,11 +3,8 @@ import React from "react";
 
 const stats = [
   { name: "WEIGHT:", data: "1.6kg" },
-  { name: "SIZE:", data: "0.2x0.2x0.2m" },
-  { name: "ORBIT:", data: "500km" },
-  { name: "WEIGHT:", data: "1.6kg" },
-  { name: "SIZE:", data: "0.2x0.2x0.2m" },
-  { name: "ORBIT:", data: "500km" },
+  { name: "SIZE:", data: "0.1x0.1x0.2m" },
+  { name: "ORBIT:", data: "500 - 550km" },
 ];
 
 export const Specs = () => (
@@ -36,5 +33,14 @@ export const Specs = () => (
         ))}
       </ul>
     </div>
+    <p className="mt-8">
+      SelfieSat is a 2U satelite, mesuring 10x10x20 cm. We have developed,
+      soldered and tested our subsystems that are using our own inhouse
+      developed operating system and programs. This gives us total control of
+      our system, and lets us tailour the hardware and software to our specific
+      needs. The satellite is also equipped with a Raspberry Pi as our payload
+      computer, further pushing the limits for component availability and
+      possibilities.
+    </p>
   </div>
 );
