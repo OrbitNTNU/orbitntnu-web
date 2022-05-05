@@ -5,6 +5,7 @@ import firebase from "gatsby-plugin-firebase";
 import { FadeInSection } from "../components/FadeInSection";
 import { MissionText } from "../views/framsat/MissionText";
 import { Specs } from "../views/framsat/Specs";
+import { StaticImage } from "gatsby-plugin-image";
 
 const FramSat = () => {
   useEffect(() => {
@@ -27,6 +28,16 @@ const FramSat = () => {
       </FadeInSection>
       <FadeInSection>
         <Specs />
+      </FadeInSection>
+
+      <FadeInSection>
+        <div className="flex justify-center mt-4">
+          <StaticImage
+            src="../images/framsat-image.jpg"
+            alt="FRAMSat"
+            className="max-w-screen-lg mx-8"
+          />
+        </div>
       </FadeInSection>
     </Layout>
   );

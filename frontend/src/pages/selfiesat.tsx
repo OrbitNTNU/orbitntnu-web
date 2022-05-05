@@ -29,13 +29,16 @@ const SelfieSat = () => {
       <FadeInSection>
         <Specs />
       </FadeInSection>
-      <div className="flex justify-center mt-4">
-        <StaticImage
-          src="../images/selfiesat-image.JPG"
-          alt="SelfieSat"
-          className="max-w-screen-lg mx-8"
-        />
-      </div>
+
+      <FadeInSection>
+        <div className="flex justify-center mt-4">
+          <StaticImage
+            src="../images/selfiesat-image.JPG"
+            alt="SelfieSat"
+            className="max-w-screen-lg mx-8"
+          />
+        </div>
+      </FadeInSection>
     </Layout>
   );
 };
