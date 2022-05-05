@@ -50,17 +50,21 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
               Home
             </Link>
           </li>
-          {links.map((link) => (
-            <li key={link.url} className="mb-2 text-xl">
-              <Link
-                to={link.url}
-                className={`font-thin ${getSelectedStatus(link.url)}`}
-                onClick={handleToggle}
-              >
-                {link.title}
-              </Link>
-            </li>
-          ))}
+          {links.map((link) => {
+            if (link.url !== "/") {
+              return (
+                <li key={link.url} className="mb-2 text-xl">
+                  <Link
+                    to={link.url}
+                    className={`font-thin ${getSelectedStatus(link.url)}`}
+                    onClick={handleToggle}
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              );
+            }
+          })}
         </ul>
       </div>
     </div>
