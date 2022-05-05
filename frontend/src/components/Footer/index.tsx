@@ -38,12 +38,14 @@ export const Footer = () => {
     <footer>
       <div className="bg-gray-900 p-8 mt-8 md:h-80">
         <div className="relative max-w-4xl m-auto">
-          <StaticImage
-            src="../../images/orbitimage.png"
-            alt="Orbit"
-            className="w-24 mb-4"
-            placeholder="none"
-          />
+          <Link to="/">
+            <StaticImage
+              src="../../images/orbitimage.png"
+              alt="Orbit"
+              className="w-24 mb-4"
+              placeholder="none"
+            />
+          </Link>
 
           <div className="mb-4 text-sm md:text-base">
             <p className="font-bold">Orbit NTNU</p>
