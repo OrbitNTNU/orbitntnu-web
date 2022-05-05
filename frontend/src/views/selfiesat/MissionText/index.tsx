@@ -4,14 +4,14 @@ export const MissionText = () => (
   <article className="mt-16">
     <h2 className="text-center text-4xl font-bold mb-2">MISSION</h2>
     <div className="flex flex-col px-8 md:flex-row md:max-w-4xl m-auto gap-4">
-      <p className="max-w-64 m-auto">
+      <p className="max-w-64 m-auto mb-4 md:mb-0">
         SelfieSat will take the world’s first selfie from a satellite in space.
         The external screen displays pictures sent in by the public. A camera
         mounted on a measuring tape arm photographs the screen with the Earth in
         the background. The project has inspired and brought space closer to us
         and proves how accessible the space industry has become.
       </p>
-      <p className="max-w-64 m-auto">
+      <p className="max-w-64 m-auto mb-4 md:mb-0">
         SelfieSat, is set to launch in summer of 2022 on a SpaceX Falcon 9. The
         final orbit will be a low Earth orbit in the range 500-550km. After
         being launched into space, SelfieSat will be moved to its correct orbit
