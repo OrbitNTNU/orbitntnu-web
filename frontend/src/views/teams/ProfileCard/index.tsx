@@ -7,12 +7,20 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard = ({ member }: ProfileCardProps) => (
-  <li className="bg-gray-900 w-48 p-4 flex flex-col">
-    <GatsbyImage
-      image={member.image.asset.gatsbyImageData}
-      alt="Profile image"
-      className="w-40 h-40 rounded-full m-auto mb-2"
-    />
+  <li className="bg-gray-900 w-60 p-4 flex flex-col">
+    {member.image ? (
+      <GatsbyImage
+        image={member.image.asset.gatsbyImageData}
+        alt="Profile image"
+        className="w-40 h-40 rounded-full m-auto mb-2"
+      />
+    ) : (
+      <StaticImage
+        src="../../../images/badge.png"
+        alt="Profile image"
+        className="w-40 h-40 rounded-full m-auto mb-2"
+      />
+    )}
 
     <p className="text-orange-500 -mb-2">{member.title}</p>
     <p className="text-xl">{member.name}</p>
