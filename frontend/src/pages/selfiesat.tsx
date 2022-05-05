@@ -5,6 +5,7 @@ import { SelfieSatHeader } from "../views/selfiesat/SelfieSatHeader";
 import { Specs } from "../views/selfiesat/Specs";
 import { FadeInSection } from "../components/FadeInSection";
 import firebase from "gatsby-plugin-firebase";
+import { StaticImage } from "gatsby-plugin-image";
 
 const SelfieSat = () => {
   useEffect(() => {
@@ -27,6 +28,16 @@ const SelfieSat = () => {
       </FadeInSection>
       <FadeInSection>
         <Specs />
+      </FadeInSection>
+
+      <FadeInSection>
+        <div className="flex justify-center mt-4">
+          <StaticImage
+            src="../images/selfiesat-image.JPG"
+            alt="SelfieSat"
+            className="max-w-screen-lg mx-8"
+          />
+        </div>
       </FadeInSection>
     </Layout>
   );

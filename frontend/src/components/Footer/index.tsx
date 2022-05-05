@@ -38,12 +38,14 @@ export const Footer = () => {
     <footer>
       <div className="bg-gray-900 p-8 mt-8 md:h-80">
         <div className="relative max-w-4xl m-auto">
-          <StaticImage
-            src="../../images/orbitimage.png"
-            alt="Orbit"
-            className="w-24 mb-4"
-            placeholder="none"
-          />
+          <Link to="/">
+            <StaticImage
+              src="../../images/orbitimage.png"
+              alt="Orbit"
+              className="w-24 mb-4"
+              placeholder="none"
+            />
+          </Link>
 
           <div className="mb-4 text-sm md:text-base">
             <p className="font-bold">Orbit NTNU</p>
@@ -53,8 +55,8 @@ export const Footer = () => {
             <p>{sanityFooter.postal}</p>
           </div>
 
-          <div className="flex gap-16 md:absolute md:top-8 md:right-0">
-            <ul>
+          <div className="flex md:absolute md:top-8 md:right-0">
+            <ul className="mr-16">
               {sanityFooter.otherLinks.map((link) => (
                 <li key={link.title} className="py-2">
                   <Link to={link.url}>{link.title}</Link>
@@ -76,13 +78,13 @@ export const Footer = () => {
       <div className="bg-gray-800 py-8 px-4 sm:px-8">
         <div className="max-w-4xl relative m-auto">
           <p>Orbit NTNU © {year}</p>
-          <div className="flex absolute -top-1 right-4 gap-2 sm:gap-4">
+          <div className="flex absolute -top-1 right-4 sm:gap-4">
             {sanityFooter.soMeLinks.map((link) => (
               <a href={link.url} key={link.title}>
                 <GatsbyImage
                   image={link.image.asset.gatsbyImageData}
                   alt="SoMe"
-                  className="w-8"
+                  className="w-8 ml-2"
                 />
               </a>
             ))}
