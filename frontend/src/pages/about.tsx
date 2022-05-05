@@ -25,7 +25,7 @@ const AboutUs = ({ data }) => {
         text={sanityAboutPage.topText}
         image={sanityAboutPage.topImage}
       />
-      <section className="mt-24 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
+      <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
         <div className="md:flex md:gap-8 md:basis-0">
           <div>
             <h2 className="text-2xl md:text-4xl">{sanityAboutPage.header1}</h2>
@@ -35,7 +35,7 @@ const AboutUs = ({ data }) => {
             <GatsbyImage
               image={sanityAboutPage.image1.asset.gatsbyImageData}
               alt="Image 1"
-              className="mb-8 md:mb-0"
+              className="mt-2 mb-8 md:mt-0 md:mb-0"
             />
           </FadeInSection>
         </div>
@@ -71,7 +71,7 @@ const AboutUs = ({ data }) => {
             <GatsbyImage
               image={sanityAboutPage.image4.asset.gatsbyImageData}
               alt="Image 4"
-              className="md:w-80"
+              className="md:w-80 mt-4 mb:mt-0"
             />
           </FadeInSection>
         </div>

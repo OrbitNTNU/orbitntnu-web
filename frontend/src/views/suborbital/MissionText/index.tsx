@@ -21,7 +21,7 @@ export const MissionText = () => (
         <StaticImage
           src="../../../images/suborbital2.jpg"
           alt="SubOrbital Balloon"
-          className="mb-8 md:mb-0"
+          className="mb-8 mt-2 md:mt-0 md:mb-0"
         />
       </FadeInSection>
     </div>
@@ -30,7 +30,7 @@ export const MissionText = () => (
       <StaticImage
         src="../../../images/suborbital1.jpg"
         alt="Image 2"
-        className="mb-8 md:my-16"
+        className="mb-8 md:my-8 md:mb-0"
       />
     </FadeInSection>
 
@@ -47,7 +47,11 @@ export const MissionText = () => (
         their familiarity with spacecraft design and operation.
       </p>
       <FadeInSection>
-        <StaticImage src="../../../images/suborbital3.jpg" alt="Messy desk" />
+        <StaticImage
+          src="../../../images/suborbital3.jpg"
+          alt="Messy desk"
+          className="mt-2 md:mt-0"
+        />
       </FadeInSection>
     </div>
   </section>
