@@ -27,7 +27,7 @@ export const Navbar = () => {
     <nav className="text-white p-2 mb-2  w-full z-50 absolute top-0 left-0">
       <Link to="/">
         <StaticImage
-          src="../../images/orbitimage.png"
+          src="../../images/orbit-logo-white.png"
           alt="Orbit"
           className="w-24 ml-4 mt-4"
           placeholder="none"

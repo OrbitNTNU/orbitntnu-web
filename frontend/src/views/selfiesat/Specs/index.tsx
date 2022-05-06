@@ -35,9 +35,9 @@ export const Specs = () => (
     </div>
     <p className="mt-8">
       SelfieSat is a 2U satelite, mesuring 10x10x20 cm. We have developed,
-      soldered and tested our subsystems that are using our own inhouse
+      soldered, and tested our subsystems that are using our own in-house
       developed operating system and programs. This gives us total control of
-      our system, and lets us tailour the hardware and software to our specific
+      our system and lets us tailor the hardware and software to our specific
       needs. The satellite is also equipped with a Raspberry Pi as our payload
       computer, further pushing the limits for component availability and
       possibilities.
