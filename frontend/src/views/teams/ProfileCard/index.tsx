@@ -7,7 +7,7 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard = ({ member }: ProfileCardProps) => (
-  <li className="bg-gray-900 w-60 p-4 flex flex-col">
+  <li className="bg-gray-900 w-60 p-4 flex flex-col m-2">
     {member.image ? (
       <GatsbyImage
         image={member.image.asset.gatsbyImageData}
