@@ -10,7 +10,7 @@ module.exports = {
   siteMetadata: {
     title: `Orbit NTNU`,
     description: `Student organization building satellites.`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://orbitntnu.com`,
   },
   plugins: [
     "gatsby-plugin-image",
