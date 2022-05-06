@@ -24,7 +24,16 @@ export const ProfileCard = ({ member }: ProfileCardProps) => (
 
     <p className="text-orange-500 -mb-2">{member.title}</p>
     <p className="text-xl">{member.name}</p>
-    {member.email && <p className="font-thin">{member.email}</p>}
-    {member.phone && <p className="font-thin">{member.phone}</p>}
+    <p className="font-thin">
+      {member.email ? (
+        <a
+          className="text-blue-400"
+          href={`mailto:${member.email}`}
+        >{`${member.email}`}</a>
+      ) : (
+        "-"
+      )}
+    </p>
+    <p className="font-thin">{member.phone ? `${member.phone}` : "-"}</p>
   </li>
 );
