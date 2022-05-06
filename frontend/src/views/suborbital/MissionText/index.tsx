@@ -40,7 +40,7 @@ export const MissionText = () => (
         SubOrbital program. Each year, a set of first-year students are selected
         for our program through a comprehensive application process.
         <br />
-        The program has had high sucsesses, providing curucal practical
+        The program has had high sucsesses, providing crucial practical
         experieince in their education in adtion to providing a social network.
         After their mission, the students are integrated into the satellite
         development, where they experience a feeling of mastery early on, due to
