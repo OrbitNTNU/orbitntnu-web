@@ -10,7 +10,7 @@ interface FramSatHeader {
 }
 
 export const FramSatHeader = ({ title, name, text }: FramSatHeader) => {
-  const launchDate = new Date(2023, 0, 6, 10);
+  const launchDate = new Date(2023, 0, 6, 11);
 
   return (
     <header className="relative -mb-8">
