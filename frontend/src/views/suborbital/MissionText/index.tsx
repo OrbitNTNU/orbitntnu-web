@@ -9,8 +9,8 @@ export const MissionText = () => (
         <h2 className="text-2xl md:text-4xl">Mission</h2>
         <p className="md:text-base">
           Through active guidance, the members are taught to choose, design, and
-          build their own payload system while using Orbit NTNU’s existing
-          components in order to become familiar with its design and challanges,
+          build their own payload system while using Orbit NTNU's existing
+          components in order to become familiar with its design and challenges
           in a less complex environment. Their goal is to launch a mission
           within one year with sounding rockets or weather balloons, showcasing
           what students are able to achieve on their own straight after high
@@ -36,12 +36,12 @@ export const MissionText = () => (
 
     <div className="md:flex md:flex-row-reverse md:gap-8 md:my-8">
       <p className="md:text-base md:min-w-64">
-        Orbit NTNU has built its own platform to learn about space, in the
+        Orbit NTNU has built its own platform to learn about space in the
         SubOrbital program. Each year, a set of first-year students are selected
         for our program through a comprehensive application process.
         <br />
-        The program has had high sucsesses, providing crucial practical
-        experieince in their education in adtion to providing a social network.
+        The program has had high successes, providing crucial practical
+        experience in their education in addition to providing a social network.
         After their mission, the students are integrated into the satellite
         development, where they experience a feeling of mastery early on, due to
         their familiarity with spacecraft design and operation.
