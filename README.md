@@ -2,13 +2,11 @@
 
 # orbitntnu-web
 
-[orbitntnu.com](https://orbitntnu.com) is a website for the student orannization Orbit NTNU.
+[orbitntnu.com](https://orbitntnu.com) is a website for the student organization Orbit NTNU.
 
 ## Project Status
 
-Under development 👩‍🔧
-
-Live @ [dev.orbitntnu.com](https://dev.orbitntnu.com)
+Live @ [orbitntnu.com](https://orbitntnu.com)
 
 ## Development
 
