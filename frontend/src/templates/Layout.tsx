@@ -18,7 +18,11 @@ export const Layout = ({ children }) => {
 
   return (
     <>
-      <Helmet>
+      <Helmet
+        htmlAttributes={{
+          lang: "en",
+        }}
+      >
         <title>Orbit NTNU</title>
         <meta name="description" content="Orbit NTNU" />
         <meta name="keywords" content="ntnu, cubesat, orbit" />
