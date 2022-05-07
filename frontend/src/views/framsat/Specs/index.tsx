@@ -4,7 +4,7 @@ import React from "react";
 const stats = [
   { name: "WEIGHT:", data: "1.2kg" },
   { name: "SIZE:", data: "0.1x0.1x0.1m" },
-  { name: "ORBIT:", data: "500 - 550km" },
+  { name: "ORBIT:", data: "TBC" },
 ];
 
 export const Specs = () => (
