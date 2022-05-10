@@ -11,6 +11,7 @@ module.exports = {
     title: `Orbit NTNU`,
     description: `Student organization building satellites.`,
     siteUrl: `https://orbitntnu.com`,
+    twitterUsername: `@orbit_ntnu`,
   },
   plugins: [
     "gatsby-plugin-image",
