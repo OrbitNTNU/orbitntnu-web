@@ -2,9 +2,11 @@ import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 
 const stats = [
-  { name: "WEIGHT:", data: "1.6kg" },
-  { name: "SIZE:", data: "0.1x0.1x0.2m" },
-  { name: "ORBIT:", data: "500 - 550km" },
+  { name: "WEIGHT:", data: "1.8kg" },
+  { name: "SIZE:", data: "10x10x20cm" },
+  { name: "ORBIT:", data: "SSO 535km" },
+  { name: "FREQUENCY:", data: "437.5Hz" },
+  { name: "BAND:", data: "UHF" },
 ];
 
 export const Specs = () => (
