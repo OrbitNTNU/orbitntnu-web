@@ -5,7 +5,7 @@ const stats = [
   { name: "WEIGHT:", data: "1.8kg" },
   { name: "SIZE:", data: "10x10x20cm" },
   { name: "ORBIT:", data: "SSO 535km" },
-  { name: "FREQUENCY:", data: "437.5Hz" },
+  { name: "FREQUENCY:", data: "437.5MHz" },
   { name: "BAND:", data: "UHF" },
 ];
 
