@@ -7,14 +7,14 @@ const stats = [
   { name: "ORBIT:", data: "SSO 535km" },
   { name: "FREQUENCY:", data: "437.5MHz" },
   { name: "BAND:", data: "UHF" },
+  { name: "CAMERAS:", data: "4" },
+  { name: "POWER:", data: "1.2W" },
 ];
 
 export const Specs = () => (
-  <div className="mt-8 mx-8 md:max-w-2xl md:m-auto">
-    <h3 className="text-gray-300 text-center md:text-left md:mt-16">
-      SELFIESAT-1
-    </h3>
-    <h2 className="text-3xl font-bold text-center md:text-left md:-mb-8">
+  <div className="mx-8 md:max-w-4xl md:m-auto">
+    <h3 className="text-gray-300 text-center md:text-left">SELFIESAT-1</h3>
+    <h2 className="text-3xl font-bold text-center md:text-left md:-mb-4">
       SPECIFICATIONS
     </h2>
     <div className="flex flex-col justify-center md:flex-row-reverse">
@@ -35,14 +35,5 @@ export const Specs = () => (
         ))}
       </ul>
     </div>
-    <p className="mt-8">
-      SelfieSat is a 2U satelite, mesuring 10x10x20 cm. We have developed,
-      soldered, and tested our subsystems that are using our own in-house
-      developed operating system and programs. This gives us total control of
-      our system and lets us tailor the hardware and software to our specific
-      needs. The satellite is also equipped with a Raspberry Pi as our payload
-      computer, further pushing the limits for component availability and
-      possibilities.
-    </p>
   </div>
 );
