@@ -119,7 +119,7 @@ const SelfieSat = () => {
           </div>
           <FadeInSection>
             <StaticImage
-              src="../images/selfiesat-image.jpg"
+              src="../images/selfiesat-image.JPG"
               alt="Image 4"
               className="md:w-80 mt-4 mb:mt-0"
             />
