@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { Layout } from "../templates/Layout";
-import { MissionText } from "../views/selfiesat/MissionText";
 import { SelfieSatHeader } from "../views/selfiesat/SelfieSatHeader";
 import { Specs } from "../views/selfiesat/Specs";
 import { FadeInSection } from "../components/FadeInSection";
 import firebase from "gatsby-plugin-firebase";
-import { StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import Countdown from "react-countdown";
 import { CountdownRenderer } from "../components/CountdownRenderer";
+import { graphql } from "gatsby";
 
-const SelfieSat = () => {
-  const launchDate = new Date(2022, 4, 25, 18, 35);
+const SelfieSat = ({ data }) => {
+  const { sanitySelfiesatPage } = data;
+  const launchDate = new Date(sanitySelfiesatPage.launchDate);
 
   useEffect(() => {
     if (!firebase) {
@@ -23,9 +24,9 @@ const SelfieSat = () => {
   return (
     <Layout>
       <SelfieSatHeader
-        title="Orbit NTNU"
-        name="SELFIESAT"
-        text="The worlds first selfie taking satellitte."
+        title={sanitySelfiesatPage.title}
+        name={sanitySelfiesatPage.topText}
+        text={sanitySelfiesatPage.shortTopText}
       />
 
       <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
@@ -39,34 +40,32 @@ const SelfieSat = () => {
         </div>
 
         <FadeInSection>
-          <Specs />
+          <Specs
+            specs={sanitySelfiesatPage.specifications}
+            image={
+              sanitySelfiesatPage.specificationsImage.asset.gatsbyImageData
+            }
+          />
         </FadeInSection>
 
         <div className="md:flex md:gap-8 md:basis-0 mt-8">
           <div>
-            <h2 className="text-2xl md:text-4xl">Mission</h2>
+            <h2 className="text-2xl md:text-4xl">
+              {sanitySelfiesatPage.firstSectionTitle}
+            </h2>
             <p className="md:text-lg">
-              SelfieSat will take the world’s first selfie from a satellite in
-              space. The external LCD-display displays pictures sent in by the
-              public. A camera mounted on a measuring tape arm photographs the
-              screen with the Earth in the background. The project has inspired
-              and brought space closer to us and proves how accessible the space
-              industry has become.
+              {sanitySelfiesatPage.firstSectionText1}
             </p>
-
             <p className="md:text-lg mt-4">
-              SelfieSat will launch in May 2022 on a SpaceX Falcon 9 as a part
-              of the Transporter 5 rideshare mission. The final orbit will be a
-              low Earth orbit in the range 530-558km. After being launched into
-              space, SelfieSat will be moved to its correct orbit by a Momentus
-              Vigoride. Vigorides are transfer and service vehicles that carry
-              satellites and hosted payloads between orbits in space.
+              {sanitySelfiesatPage.firstSectionText2}
             </p>
           </div>
 
           <FadeInSection>
-            <StaticImage
-              src="../images/selfie_better_shot.jpg"
+            <GatsbyImage
+              image={
+                sanitySelfiesatPage.firstSectionImage.asset.gatsbyImageData
+              }
               alt="Image 1"
               className="mt-2 mb-8 md:mt-0 md:mb-0"
             />
@@ -74,8 +73,8 @@ const SelfieSat = () => {
         </div>
 
         <FadeInSection>
-          <StaticImage
-            src="../images/selfie_team.jpg"
+          <GatsbyImage
+            image={sanitySelfiesatPage.midImage.asset.gatsbyImageData}
             alt="Image 2"
             className="mb-8 md:my-8"
           />
@@ -83,19 +82,18 @@ const SelfieSat = () => {
 
         <div className="md:flex md:gap-8 md:mb-8 md:basis-0 md:my-8">
           <div>
-            <h2 className="text-2xl md:text-4xl">Operations</h2>
+            <h2 className="text-2xl md:text-4xl">
+              {sanitySelfiesatPage.secondSectionTitle}
+            </h2>
             <p className="md:text-lg">
-              After launch, we will operate SelfieSat through our own ground
-              station, a radio tower, at our office at Gløshaugen in Trondheim.
-              From here we will send and receive space-selfies, status updates,
-              and positioning information at regular intervals. We have a
-              specially trained operations team, that will handle all commands
-              and tasks of the satellite.
+              {sanitySelfiesatPage.secondSectionText}
             </p>
           </div>
           <FadeInSection>
-            <StaticImage
-              src="../images/selfie_liggende.jpg"
+            <GatsbyImage
+              image={
+                sanitySelfiesatPage.secondSectionImage.asset.gatsbyImageData
+              }
               alt="Image 3"
               className="my-8 md:my-0"
             />
@@ -104,22 +102,13 @@ const SelfieSat = () => {
 
         <div className="md:flex md:flex-row-reverse md:gap-8 md:my-8">
           <div>
-            <p className="md:text-lg">
-              SelfieSat is a 2U (10x10x20 cm) satellite – Orbit NTNUs first ever
-              satellite. We have designed, developed and tested many of the
-              subsystems, including OBC (On-Board Computer), ADCS (Attitude
-              Determination and Control System) and Selfie-module. This gives us
-              total control of our system and lets us tailor the hardware and
-              software to our specific needs. The satellite is also equipped
-              with a Raspberry Pi as our payload computer, further pushing the
-              limits for component availability and possibilities. SelfieSat is
-              equipped with 5 cameras; one selfie-camera, two on the sides (x-
-              and y-) and one one the antennas-side.
-            </p>
+            <p className="md:text-lg">{sanitySelfiesatPage.thirdSectionText}</p>
           </div>
           <FadeInSection>
-            <StaticImage
-              src="../images/selfiesat-image.JPG"
+            <GatsbyImage
+              image={
+                sanitySelfiesatPage.thirdSectionImage.asset.gatsbyImageData
+              }
               alt="Image 4"
               className="md:w-80 mt-4 mb:mt-0"
             />
@@ -128,40 +117,93 @@ const SelfieSat = () => {
 
         <div className="mt-4 md:flex md:gap-8 md:mb-8 md:basis-0 md:my-8">
           <div>
-            <h2 className="text-2xl md:text-4xl">Momentus</h2>
+            <h2 className="text-2xl md:text-4xl">
+              {sanitySelfiesatPage.fourthSectionTitle}
+            </h2>
             <p className="md:text-lg">
-              The project started out in 2018 as Orbit NTNUs pilot-project. Four
-              years later, we are launching our first satellite to space! March
-              2022 we delivered SelfieSat to Momentus for integration in Santa
-              Clara, California. Here it will remain powered off until it is
-              deployed in space.
+              {sanitySelfiesatPage.fourthSectionText}
             </p>
           </div>
           <FadeInSection>
-            <StaticImage
-              src="../images/momentus.jpg"
-              alt="Image 3"
+            <GatsbyImage
+              image={
+                sanitySelfiesatPage.fourthSectionImage.asset.gatsbyImageData
+              }
+              alt="Image 5"
               className="my-8 md:my-0"
             />
           </FadeInSection>
         </div>
 
         <FadeInSection>
-          <StaticImage
-            src="../images/natanael.jpg"
-            alt="Image 2"
+          <GatsbyImage
+            image={sanitySelfiesatPage.bottomImage.asset.gatsbyImageData}
+            alt="Bottom Image"
             className="mb-8 md:my-8"
           />
         </FadeInSection>
       </section>
-
-      {/**
-      <FadeInSection>
-        <MissionText />
-      </FadeInSection>
-       */}
     </Layout>
   );
 };
+
+export const query = graphql`
+  query SelfiesatPageQuery {
+    sanitySelfiesatPage {
+      title
+      topText
+      shortTopText
+      launchDate
+      specifications {
+        name
+        text
+      }
+      specificationsImage {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+      firstSectionTitle
+      firstSectionText1
+      firstSectionText2
+      firstSectionImage {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+      midImage {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+      secondSectionTitle
+      secondSectionText
+      secondSectionImage {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+      thirdSectionTitle
+      thirdSectionText
+      thirdSectionImage {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+      fourthSectionTitle
+      fourthSectionText
+      fourthSectionImage {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+      bottomImage {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+    }
+  }
+`;
 
 export default SelfieSat;
