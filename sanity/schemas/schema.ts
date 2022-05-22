@@ -22,11 +22,14 @@ import suborbitalPage from "./suborbitalPage";
 import sponsor from "./sponsor";
 import mainSponsorImage from "./mainSponsorImage";
 import mainSponsorLargeImage from "./mainSponsorLargeImage";
+import specification from "./specification";
+import selfiesatPage from "./selfiesatPage";
 
 export default createSchema({
   name: "pages",
   types: schemaTypes.concat([
     landingPage,
+    selfiesatPage,
     aboutPage,
     sponsorsPage,
     contactPage,
@@ -46,5 +49,6 @@ export default createSchema({
     sponsor,
     mainSponsorImage,
     mainSponsorLargeImage,
+    specification,
   ]),
 });
