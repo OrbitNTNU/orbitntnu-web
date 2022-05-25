@@ -8,6 +8,7 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import Countdown from "react-countdown";
 import { CountdownRenderer } from "../components/CountdownRenderer";
 import { graphql } from "gatsby";
+import { SelfiesatCountdown } from "../views/selfiesat/Countdown";
 
 const SelfieSat = ({ data }) => {
   const { sanitySelfiesatPage } = data;
@@ -31,12 +32,7 @@ const SelfieSat = ({ data }) => {
 
       <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
         <div className="flex">
-          <div className="z-10 mb-16 m-auto">
-            <Countdown date={launchDate} renderer={CountdownRenderer} />
-            <p className="ml-1 mt-2 md:font-normal text-gray-300 text-center">
-              UNTIL LAUNCH
-            </p>
-          </div>
+          <SelfiesatCountdown launchDate={launchDate} />
         </div>
 
         <FadeInSection>
