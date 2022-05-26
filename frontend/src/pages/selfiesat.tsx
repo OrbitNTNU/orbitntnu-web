@@ -5,8 +5,6 @@ import { Specs } from "../views/selfiesat/Specs";
 import { FadeInSection } from "../components/FadeInSection";
 import firebase from "gatsby-plugin-firebase";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
-import Countdown from "react-countdown";
-import { CountdownRenderer } from "../components/CountdownRenderer";
 import { graphql } from "gatsby";
 import { SelfiesatCountdown } from "../views/selfiesat/Countdown";
 
