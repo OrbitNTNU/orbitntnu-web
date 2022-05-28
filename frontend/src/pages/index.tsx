@@ -7,6 +7,7 @@ import { graphql } from "gatsby";
 import firebase from "gatsby-plugin-firebase";
 import { FadeInSection } from "../components/FadeInSection";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { GlobeRender } from "../components/GlobeRender";
 
 const IndexPage = ({ data }) => {
   const { sanityLandingPage, sanityAboutPage } = data;
@@ -25,10 +26,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <LandingHero
-        topText={sanityLandingPage.topText}
-        mobileImage={sanityLandingPage.mobileTopImage}
-      />
+      <GlobeRender />
       <AboutUsBanner
         title={sanityLandingPage.aboutSectionTitle}
         aboutText={sanityLandingPage.aboutSectionText}
