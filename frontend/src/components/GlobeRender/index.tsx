@@ -29,7 +29,7 @@ export const GlobeRender = () => {
   useEffect(() => {
     // load satellite data
     fetch(
-      "https://gist.githubusercontent.com/isaksolheim/dcf9c4cf430ceb310cf5651fa32b84db/raw/089824d70111902cbee814f354348729cc0bd638/tle.txt"
+      "https://gist.githubusercontent.com/isaksolheim/dcf9c4cf430ceb310cf5651fa32b84db/raw/fbc47eb2d19ef9cf7e13764325eabea00f932bd1/tle.txt"
     )
       .then((r) => r.text())
       .then((rawData) => {
