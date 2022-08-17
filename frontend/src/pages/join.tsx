@@ -24,6 +24,7 @@ const Join = ({ data }) => {
         name={sanityJoinPage.title}
         text={sanityJoinPage.topText}
         image={sanityJoinPage.topImage}
+        size="long"
       />
       {allSanityPosition.nodes.length !== 0 ? (
         <JoinCards
