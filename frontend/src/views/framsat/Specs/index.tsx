@@ -34,7 +34,7 @@ export const Specs = () => (
       </ul>
     </div>
     <p className="mt-8">
-      FRAMSat is a 1U satelite, mesuring 10x10x10cm. We have developed,
+      FRAMSat is a 1U satellite, mesuring 10x10x10cm. We have developed,
       soldered, and tested our subsystems that are running our own in-house
       developed operating system and programs. This gives us total control of
       our system and lets us tailor the hardware and software to our specific
