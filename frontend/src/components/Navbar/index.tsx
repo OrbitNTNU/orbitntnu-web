@@ -21,7 +21,7 @@ export const Navbar = () => {
     { name: "SELFIESAT", url: "/selfiesat" },
     { name: "FRAMSAT", url: "/framsat" },
     { name: "SUBORBITAL", url: "/suborbital" },
-    // { name: "NEXTSAT", url: "/nextsat" },
+    { name: "NEXTSAT", url: "/nextsat" },
   ];
 
   return (
