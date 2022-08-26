@@ -3,10 +3,11 @@ import { Layout } from "../templates/Layout";
 import { LandingHero } from "../components/LandingHero";
 import { AboutUsBanner } from "../components/AboutUsBanner";
 import { BannerLinkList } from "../components/BannerLinkList";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import firebase from "gatsby-plugin-firebase";
 import { FadeInSection } from "../components/FadeInSection";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { Button } from "../components/Button";
 
 const IndexPage = ({ data }) => {
   const { sanityLandingPage, sanityAboutPage } = data;
@@ -29,6 +30,18 @@ const IndexPage = ({ data }) => {
         topText={sanityLandingPage.topText}
         mobileImage={sanityLandingPage.mobileTopImage}
       />
+      <div className="bg-gray-900 p-8 text-center flex justify-center">
+        <div className="max-w-64 md:max-w-xl">
+          <h1 className="text-3xl font-bold">We are recruiting!</h1>
+          <p className="mb-4 text-lg">
+            Take a look at our open positions, application deadline 30th of
+            August!
+          </p>
+          <Link to="/join">
+            <Button label="READ MORE" />
+          </Link>
+        </div>
+      </div>
       <AboutUsBanner
         title={sanityLandingPage.aboutSectionTitle}
         aboutText={sanityLandingPage.aboutSectionText}
