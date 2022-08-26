@@ -3,6 +3,7 @@ import "./FadeInSection.css";
 
 interface FadeInSectionProps {
   dissapear?: boolean;
+  children?: React.ReactNode;
 }
 
 export const FadeInSection: React.FC<FadeInSectionProps> = ({
