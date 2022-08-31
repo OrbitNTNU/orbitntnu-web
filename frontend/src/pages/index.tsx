@@ -3,11 +3,10 @@ import { Layout } from "../templates/Layout";
 import { LandingHero } from "../components/LandingHero";
 import { AboutUsBanner } from "../components/AboutUsBanner";
 import { BannerLinkList } from "../components/BannerLinkList";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import firebase from "gatsby-plugin-firebase";
 import { FadeInSection } from "../components/FadeInSection";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { Button } from "../components/Button";
 
 const IndexPage = ({ data }) => {
   const { sanityLandingPage, sanityAboutPage } = data;
