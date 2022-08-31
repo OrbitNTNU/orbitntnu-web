@@ -26,7 +26,9 @@ export const Header = ({
       alt="Join Page Header"
       className={`w-full ${
         size === "long" ? "h-[480px] md:h-[32rem]" : "h-96"
-      } relative opacity-50 md:h-[28rem]`}
+      } relative opacity-50 ${
+        size === "long" ? "md:h-[32rem]" : "md:h-[28rem]"
+      }`}
     />
     <div className="flex flex-col absolute top-20 left-6 lg:top-1/4 lg:left-64">
       {name && text && (
