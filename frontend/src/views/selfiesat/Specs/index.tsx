@@ -19,13 +19,13 @@ export const Specs = ({ specs, image }: SpecsProps) => (
       <GatsbyImage
         image={image}
         alt="Open Selfiesat"
-        className="max-w-64 m-auto"
+        className="max-w-[270px] m-auto"
       />
 
-      <ul className="w-64 md:w-[300px] m-auto md:mr-28">
+      <ul className="w-[270px] md:w-[300px] m-auto md:mr-28">
         {specs.map((stat) => (
           <li
-            className="max-w-64 md:max-w-none mx-4 md:mx-0 h-8 mt-2 border-b"
+            className="max-w-[270px] md:max-w-none mx-4 md:mx-0 h-8 mt-2 border-b"
             key={stat.name}
           >
             <span className="float-left font-bold">{stat.name}</span>
