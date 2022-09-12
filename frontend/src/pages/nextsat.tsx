@@ -62,6 +62,9 @@ const NextSat = ({ data }) => {
 
         {selectedTeam && (
           <FadeInSection>
+            <h2 className="text-center text-4xl font-bold mb-2">
+              PROJECT MANAGERS
+            </h2>
             <p className="p-4 my-4 border-t border-b border-yellow-500">
               {selectedTeam.description}
             </p>
