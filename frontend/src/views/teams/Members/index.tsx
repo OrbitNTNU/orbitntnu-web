@@ -4,12 +4,13 @@ import { ProfileCard } from "../ProfileCard";
 
 interface MembersProps {
   members: Member[];
+  wide?: boolean;
 }
 
-export const Members = ({ members }: MembersProps) => (
+export const Members = ({ members, wide = false }: MembersProps) => (
   <ul className="flex flex-wrap justify-center">
     {members.map((member) => (
-      <ProfileCard key={member.name} member={member} />
+      <ProfileCard key={member.name} member={member} wide />
     ))}
   </ul>
 );

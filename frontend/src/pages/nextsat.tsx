@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { Layout } from "../templates/Layout";
 import firebase from "gatsby-plugin-firebase";
 import { graphql } from "gatsby";
 import { FadeInSection } from "../components/FadeInSection";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { Team } from "./teams";
+import { Members } from "../views/teams/Members";
 
 const NextSat = ({ data }) => {
-  const { sanityNextSatPage } = data;
+  const [selectedTeam, setSelectedTeam] = useState<Team>();
+  const { sanityNextSatPage, allSanityTeam } = data;
 
   useEffect(() => {
     if (!firebase) {
@@ -16,6 +19,11 @@ const NextSat = ({ data }) => {
 
     firebase.analytics().logEvent("visited_nextsat_page");
   }, [firebase]);
+
+  useEffect(() => {
+    const teams: Team[] = allSanityTeam.nodes;
+    if (teams.length > 0) setSelectedTeam(teams[0]);
+  }, []);
 
   return (
     <Layout>
@@ -51,6 +59,18 @@ const NextSat = ({ data }) => {
             className="mb-8 md:my-8"
           />
         </FadeInSection>
+
+        {selectedTeam && (
+          <FadeInSection>
+            <h2 className="text-center text-4xl font-bold mb-2">
+              PROJECT MANAGERS
+            </h2>
+            <p className="p-4 my-4 border-t border-b border-yellow-500">
+              {selectedTeam.description}
+            </p>
+            <Members members={selectedTeam.members} wide />
+          </FadeInSection>
+        )}
       </section>
     </Layout>
   );
@@ -77,6 +97,22 @@ export const query = graphql`
       midImage {
         asset {
           gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+    }
+    allSanityTeam(filter: { name: { eq: "Project Management" } }) {
+      nodes {
+        description
+        members {
+          title
+          phone
+          name
+          image {
+            asset {
+              gatsbyImageData
+            }
+          }
+          email
         }
       }
     }
