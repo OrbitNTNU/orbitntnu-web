@@ -4,10 +4,15 @@ import { Member } from "../../../pages/teams";
 
 interface ProfileCardProps {
   member: Member;
+  wide?: boolean;
 }
 
-export const ProfileCard = ({ member }: ProfileCardProps) => (
-  <li className="bg-gray-900 w-64 p-4 flex flex-col m-2">
+export const ProfileCard = ({ member, wide = false }: ProfileCardProps) => (
+  <li
+    className={`bg-gray-900 ${
+      wide ? "w-[270px]" : "w-64"
+    } p-4 flex flex-col m-2`}
+  >
     {member.image ? (
       <GatsbyImage
         image={member.image.asset.gatsbyImageData}
