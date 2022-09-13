@@ -68,7 +68,12 @@ const NextSat = ({ data }) => {
             <p className="p-4 my-4 border-t border-b border-yellow-500">
               {selectedTeam.description}
             </p>
-            <Members members={selectedTeam.members} wide />
+            <Members
+              members={selectedTeam.members.filter((member) =>
+                member.title.includes("NEXTSat")
+              )}
+              wide
+            />
           </FadeInSection>
         )}
       </section>
