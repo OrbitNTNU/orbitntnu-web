@@ -12,7 +12,7 @@ export const Filter = ({
   selectedTeam,
   setSelectedTeam,
 }: FilterProps) => (
-  <ul className="flex flex-wrap justify-center">
+  <ul className="flex flex-wrap justify-center md:max-w-4xl md:m-auto">
     {teams.map((team) => {
       const selected = team.name === selectedTeam.name;
       return (
