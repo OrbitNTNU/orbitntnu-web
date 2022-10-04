@@ -43,22 +43,28 @@ const NextSat = ({ data }) => {
             <p className="md:text-lg">{sanityNextSatPage.firstSectionText}</p>
           </div>
 
-          <FadeInSection>
-            <GatsbyImage
-              image={sanityNextSatPage.firstSectionImage.asset.gatsbyImageData}
-              alt="Image 1"
-              className="mt-2 mb-8 md:mt-0 md:mb-0"
-            />
-          </FadeInSection>
+          {sanityNextSatPage.firstSectionImage && (
+            <FadeInSection>
+              <GatsbyImage
+                image={
+                  sanityNextSatPage.firstSectionImage.asset.gatsbyImageData
+                }
+                alt="Image 1"
+                className="mt-2 mb-8 md:mt-0 md:mb-0"
+              />
+            </FadeInSection>
+          )}
         </div>
 
-        <FadeInSection>
-          <GatsbyImage
-            image={sanityNextSatPage.midImage.asset.gatsbyImageData}
-            alt="Image 2"
-            className="mb-8 md:my-8"
-          />
-        </FadeInSection>
+        {sanityNextSatPage.midImage && (
+          <FadeInSection>
+            <GatsbyImage
+              image={sanityNextSatPage.midImage.asset.gatsbyImageData}
+              alt="Image 2"
+              className="mb-8 md:my-8"
+            />
+          </FadeInSection>
+        )}
 
         {selectedTeam && (
           <FadeInSection>
