@@ -35,6 +35,7 @@ const SelfieSat = ({ data }) => {
 
         <FadeInSection>
           <Specs
+            name="SELFIESAT-1"
             specs={sanitySelfiesatPage.specifications}
             image={
               sanitySelfiesatPage.specificationsImage.asset.gatsbyImageData

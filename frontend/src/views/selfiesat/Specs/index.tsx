@@ -2,6 +2,7 @@ import React from "react";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 
 interface SpecsProps {
+  name: string;
   specs: {
     name: string;
     text: string;
@@ -9,9 +10,9 @@ interface SpecsProps {
   image: IGatsbyImageData;
 }
 
-export const Specs = ({ specs, image }: SpecsProps) => (
+export const Specs = ({ name, specs, image }: SpecsProps) => (
   <div className="mx-8 md:max-w-4xl md:m-auto">
-    <h3 className="text-gray-300 text-center md:text-left">SELFIESAT-1</h3>
+    <h3 className="text-gray-300 text-center md:text-left">{name}</h3>
     <h2 className="text-3xl font-bold text-center md:text-left">
       SPECIFICATIONS
     </h2>
@@ -34,10 +35,5 @@ export const Specs = ({ specs, image }: SpecsProps) => (
         ))}
       </ul>
     </div>
-    <p className="mt-8 text-center">
-      The beacons contain information about the electrical power systems, and
-      the string <pre className="text-sm inline">SelfieSat</pre> repeated 20
-      times.
-    </p>
   </div>
 );
