@@ -20,8 +20,8 @@ export const Navbar = () => {
   const links = [
     { name: "SELFIESAT", url: "/selfiesat" },
     { name: "FRAMSAT", url: "/framsat" },
-    { name: "SUBORBITAL", url: "/suborbital" },
     { name: "BIOSAT", url: "/biosat" },
+    { name: "SUBORBITAL", url: "/suborbital" },
   ];
 
   return (
