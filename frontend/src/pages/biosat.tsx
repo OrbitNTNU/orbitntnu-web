@@ -123,14 +123,6 @@ const NextSat = ({ data }) => {
           </FadeInSection>
         </div>
 
-        <FadeInSection>
-          <GatsbyImage
-            image={sanityNextSatPage.bottomImage.asset.gatsbyImageData}
-            alt="Bottom Image"
-            className="mb-8 md:my-8"
-          />
-        </FadeInSection>
-
         {selectedTeam && (
           <FadeInSection>
             <h2 className="text-center text-4xl font-bold mb-2">
