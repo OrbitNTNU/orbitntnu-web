@@ -10,6 +10,7 @@ import { LandingHero } from "../components/LandingHero";
 import Countdown from "react-countdown";
 import { CountdownRenderer } from "../components/CountdownRenderer";
 import { Specs } from "../views/selfiesat/Specs";
+import { BioSatLandingHero } from "../components/BioSatLandingHero";
 
 const NextSat = ({ data }) => {
   const [selectedTeam, setSelectedTeam] = useState<Team>();
@@ -30,10 +31,7 @@ const NextSat = ({ data }) => {
 
   return (
     <Layout>
-      <LandingHero
-        topText={sanityLandingPage.topText}
-        mobileImage={sanityLandingPage.mobileTopImage}
-      />
+      <BioSatLandingHero mobileImage={sanityLandingPage.mobileTopImage} />
 
       <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
         <div className="flex flex-col justify-center items-center mb-16">
