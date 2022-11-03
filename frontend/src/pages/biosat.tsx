@@ -133,7 +133,7 @@ const NextSat = ({ data }) => {
             </p>
             <Members
               members={selectedTeam.members.filter((member) =>
-                member.title.includes("NEXTSat")
+                member.title.includes("BioSat")
               )}
               wide
             />
