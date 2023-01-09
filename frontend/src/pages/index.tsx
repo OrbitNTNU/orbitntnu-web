@@ -7,6 +7,7 @@ import { graphql } from "gatsby";
 import firebase from "gatsby-plugin-firebase";
 import { FadeInSection } from "../components/FadeInSection";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { JoinUsHero } from "../components/JoinUsHero";
 
 const IndexPage = ({ data }) => {
   const { sanityLandingPage, sanityAboutPage } = data;
@@ -29,6 +30,7 @@ const IndexPage = ({ data }) => {
         topText={sanityLandingPage.topText}
         mobileImage={sanityLandingPage.mobileTopImage}
       />
+      <JoinUsHero />
       <AboutUsBanner
         title={sanityLandingPage.aboutSectionTitle}
         aboutText={sanityLandingPage.aboutSectionText}
