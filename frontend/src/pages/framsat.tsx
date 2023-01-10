@@ -31,7 +31,7 @@ const FramSat = ({ data }) => {
       <FramSatHeader
         title="Orbit NTNU"
         name="FRAMSAT-1"
-        text="Bringing space closer to home"
+        text="Bringing space closer to home. Launching in 2023."
       />
       <FadeInSection>
         <MissionText />
