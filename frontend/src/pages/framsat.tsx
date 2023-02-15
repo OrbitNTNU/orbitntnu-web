@@ -12,7 +12,7 @@ import { Members } from "../views/teams/Members";
 
 const FramSat = ({ data }) => {
   const [selectedTeam, setSelectedTeam] = useState<Team>();
-  const { allSanityTeam } = data;
+  const { sanityFramsatPage, allSanityTeam } = data;
   useEffect(() => {
     if (!firebase) {
       return;
@@ -26,12 +26,14 @@ const FramSat = ({ data }) => {
     if (teams.length > 0) setSelectedTeam(teams[0]);
   }, []);
 
+  console.log(data);
+
   return (
     <Layout>
       <FramSatHeader
-        title="Orbit NTNU"
-        name="FRAMSAT-1"
-        text="Bringing space closer to home. Launching in 2023."
+        title={sanityFramsatPage.title}
+        name={sanityFramsatPage.topText}
+        text={sanityFramsatPage.shortTopText}
       />
       <FadeInSection>
         <MissionText />
@@ -60,8 +62,8 @@ const FramSat = ({ data }) => {
               {selectedTeam.description}
             </p>
             <Members
-              members={selectedTeam.members.filter(
-                (member) => member.title.includes("FRAMSat")
+              members={selectedTeam.members.filter((member) =>
+                member.title.includes("FRAMSat")
               )}
               wide
             />
@@ -74,6 +76,26 @@ const FramSat = ({ data }) => {
 
 export const query = graphql`
   query FramSatPageQuery {
+    sanityFramsatPage {
+      title
+      topText
+      shortTopText
+      specifications {
+        name
+        text
+      }
+      specificationsImage {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+      firstSectionText
+      firstSectionImage {
+        asset {
+          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+    }
     allSanityTeam(filter: { name: { eq: "Project Management" } }) {
       nodes {
         description

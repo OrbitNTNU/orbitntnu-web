@@ -25,6 +25,7 @@ import mainSponsorLargeImage from "./mainSponsorLargeImage";
 import specification from "./specification";
 import selfiesatPage from "./selfiesatPage";
 import nextSatPage from "./nextSatPage";
+import framsatPage from "./framsatPage";
 
 export default createSchema({
   name: "pages",
@@ -51,6 +52,7 @@ export default createSchema({
     mainSponsorImage,
     mainSponsorLargeImage,
     specification,
-    nextSatPage
+    nextSatPage,
+    framsatPage,
   ]),
 });
