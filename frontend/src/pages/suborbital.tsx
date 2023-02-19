@@ -4,6 +4,7 @@ import { Layout } from "../templates/Layout";
 import firebase from "gatsby-plugin-firebase";
 import { graphql } from "gatsby";
 import { MissionText } from "../views/suborbital/MissionText";
+import { BlogLink } from "../components/BlogLink";
 
 const SubOrbital = ({ data }) => {
   const { sanitySuborbitalPage } = data;
@@ -25,6 +26,10 @@ const SubOrbital = ({ data }) => {
         image={sanitySuborbitalPage.topImage}
       />
       <MissionText />
+
+      <div className="flex gap-8 flex-wrap bg-white p-16">
+        <BlogLink linkUrl="/selfiesat" />
+      </div>
     </Layout>
   );
 };
