@@ -19,6 +19,26 @@ export default {
       title: "Short Top Text",
     },
     {
+      name: "launchDate",
+      type: "datetime",
+      title: "Launch Date",
+    },
+    {
+      name: "missionTitle",
+      type: "string",
+      title: "Mission Title",
+    },
+    {
+      name: "missionTextLeft",
+      type: "string",
+      title: "Mission Text Left",
+    },
+    {
+      name: "missionTextRight",
+      type: "string",
+      title: "Mission Text Right",
+    },
+    {
       name: "specifications",
       title: "Specifications",
       type: "array",
