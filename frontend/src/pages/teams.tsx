@@ -11,6 +11,7 @@ export interface Member {
   title: string;
   email?: string;
   phone?: string;
+  linkedin?: string;
   image?: {
     asset: {
       gatsbyImageData: IGatsbyImageData;
@@ -101,6 +102,7 @@ export const query = graphql`
           title
           phone
           email
+          linkedin
         }
         name
         description
