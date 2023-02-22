@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Layout } from "../templates/Layout";
-import { LandingHero } from "../components/LandingHero";
 import { AboutUsBanner } from "../components/AboutUsBanner";
 import { BannerLinkList } from "../components/BannerLinkList";
 import { graphql } from "gatsby";
@@ -25,10 +24,6 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <LandingHero
-        topText={sanityLandingPage.topText}
-        mobileImage={sanityLandingPage.mobileTopImage}
-      />
       <AboutUsBanner
         title={sanityLandingPage.aboutSectionTitle}
         aboutText={sanityLandingPage.aboutSectionText}
