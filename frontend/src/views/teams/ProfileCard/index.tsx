@@ -15,6 +15,7 @@ export const ProfileCard = ({ member, wide = false }: ProfileCardProps) => {
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
+    
   };
 
   const handleMouseOut = () => {
@@ -23,9 +24,9 @@ export const ProfileCard = ({ member, wide = false }: ProfileCardProps) => {
 
   return(
   <li
-    className={` bg-gray-900 ${
+    className={`bg-[#181818] ${
       wide ? "w-[270px]" : "w-64"
-    } flex flex-col m-2 items-center`}
+    } flex flex-col m-2 items-center rounded-md shadow hover:bg-[#282828] transition-all`}
     onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
 
     {member.image ? (
@@ -45,7 +46,7 @@ export const ProfileCard = ({ member, wide = false }: ProfileCardProps) => {
     <p className="text-orange-500 -mb-1">{member.title}</p>
     <p className="text-xl">{member.name}</p>
 
-    <div style = {{'border-radius': '50% / 100%', 'border-bottom-left-radius': 0, 'border-bottom-right-radius': 0}} class={` flex justify-center bg-[#0e70b6] ${isHovering ? "w-64 h-12 mt-0" : "w-32 h-10 mt-2"} ease-in-out duration-500`}>
+    <div style = {{'border-radius': '50% / 100%', 'border-bottom-left-radius': 0, 'border-bottom-right-radius': 0}} class={` flex justify-center bg-[#0e70b6] ${isHovering ? "w-56 h-12 mt-1" : "w-32 h-10 mt-3"} ease-in-out duration-150`}>
       <div class="flex items-center gap-2">
         {member.phone && <a href={`tel:${member.phone}`}> <BsTelephoneFill /> </a> }  
         {member.email &&

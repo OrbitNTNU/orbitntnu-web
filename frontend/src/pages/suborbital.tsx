@@ -27,9 +27,9 @@ const SubOrbital = ({ data }) => {
       />
       <MissionText />
 
-      <div className="flex gap-8 flex-wrap bg-white p-16">
+      {/* <div className="flex gap-8 flex-wrap bg-white p-16">
         <BlogLink linkUrl="/selfiesat" />
-      </div>
+      </div> */}
     </Layout>
   );
 };
