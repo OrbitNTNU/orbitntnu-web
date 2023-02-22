@@ -31,5 +31,10 @@ export default {
       title: "Phone",
       type: "string",
     },
+    {
+      name: "linkedin",
+      title: "Linkedin",
+      type: "string",
+    },
   ],
 };
