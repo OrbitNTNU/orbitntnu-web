@@ -6,15 +6,14 @@ import { FadeInSection } from "../components/FadeInSection";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Team } from "./teams";
 import { Members } from "../views/teams/Members";
-import { LandingHero } from "../components/LandingHero";
 import Countdown from "react-countdown";
 import { CountdownRenderer } from "../components/CountdownRenderer";
 import { Specs } from "../views/selfiesat/Specs";
-import { BioSatLandingHero } from "../components/BioSatLandingHero";
+import { FramSatHeader } from "../views/framsat/FramSatHeader";
 
 const NextSat = ({ data }) => {
   const [selectedTeam, setSelectedTeam] = useState<Team>();
-  const { sanityLandingPage, sanityNextSatPage, allSanityTeam } = data;
+  const { sanityNextSatPage, allSanityTeam } = data;
 
   useEffect(() => {
     if (!firebase) {
@@ -31,7 +30,11 @@ const NextSat = ({ data }) => {
 
   return (
     <Layout>
-      <BioSatLandingHero mobileImage={sanityLandingPage.mobileTopImage} />
+      <FramSatHeader
+        title="Orbit NTNU"
+        name="Biosat"
+        text="Bringing a plant to space."
+      />
 
       <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
         <div className="flex flex-col justify-center items-center mb-16">
@@ -146,14 +149,6 @@ const NextSat = ({ data }) => {
 
 export const query = graphql`
   query NextSatPageQuery {
-    sanityLandingPage {
-      topText
-      mobileTopImage {
-        asset {
-          gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
-        }
-      }
-    }
     sanityNextSatPage {
       title
       topText
