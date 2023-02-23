@@ -9,6 +9,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import { graphql } from "gatsby";
 import { Team } from "./teams";
 import { Members } from "../views/teams/Members";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 
 const FramSat = ({ data }) => {
   const [selectedTeam, setSelectedTeam] = useState<Team>();
@@ -35,18 +36,42 @@ const FramSat = ({ data }) => {
         name={sanityFramsatPage.topText}
         text={sanityFramsatPage.shortTopText}
       />
+      <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
+        <FadeInSection>
+          <div>
+            <h2 className="text-center text-4xl font-bold mb-2">
+              {sanityFramsatPage.missionTitle}
+            </h2>
+            <div className="flex flex-col px-8 md:flex-row md:max-w-4xl m-auto gap-8 md:-mt-6">
+              <p className="max-w-sm m-auto md:pt-6 mb-4 md:mb-0">
+                {sanityFramsatPage.missionTextLeft}
+              </p>
+              <p className="max-w-sm m-auto md:pt-6 mb-4 md:mb-0">
+                {sanityFramsatPage.missionTextRight}
+              </p>
+            </div>
+          </div>
+        </FadeInSection>
+      </section>
+
       <FadeInSection>
-        <MissionText />
-      </FadeInSection>
-      <FadeInSection>
-        <Specs />
+        <div className="mt-16">
+          <Specs
+            name="FRAMSAT-1"
+            specs={sanityFramsatPage.specifications}
+            image={sanityFramsatPage.specificationsImage.asset.gatsbyImageData}
+          />
+        </div>
+        <p className="mt-8 mx-8 md:max-w-2xl md:m-auto">
+          {sanityFramsatPage.firstSectionText}
+        </p>
       </FadeInSection>
 
       <FadeInSection>
-        <div className="flex justify-center mt-4">
-          <StaticImage
-            src="../images/framsat-image.jpg"
-            alt="FRAMSat"
+        <div className="flex justify-center mt-8">
+          <GatsbyImage
+            image= {sanityFramsatPage.firstSectionImage.asset.gatsbyImageData}
+            alt="Open Framsat"
             className="max-w-screen-lg mx-8"
           />
         </div>
@@ -63,7 +88,7 @@ const FramSat = ({ data }) => {
             </p>
             <Members
               members={selectedTeam.members.filter((member) =>
-                member.title.includes("FRAMSat")
+                member.title.includes("FramSat")
               )}
               wide
             />
@@ -80,6 +105,9 @@ export const query = graphql`
       title
       topText
       shortTopText
+      missionTitle
+      missionTextLeft
+      missionTextRight
       specifications {
         name
         text
