@@ -26,7 +26,7 @@ export const Specs = ({ name, specs, image }: SpecsProps) => (
       <ul className="w-[270px] md:w-[300px] m-auto md:mr-28">
         {specs.map((stat) => (
           <li
-            className="max-w-[270px] md:max-w-none mx-4 md:mx-0 h-8 mt-2 border-b"
+            className="max-w-[270px] md:max-w-none mx-4 md:mx-0 h-8 mt-2 border-b border-yellow-500"
             key={stat.name}
           >
             <span className="float-left font-bold">{stat.name}</span>
