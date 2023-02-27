@@ -30,12 +30,12 @@ export default {
     },
     {
       name: "missionTextLeft",
-      type: "string",
+      type: "text",
       title: "Mission Text Left",
     },
     {
       name: "missionTextRight",
-      type: "string",
+      type: "text",
       title: "Mission Text Right",
     },
     {
@@ -56,7 +56,7 @@ export default {
     {
       name: "firstSectionText",
       title: "First Section Text",
-      type: "string",
+      type: "text",
     },
     {
       name: "firstSectionImage",

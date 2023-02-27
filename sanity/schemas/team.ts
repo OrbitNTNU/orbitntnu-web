@@ -11,7 +11,7 @@ export default {
     {
       name: "description",
       title: "Description",
-      type: "string",
+      type: "text",
     },
     {
       name: "members",

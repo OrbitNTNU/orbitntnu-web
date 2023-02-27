@@ -32,7 +32,8 @@ export default {
     },
     {
       name: "text1",
-      type: "string",
+      type: "text",
+      rows: 6,
       title: "First Text Section",
     },
     {
@@ -54,7 +55,8 @@ export default {
     },
     {
       name: "text2",
-      type: "string",
+      type: "text",
+      rows: 5,
       title: "Second Text Section",
     },
     {
@@ -70,7 +72,7 @@ export default {
     },
     {
       name: "text3",
-      type: "string",
+      type: "text",
       title: "Third Text Section",
     },
     {

@@ -16,7 +16,8 @@ export default {
     },
     {
       name: "topText",
-      type: "string",
+      type: "text",
+      rows: 4,
       title: "Top Text",
     },
     {
@@ -32,7 +33,8 @@ export default {
     },
     {
       name: "mainSponsorDescription",
-      type: "string",
+      type: "text",
+      rows: 5,
       title: "Main Sponsor Description",
     },
     {
