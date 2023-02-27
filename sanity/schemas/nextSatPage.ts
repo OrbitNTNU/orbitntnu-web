@@ -46,12 +46,12 @@ export default {
     {
       name: "firstSectionText1",
       title: "First Section Text1",
-      type: "string",
+      type: "text",
     },
     {
       name: "firstSectionText2",
       title: "First Section Text2",
-      type: "string",
+      type: "text",
     },
     {
       name: "firstSectionImage",
@@ -79,7 +79,7 @@ export default {
     {
       name: "secondSectionText",
       title: "Second Section Text",
-      type: "string",
+      type: "text",
     },
     {
       name: "secondSectionImage",
@@ -98,7 +98,7 @@ export default {
     {
       name: "thirdSectionText",
       title: "Third Section Text",
-      type: "string",
+      type: "text",
     },
     {
       name: "thirdSectionImage",
@@ -117,7 +117,7 @@ export default {
     {
       name: "fourthSectionText",
       title: "Fourth Section Text",
-      type: "string",
+      type: "text",
     },
     {
       name: "fourthSectionImage",

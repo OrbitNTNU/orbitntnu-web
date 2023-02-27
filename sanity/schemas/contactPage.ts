@@ -16,7 +16,8 @@ export default {
     },
     {
       name: "topText",
-      type: "string",
+      type: "text",
+      rows: 4,
       title: "Top Text",
     },
     {
