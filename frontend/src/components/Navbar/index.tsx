@@ -25,7 +25,9 @@ export const Navbar = () => {
   ];
 
   const getSelectedStatus = (url: string) => {
-    return window.location.pathname === url ? "border-b-2" : "";
+    if (window !== undefined){
+      return window.location.pathname === url ? "border-b-2" : "";
+    }
   };
 
   return (
