@@ -24,6 +24,10 @@ export const Navbar = () => {
     { name: "SUBORBITAL", url: "/suborbital" },
   ];
 
+  const getSelectedStatus = (url: string) => {
+    return window.location.pathname === url ? "border-b-2" : "";
+  };
+
   return (
     <nav className="text-white p-2 mb-2  w-full z-50 absolute top-0 left-0">
       <Link to="/">
@@ -38,14 +42,14 @@ export const Navbar = () => {
       <ul className="invisible inline-block mt-5 ml-8 md:visible">
         {links.map((link) => (
           <Link key={link.name} to={link.url}>
-            <li className={`inline-block mr-4 hover:border-b-2 hover:border-yellow-500 ${window.location.pathname === link.url ? "border-b-2" : ""}`}>
+            <li className={`inline-block mr-4 hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(link.url)}`}>
               {link.name}
             </li>
           </Link>
         ))}
       </ul>
 
-      <Link to="/join" className={`invisible absolute right-16 top-7 md:visible hover:border-b-2 hover:border-yellow-500 ${window.location.pathname === "/join" ? "border-b-2" : ""}`}>
+      <Link to="/join" className={`invisible absolute right-16 top-7 md:visible hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus("/join")}`}>
         JOIN
       </Link>
 
