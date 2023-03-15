@@ -38,13 +38,15 @@ export const Navbar = () => {
       <ul className="invisible inline-block mt-5 ml-8 md:visible">
         {links.map((link) => (
           <Link key={link.name} to={link.url}>
-            <li className="inline-block mr-4">{link.name}</li>
+            <li className={`inline-block mr-4 hover:border-b-2 hover:border-yellow-500 ${window.location.pathname === link.url ? "border-b-2" : ""}`}>
+              {link.name}
+            </li>
           </Link>
         ))}
       </ul>
 
-      <Link to="/join" className="invisible absolute right-16 top-7 md:visible">
-        Join
+      <Link to="/join" className={`invisible absolute right-16 top-7 md:visible hover:border-b-2 hover:border-yellow-500 ${window.location.pathname === "/join" ? "border-b-2" : ""}`}>
+        JOIN
       </Link>
 
       <FaBars

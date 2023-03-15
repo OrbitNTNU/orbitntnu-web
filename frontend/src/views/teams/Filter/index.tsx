@@ -20,7 +20,7 @@ export const Filter = ({
           key={team.name}
           className={`cursor-pointer text-lg mx-2 ${
             selected ? "text-yellow-500" : "text-white"
-          }`}
+          } hover:text-yellow-600`}
           onClick={() => setSelectedTeam(team)}
         >
           {team.name}
