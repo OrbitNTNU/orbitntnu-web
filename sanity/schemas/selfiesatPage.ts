@@ -41,6 +41,13 @@ export default {
       },
     },
     {
+      name: "gallery",
+      title: "Image Gallery",
+      type: "array",
+      of: [{ type: "image" }],
+      description: "A collection of selfies taken from SelfieSat",
+    },
+    {
       name: "firstSectionTitle",
       title: "First Section Title",
       type: "string",

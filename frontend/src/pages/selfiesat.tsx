@@ -7,6 +7,7 @@ import firebase from "gatsby-plugin-firebase";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import { graphql } from "gatsby";
 import { SelfiesatCountdown } from "../views/selfiesat/Countdown";
+import Gallery from "../views/selfiesat/Gallery";
 
 const SelfieSat = ({ data }) => {
   const { sanitySelfiesatPage } = data;
@@ -42,6 +43,8 @@ const SelfieSat = ({ data }) => {
             }
           />
         </FadeInSection>
+
+        <Gallery images={sanitySelfiesatPage.gallery} />
 
         <div className="md:flex md:gap-8 md:basis-0 mt-8">
           <div>
@@ -156,6 +159,11 @@ export const query = graphql`
       specificationsImage {
         asset {
           gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+        }
+      }
+      gallery {
+        asset {
+          gatsbyImageData(placeholder: BLURRED)
         }
       }
       firstSectionTitle
