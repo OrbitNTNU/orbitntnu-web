@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTimes } from "@react-icons/all-files/fa/FaTimes";
 import { graphql, Link, useStaticQuery } from "gatsby";
+import { isBrowser } from "../../utils/isBrowser";
 
 interface OpenNavProps {
   handleToggle: () => void;
@@ -25,9 +26,7 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
   const links = [...sanityFooter.missionLinks, ...sanityFooter.otherLinks];
 
   const getSelectedStatus = (url: string) => {
-    if (window !== undefined){
-      return window.location.pathname === url ? "border-b-2" : "";
-    }
+    return isBrowser() && window.location.pathname === url ? "border-b-2" : "";
   };
 
   return (
@@ -46,7 +45,9 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
           <li className="mb-2 text-xl">
             <Link
               to="/"
-              className={`font-thin hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus("/")}`}
+              className={`font-thin hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(
+                "/"
+              )}`}
               onClick={handleToggle}
             >
               Home
@@ -58,7 +59,9 @@ export const OpenNav = ({ handleToggle }: OpenNavProps) => {
                 <li key={link.url} className="mb-2 text-xl">
                   <Link
                     to={link.url}
-                    className={`font-thin hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(link.url)}`}
+                    className={`font-thin hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(
+                      link.url
+                    )}`}
                     onClick={handleToggle}
                   >
                     {link.title}

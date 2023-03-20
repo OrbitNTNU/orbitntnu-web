@@ -5,6 +5,7 @@ import { FaBars } from "@react-icons/all-files/fa/FaBars";
 import { Link } from "gatsby";
 import { CSSTransition } from "react-transition-group";
 import "./navbar.css";
+import { isBrowser } from "../../utils/isBrowser";
 
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -25,9 +26,7 @@ export const Navbar = () => {
   ];
 
   const getSelectedStatus = (url: string) => {
-    if (window !== undefined){
-      return window.location.pathname === url ? "border-b-2" : "";
-    }
+    return isBrowser() && window.location.pathname === url ? "border-b-2" : "";
   };
 
   return (
@@ -44,14 +43,23 @@ export const Navbar = () => {
       <ul className="invisible inline-block mt-5 ml-8 md:visible">
         {links.map((link) => (
           <Link key={link.name} to={link.url}>
-            <li className={`inline-block mr-4 hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(link.url)}`}>
+            <li
+              className={`inline-block mr-4 hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(
+                link.url
+              )}`}
+            >
               {link.name}
             </li>
           </Link>
         ))}
       </ul>
 
-      <Link to="/join" className={`invisible absolute right-16 top-7 md:visible hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus("/join")}`}>
+      <Link
+        to="/join"
+        className={`invisible absolute right-16 top-7 md:visible hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(
+          "/join"
+        )}`}
+      >
         JOIN
       </Link>
 
