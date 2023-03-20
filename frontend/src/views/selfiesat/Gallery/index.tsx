@@ -10,7 +10,6 @@ import {
 
 import "./Gallery.css";
 import Modal from "./Modal";
-import useOnScreen from "../../../utils/hooks/isInViewport";
 
 interface IGallery {
   images: {
@@ -25,11 +24,7 @@ const Gallery = ({ images }: IGallery) => {
   const [showModal, setShowModal] = useState(false);
   const [moveable, setMoveable] = useState(true);
 
-  const galleryEl = useRef<HTMLDivElement>(null);
-  // const isVisible = useOnScreen(galleryEl);
-
   useEffect(() => {
-    // if (isVisible) {
     const interval = setInterval(() => {
       setImgIdx((prevImgIdx) => {
         if (moveable) {
@@ -39,7 +34,6 @@ const Gallery = ({ images }: IGallery) => {
       });
     }, 5000);
     return () => clearInterval(interval);
-    // }
   }, [imgIdx, moveable]);
 
   const handleRightClick = () => {
@@ -125,7 +119,7 @@ const Gallery = ({ images }: IGallery) => {
     </div>
   );
 
-  return <div ref={galleryEl}>{renderedGallery}</div>;
+  return renderedGallery;
 };
 
 export default Gallery;
