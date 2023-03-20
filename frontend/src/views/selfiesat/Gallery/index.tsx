@@ -29,16 +29,18 @@ const Gallery = ({ images }: IGallery) => {
   const isVisible = useOnScreen(galleryEl);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setImgIdx((prevImgIdx) => {
-        if (moveable) {
-          if (prevImgIdx === images.length - 1) return 0;
-          else return prevImgIdx + 1;
-        } else return prevImgIdx;
-      });
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [imgIdx, moveable]);
+    if (isVisible) {
+      const interval = setInterval(() => {
+        setImgIdx((prevImgIdx) => {
+          if (moveable) {
+            if (prevImgIdx === images.length - 1) return 0;
+            else return prevImgIdx + 1;
+          } else return prevImgIdx;
+        });
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [imgIdx, moveable, isVisible]);
 
   const handleRightClick = () => {
     if (imgIdx === images.length - 1) {
