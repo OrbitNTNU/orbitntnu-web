@@ -26,21 +26,21 @@ const Gallery = ({ images }: IGallery) => {
   const [moveable, setMoveable] = useState(true);
 
   const galleryEl = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(galleryEl);
+  // const isVisible = useOnScreen(galleryEl);
 
   useEffect(() => {
-    if (isVisible) {
-      const interval = setInterval(() => {
-        setImgIdx((prevImgIdx) => {
-          if (moveable) {
-            if (prevImgIdx === images.length - 1) return 0;
-            else return prevImgIdx + 1;
-          } else return prevImgIdx;
-        });
-      }, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [imgIdx, moveable, isVisible]);
+    // if (isVisible) {
+    const interval = setInterval(() => {
+      setImgIdx((prevImgIdx) => {
+        if (moveable) {
+          if (prevImgIdx === images.length - 1) return 0;
+          else return prevImgIdx + 1;
+        } else return prevImgIdx;
+      });
+    }, 5000);
+    return () => clearInterval(interval);
+    // }
+  }, [imgIdx, moveable]);
 
   const handleRightClick = () => {
     if (imgIdx === images.length - 1) {
@@ -125,7 +125,7 @@ const Gallery = ({ images }: IGallery) => {
     </div>
   );
 
-  return <div ref={galleryEl}>{isVisible && renderedGallery}</div>;
+  return <div ref={galleryEl}>{renderedGallery}</div>;
 };
 
 export default Gallery;
