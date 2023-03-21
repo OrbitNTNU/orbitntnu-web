@@ -19,14 +19,47 @@ interface JoinCardsProps {
 export const JoinCards = ({ sectionTitle, positions }: JoinCardsProps) => (
   <React.Fragment>
     <h2 className="mt-16 text-2xl text-center md:text-3xl">{sectionTitle}</h2>
+    <span className=" col-span-1" />
+    <section className="flex flex-col">
+      <div className="flex flex-col items-center justify-center">
+        {positions.filter((position) => position.title === "Chief Marketing Officer" || position.title === "Project Manager")
+        .map((position) => (
+          <JoinCard
+            key={position.title}
+            title={position.title}
+            text={position.text}
+            applyLink={position.positionLink}
+            image={position.image}
+            classname="md:max-w-2xl"
+          />
+        ))}
+      </div>
+    </section>
+
     <div className="md:flex md:flex-wrap justify-center">
-      {positions.map((position) => (
+      {positions.filter((position) => position.title.includes("Team Lead"))
+      .map((position) => (
         <JoinCard
           key={position.title}
           title={position.title}
           text={position.text}
           applyLink={position.positionLink}
           image={position.image}
+          classname="md:max-w-md"
+        />
+      ))}
+    </div>
+
+    <div className="md:flex md:flex-wrap justify-center">
+      {positions.filter((position) => position.title !== "Chief Marketing Officer" && position.title !== "Project Manager" && !position.title.includes("Team Lead"))
+      .map((position) => (
+        <JoinCard
+          key={position.title}
+          title={position.title}
+          text={position.text}
+          applyLink={position.positionLink}
+          image={position.image}
+          classname="md:max-w-md"
         />
       ))}
     </div>

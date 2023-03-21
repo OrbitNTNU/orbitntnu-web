@@ -11,10 +11,11 @@ interface JoinCardProps {
       gatsbyImageData: IGatsbyImageData;
     };
   };
+  classname: string;
 }
 
-export const JoinCard = ({ title, text, applyLink, image }: JoinCardProps) => (
-  <div className="bg-gray-900 p-4 m-4 md:max-w-md relative md:pb-16">
+export const JoinCard = ({ title, text, applyLink, image, classname }: JoinCardProps) => (
+  <div className={`bg-gray-900 p-4 m-4 relative md:pb-16 ${classname}`}>
     <GatsbyImage image={image.asset.gatsbyImageData} alt="Position" />
     <h2 className="mt-2 text-2xl">{title}</h2>
     <p className="mb-4">{text}</p>
