@@ -59,7 +59,7 @@ export const Footer = () => {
             <ul className="mr-16">
               {sanityFooter.otherLinks.map((link) => (
                 <li key={link.title} className="py-2">
-                  <Link to={link.url}>{link.title}</Link>
+                  <Link to={link.url} className="hover:text-yellow-500">{link.title}</Link>
                 </li>
               ))}
             </ul>
@@ -67,7 +67,7 @@ export const Footer = () => {
             <ul>
               {sanityFooter.missionLinks.map((link) => (
                 <li key={link.title} className="py-2 uppercase">
-                  <Link to={link.url}>{link.title}</Link>
+                  <Link to={link.url} className="hover:text-yellow-500">{link.title}</Link>
                 </li>
               ))}
             </ul>
@@ -80,11 +80,11 @@ export const Footer = () => {
           <p>Orbit NTNU © {year}</p>
           <div className="flex absolute -top-1 right-4 sm:gap-4">
             {sanityFooter.soMeLinks.map((link) => (
-              <a href={link.url} key={link.title}>
+              <a href={link.url} key={link.title} className="flex flex-col justify-center align-middle w-10 h-10">
                 <GatsbyImage
                   image={link.image.asset.gatsbyImageData}
                   alt="SoMe"
-                  className="w-8 ml-2"
+                  className="w-8 ml-2 hover:w-9"
                 />
               </a>
             ))}

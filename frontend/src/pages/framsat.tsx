@@ -39,14 +39,14 @@ const FramSat = ({ data }) => {
       <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
         <FadeInSection>
           <div>
-            <h2 className="text-center text-4xl font-bold mb-2">
+            <h2 className="text-center text-4xl font-bold mb-4">
               {sanityFramsatPage.missionTitle}
             </h2>
             <div className="flex flex-col px-8 md:flex-row md:max-w-4xl m-auto gap-8 md:-mt-6">
-              <p className="max-w-sm m-auto md:pt-6 mb-4 md:mb-0">
+              <p className="max-w-sm md:pt-6 mb-4 md:mb-0">
                 {sanityFramsatPage.missionTextLeft}
               </p>
-              <p className="max-w-sm m-auto md:pt-6 mb-4 md:mb-0">
+              <p className="max-w-sm md:pt-6 mb-4 md:mb-0">
                 {sanityFramsatPage.missionTextRight}
               </p>
             </div>
@@ -57,7 +57,7 @@ const FramSat = ({ data }) => {
       <FadeInSection>
         <div className="mt-16">
           <Specs
-            name="FRAMSAT-1"
+            name="FRAMSAT"
             specs={sanityFramsatPage.specifications}
             image={sanityFramsatPage.specificationsImage.asset.gatsbyImageData}
           />
