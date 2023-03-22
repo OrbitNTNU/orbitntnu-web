@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import { Layout } from "../templates/Layout";
+//import StarsCanvas from "../components/StarsCanvas";
+import { Stars } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
 import { SelfieSatHeader } from "../views/selfiesat/SelfieSatHeader";
 import { Specs } from "../views/selfiesat/Specs";
 import { FadeInSection } from "../components/FadeInSection";
@@ -23,6 +26,7 @@ const SelfieSat = ({ data }) => {
 
   return (
     <Layout>
+
       <SelfieSatHeader
         title={sanitySelfiesatPage.title}
         name={sanitySelfiesatPage.topText}
@@ -78,24 +82,25 @@ const SelfieSat = ({ data }) => {
           />
         </FadeInSection>
 
-        <div className="md:flex md:gap-8 md:mb-8 md:basis-0 md:my-8">
-          <div>
-            <h2 className="text-2xl md:text-4xl">
-              {sanitySelfiesatPage.secondSectionTitle}
-            </h2>
+        <div className="md:gap-8 md:mb-8 md:basis-0 md:my-8">
+          <h2 className="text-2xl md:text-4xl">
+            {sanitySelfiesatPage.secondSectionTitle}
+          </h2>
+
+          <div className="md:flex">
             <p className="md:text-lg">
               {sanitySelfiesatPage.secondSectionText}
             </p>
+            <FadeInSection>
+              <GatsbyImage
+                image={
+                  sanitySelfiesatPage.secondSectionImage.asset.gatsbyImageData
+                }
+                alt="Image 3"
+                className=" md:w-80 my-8 md:my-0"
+              />
+            </FadeInSection>
           </div>
-          <FadeInSection>
-            <GatsbyImage
-              image={
-                sanitySelfiesatPage.secondSectionImage.asset.gatsbyImageData
-              }
-              alt="Image 3"
-              className="my-8 md:my-0"
-            />
-          </FadeInSection>
         </div>
 
         <div className="md:flex md:flex-row-reverse md:gap-8 md:my-8">
