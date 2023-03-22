@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
 import { Layout } from "../templates/Layout";
-//import StarsCanvas from "../components/StarsCanvas";
-import { Stars } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
 import { SelfieSatHeader } from "../views/selfiesat/SelfieSatHeader";
 import { Specs } from "../views/selfiesat/Specs";
 import { FadeInSection } from "../components/FadeInSection";
