@@ -37,7 +37,7 @@ const IndexPage = ({ data }) => {
         executeScroll={executeScroll}
       />
       <FadeInSection>
-        <section className={`relative flex flex-col justify-center sm:-mt-20 px-4 ${width < 450 ? "mt-28" : ""}`}>
+        <section className={`relative flex flex-col justify-center sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""} ${width < 350 ? "mt-44" : ""}`}>
           <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">We are seeking a new Chief Marketing Officer</h2>
           <p className="text-center md:text-lg">
             Do you have a passion for communication, creativity, and outreach?
