@@ -26,7 +26,7 @@ export const Navbar = () => {
   ];
 
   const getSelectedStatus = (url: string) => {
-    return isBrowser() && window.location.pathname === url ? "border-b-2" : "";
+    return isBrowser() && (window.location.pathname === url || window.location.pathname === url + "/") ? "border-b-2" : "";
   };
 
   return (
