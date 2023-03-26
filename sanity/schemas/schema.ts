@@ -22,7 +22,6 @@ import suborbitalPage from "./suborbitalPage";
 import sponsor from "./sponsor";
 import mainSponsorImage from "./mainSponsorImage";
 import mainSponsorLargeImage from "./mainSponsorLargeImage";
-import mentorsPage from "./mentorsPage";
 import specification from "./specification";
 import selfiesatPage from "./selfiesatPage";
 import nextSatPage from "./nextSatPage";
@@ -52,7 +51,6 @@ export default createSchema({
     sponsor,
     mainSponsorImage,
     mainSponsorLargeImage,
-    mentorsPage,
     specification,
     nextSatPage,
     framsatPage,
