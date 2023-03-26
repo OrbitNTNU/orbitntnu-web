@@ -32,7 +32,8 @@ const Teams = ({ data }) => {
   useEffect(() => {
     const teams: Team[] = allSanityTeam.nodes;
     if (teams.length > 0) {
-      teams.sort((a, b) => (a.name > b.name ? 1 : -1));
+      teams.sort((a, b) => (a.name > b.name ? -1 : 1));
+      teams.sort((a, b) => (a.name === "Mentors" ? 1 : -1));
       teams.sort((a, b) => (a.name === "The Board" ? -1 : 1));
 
       setSelectedTeam(teams[0]);
