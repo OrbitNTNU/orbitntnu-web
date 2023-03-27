@@ -5,6 +5,10 @@ module.exports = {
       sans: ["Roboto Condensed", "sans-serif"],
     },
     extend: {
+      colors: {
+        "orbit-blue": "#1972B5",
+        "orbit-yellow": "#E3A836",
+      },
       maxWidth: {
         64: "256px",
       },

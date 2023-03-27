@@ -1,5 +1,5 @@
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import shortid from "shortid";
 import {
   FaCircle,

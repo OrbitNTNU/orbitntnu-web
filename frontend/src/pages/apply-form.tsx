@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import { Layout } from "../templates/Layout";
-import InputLabel from "../components/InputLabel";
+import Checkbox from "../components/Inputs/Checkbox";
+import TextInput from "../components/Inputs/TextInput";
+import Radio from "../components/Inputs/Radio";
+import Input from "../components/Inputs/Input";
+import Sortable from "../views/apply-form/Sortable";
 
 const ApplyForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [number, setNumber] = useState<number>();
-  const [study, setStudy] = useState<number>();
-  const [year, setYear] = useState<number>();
-  const [wantedPositions, setWantedPositions] = useState([]);
+  const [phoneNumber, setPhoneNumber] = useState<number | string>("");
+  const [study, setStudy] = useState("");
+  const [year, setYear] = useState<number | string>("");
+  const [wantedPosition, setWantedPosition] = useState<String[]>([]);
   const [experience, setExperience] = useState("");
   const [about, setAbout] = useState("");
-  const [save, setSave] = useState<boolean>();
+  const [save, setSave] = useState(false);
 
-  const years = [1, 2, 3, 4, 5];
+  const yearOfStudy = [1, 2, 3, 4, 5];
   const positions = [
     "Key Account Manager",
     "Website Design, UI/UX",
@@ -23,91 +27,170 @@ const ApplyForm = () => {
     "Graphic Designer",
     "Art Director",
     "Director of Photography",
-    "Cinemotographer and Video Manager",
-    "Does not matter / Place me where I belong",
+    "Cinematographer and Video Manager",
     "Chief Marketing Officer (CMO)",
+    "Sponsor Team Lead",
+    "System Engineering Team Lead",
+    "ADCS (Control Systems) Team Leader",
+    "DevOps Team Leader",
+    "Project Manager",
+    "Human Resources Manager",
+    "Place me where I belong",
   ];
+
   return (
     <Layout>
-      <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
-        <form className="flex flex-col">
-          <InputLabel type="text" id="name" value={name}>
+      <div className="flex justify-center">
+        <section className="flex flex-col mt-24 w-3/5 gap-4">
+          <Input
+            name="name"
+            placeholder="Name Nameson"
+            value={name}
+            onChange={(e) => setName(e.currentTarget.value)}
+          >
             Full name
-          </InputLabel>
-          <InputLabel type="email" id="email">
+          </Input>
+          <Input
+            type="email"
+            name="email"
+            placeholder="name.nameson@email.co"
+            value={email}
+            onChange={(e) => setEmail(e.currentTarget.value)}
+          >
             Email
-          </InputLabel>
-          <InputLabel type="text" id="username">
-            NTNU Student username (will be used for card access)
-          </InputLabel>
-          <InputLabel type="number" id="phone">
+          </Input>
+          <Input
+            name="username"
+            placeholder="namenam"
+            value={username}
+            onChange={(e) => setUsername(e.currentTarget.value)}
+          >
+            NTNU username (used for card access)
+          </Input>
+          <Input
+            type="number"
+            name="phone"
+            placeholder="444 55 999"
+            value={phoneNumber}
+            onChange={(e) =>
+              setPhoneNumber(
+                e.currentTarget.valueAsNumber
+                  ? e.currentTarget.valueAsNumber
+                  : e.currentTarget.value
+              )
+            }
+          >
             Phone number
-          </InputLabel>
-          <InputLabel type="text" id="study">
+          </Input>
+          <Input
+            name="study"
+            placeholder="Your study"
+            value={study}
+            onChange={(e) => setStudy(e.currentTarget.value)}
+          >
             Field of study
-          </InputLabel>
-          <p>Year of study</p>
-          <div className="flex justify-evenly">
-            {years.map((year) => {
-              return (
-                <InputLabel
-                  className="text-center"
-                  key={`year-${year}`}
-                  type="radio"
-                  id={`year-${year}`}
-                  name="study-year"
-                >
-                  {year}
-                </InputLabel>
-              );
-            })}
+          </Input>
+          <div className="flex flex-col-reverse gap-2">
+            <div className="flex gap-2 peer">
+              {yearOfStudy.map((year) => {
+                return (
+                  <Radio
+                    name="year"
+                    id={`year-${year}`}
+                    key={`year-${year}`}
+                    onClick={() => setYear(year)}
+                  >
+                    {year}
+                  </Radio>
+                );
+              })}
+            </div>
+            <label
+              htmlFor="year"
+              className="text-sm mt-4 peer-hover:text-orbit-yellow"
+            >
+              Year of study
+            </label>
           </div>
-          <ul>
-            <p>What position(s) do you wish to apply for?</p>
-            {positions.map((position) => {
-              return (
-                <li key={position} className="my-2">
-                  <InputLabel type="checkbox" id={position}>
+          <div className="flex flex-col-reverse gap-2 mb-5">
+            <div className="peer grid grid-cols-4 gap-2">
+              {positions.map((position) => {
+                return (
+                  <Checkbox
+                    name={position}
+                    key={`position-${position}`}
+                    value={position}
+                    onChange={() => {
+                      if (wantedPosition.includes(position)) {
+                        setWantedPosition((prevPos) => {
+                          return prevPos.filter((pos) => pos !== position);
+                        });
+                      } else {
+                        setWantedPosition((prevPos) => [...prevPos, position]);
+                      }
+                    }}
+                  >
                     {position}
-                  </InputLabel>
-                </li>
-              );
-            })}
-          </ul>
-          {/* TODO: rank wanted positions 
-                    <label htmlFor="rate">
-            If several, please rate the teams based on which you prefer to join.
-            (Ignore this question if not)
-          </label>
-          */}
-          <InputLabel type="text" id="experience">
+                  </Checkbox>
+                );
+              })}
+            </div>
+            <label
+              htmlFor="positions"
+              className="text-sm mt-4 peer-hover:text-orbit-yellow"
+            >
+              What position(s) do you wish to apply for?
+            </label>
+          </div>
+          {wantedPosition.length > 1 && (
+            <div className="flex flex-col-reverse gap-2 mb-8">
+              <div className="peer">
+                <Sortable value={wantedPosition} setValue={setWantedPosition} />
+              </div>
+              <label
+                htmlFor=""
+                className="text-sm peer-hover:text-orbit-yellow"
+              >
+                Please rate the positions based on your preference
+              </label>
+            </div>
+          )}
+          <TextInput
+            name="experience"
+            placeholder="Tell us about your relevant experience and knowlege!"
+            value={experience}
+            onChange={(e) => setExperience(e.currentTarget.value)}
+          >
             Do you have any relevant experience or knowledge? (Please list
             earier experiences, such as military, volunteer work, organizations,
             personal projects, achievements, etc.)
-          </InputLabel>
-          <InputLabel type="text" id="about">
+          </TextInput>
+          <TextInput
+            name="about"
+            placeholder="We want to know more about you. Why do you want to join Orbit NTNU?"
+            value={about}
+            onChange={(e) => setAbout(e.currentTarget.value)}
+          >
             Tell us a little bit about yourself, your hobbies, your motivation
             and why you want to join Orbit NTNU.
-          </InputLabel>
-          <p>
-            Can we save your information and contact you if other Orbit
-            opportunities arise later? We're recruiting twice a year, and we
-            sometimes have positions appearing during the year!
-          </p>
-          <ul className="flex gap-6">
-            <li>
-              <InputLabel type="radio" id="save" name="save">
+          </TextInput>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="save">
+              Can we save your information and contact you if other Orbit
+              opportunities arise later? We're recruiting twice a year, and we
+              sometimes have positions appearing during the year!
+            </label>
+            <div className="flex gap-4">
+              <Radio name="save" id="yes" onClick={() => setSave(true)}>
                 Yes
-              </InputLabel>
-            </li>
-            <li>
-              <InputLabel type="radio" id="save" name="save">
+              </Radio>
+              <Radio name="save" id="no" onClick={() => setSave(false)}>
                 No
-              </InputLabel>
-            </li>
-          </ul>
-        </form>
-      </section>
+              </Radio>
+            </div>
+          </div>
+        </section>
+      </div>
     </Layout>
   );
 };
