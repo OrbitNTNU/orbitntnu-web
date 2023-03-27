@@ -5,12 +5,19 @@ interface IRadio {
   name: string;
   id: string;
   onClick: React.MouseEventHandler<HTMLLabelElement>;
+  value: number | string;
 }
 
-const Radio = ({ children, name, id, onClick }: IRadio) => {
+const Radio = ({ children, name, id, onClick, value }: IRadio) => {
   return (
     <div className="flex flex-row">
-      <input type="radio" id={id} name={name} className="hidden peer" />
+      <input
+        type="radio"
+        id={id}
+        name={name}
+        className="hidden peer"
+        value={value}
+      />
       <label
         htmlFor={id}
         onClick={onClick}
