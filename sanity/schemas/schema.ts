@@ -8,6 +8,7 @@ import footer from "./footer";
 import someLink from "./someLink";
 import textLink from "./textLink";
 import member from "./member";
+import mentor from "./mentor";
 import team from "./team";
 import position from "./position";
 import joinPage from "./joinPage";
@@ -48,6 +49,7 @@ export default createSchema({
     someLink,
     textLink,
     member,
+    mentor,
     team,
     sponsor,
     mainSponsorImage,
