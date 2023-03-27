@@ -37,33 +37,31 @@ const IndexPage = ({ data }) => {
         executeScroll={executeScroll}
       />
       <FadeInSection>
-        <section className="relative flex justify-center">
-          <div className={`absolute sm:-mt-28 text-center mx-4 ${width < 370 ? "mt-16" : ""} ${width < 500 && width >= 370 ? "mt-0" : ""}`}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-2">We are seeking a new Chief Marketing Officer</h2>
-            <p className="md:text-lg">
-              Do you have a passion for communication, creativity, and outreach?
-            </p>
-            <p className="flex justify-center mb-4 md:text-xl">
-              We are also seeking project manager and team leaders.
-            </p>
-            <div className="flex gap-3 justify-center">
-              <a
-                href="https://forms.gle/UwdrNMdT25Gus3sPA"
-                className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
-              >
-                Apply
-              </a>
-              <a
-                href="/join"
-                className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
-              >
-                More information
-              </a>
-            </div>
+        <section className={`relative flex flex-col justify-center sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""} ${width < 350 ? "mt-44" : ""}`}>
+          <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">We are seeking a new Chief Marketing Officer</h2>
+          <p className="text-center md:text-lg">
+            Do you have a passion for communication, creativity, and outreach?
+          </p>
+          <p className="text-center mb-4 md:text-xl">
+            We are also seeking project manager and team leaders.
+          </p>
+          <div className="flex gap-3 justify-center">
+            <a
+              href="https://forms.gle/UwdrNMdT25Gus3sPA"
+              className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
+            >
+              Apply
+            </a>
+            <a
+              href="/join"
+              className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
+            >
+              More information
+            </a>
           </div>
         </section>
       </FadeInSection>
-      <h2 className={`text-center text-2xl mt-52 mb-2 md:text-4xl sm:mt-28 ${width < 305 ? " mt-96" : ""} ${width < 370 && width >=305 ? "mt-80" : ""} ${width < 500 && width >= 370? "mt-64" : ""}`}>
+      <h2 className="text-center text-2xl mt-24 mb-2 md:text-4xl">
         MISSIONS
       </h2>
       <BannerLinkList links={sanityLandingPage.links} />
