@@ -6,20 +6,21 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 import { FaEquals } from "react-icons/fa";
+import { TForm } from "../../pages/apply-form";
 
 interface ISortable {
-  value: String[];
-  setValue: React.Dispatch<React.SetStateAction<String[]>>;
+  value: string[];
+  setValue: (value: string[], key: keyof TForm) => void;
 }
 
 const Sortable = ({ value, setValue }: ISortable) => {
   const handleOnDragEnd = (result: DropResult) => {
     if (!result.destination) return;
-    const items = Array.from(value);
+    const items = Array.from(value) as string[];
     const [reorderedItems] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItems);
 
-    setValue(items);
+    setValue(items, "positions");
   };
 
   return (
