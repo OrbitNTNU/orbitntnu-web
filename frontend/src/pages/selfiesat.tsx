@@ -23,7 +23,6 @@ const SelfieSat = ({ data }) => {
 
   return (
     <Layout>
-
       <SelfieSatHeader
         title={sanitySelfiesatPage.title}
         name={sanitySelfiesatPage.topText}
