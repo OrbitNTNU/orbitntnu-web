@@ -38,14 +38,8 @@ const IndexPage = ({ data }) => {
       />
       <FadeInSection>
         <section className={`relative flex flex-col justify-center sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""} ${width < 350 ? "mt-44" : ""}`}>
-          <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">We are seeking a new Chief Marketing Officer</h2>
-          <p className="text-center md:text-lg">
-            Do you have a passion for communication, creativity, and outreach?
-          </p>
-          <p className="text-center mb-4 md:text-xl">
-            We are also seeking project manager and team leaders.
-          </p>
-          <div className="flex gap-3 justify-center">
+          <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">We are seeking Team Leads and Project Engineers</h2>
+          <div className="flex gap-3 mt-2 justify-center">
             <a
               href="https://forms.gle/UwdrNMdT25Gus3sPA"
               className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
