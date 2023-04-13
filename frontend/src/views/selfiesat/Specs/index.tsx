@@ -33,6 +33,15 @@ export const Specs = ({ name, specs, image }: SpecsProps) => (
             <span className="float-right font-thin">{stat.text}</span>
           </li>
         ))}
+        <li>
+          <a
+            href="https://data.orbitntnu.com"
+            target="_blank"
+            className="my-5 bg-blue-600 py-2 px-4 text-center md:text-lg block hover:bg-blue-800 mx-4 md:mx-0"
+          >
+            Data
+          </a>
+        </li>
       </ul>
     </div>
   </div>
