@@ -14,6 +14,7 @@ const Input = ({
   placeholder,
   value,
   onChange,
+  required,
 }: IInput) => {
   return (
     <div className="flex flex-col-reverse gap-1">
@@ -23,8 +24,9 @@ const Input = ({
         id={name}
         placeholder={placeholder}
         value={value}
+        required={required}
         onChange={onChange}
-        className="bg-white/10 px-4 py-2 outline-none peer w-96"
+        className="bg-white/10 px-4 py-2 outline-none peer w-full md:w-96"
       />
       <label htmlFor={name} className="text-sm peer-focus:text-orbit-yellow">
         {children}

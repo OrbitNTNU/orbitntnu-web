@@ -15,6 +15,7 @@ const TextInput = ({
   placeholder,
   value,
   onChange,
+  required,
 }: ITextInput) => {
   return (
     <div className="flex flex-col-reverse gap-1">
@@ -26,7 +27,8 @@ const TextInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="bg-white/10 px-4 py-2 outline-none peer w-auto h-44"
+        required={required}
+        className="bg-white/10 px-4 py-2 outline-none peer w-full h-44"
       ></textarea>
       <label htmlFor={name} className="peer-focus:text-orbit-yellow text-sm">
         {children}

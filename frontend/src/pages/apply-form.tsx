@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout } from "../templates/Layout";
 import Checkbox from "../components/Inputs/Checkbox";
 import TextInput from "../components/Inputs/TextInput";
 import Radio from "../components/Inputs/Radio";
 import Input from "../components/Inputs/Input";
 import Sortable from "../views/apply-form/Sortable";
+import { normalize } from "../utils/normalizePhoneNumber";
+import { useOnChange } from "../utils/hooks/useOnChange";
 
 export type TForm = {
   name: string;
   email: string;
   username: string;
-  phoneNumber: number | string;
+  phoneNumber: string;
   study: string;
   year: number | string;
   positions: string[];
@@ -19,7 +21,17 @@ export type TForm = {
   save: boolean;
 };
 
+type TFormError = {
+  name: boolean;
+  email: boolean;
+  phoneNumber: boolean;
+  positions: boolean;
+  experience: boolean;
+  about: boolean;
+};
+
 const ApplyForm = () => {
+  const [validate, setValidate] = useState(false);
   const [form, setForm] = useState<TForm>({
     name: "",
     email: "",
@@ -32,6 +44,21 @@ const ApplyForm = () => {
     about: "",
     save: false,
   });
+  const [error, setError] = useState<TFormError>({
+    name: false,
+    email: false,
+    phoneNumber: false,
+    positions: false,
+    experience: false,
+    about: false,
+  });
+
+  useOnChange(() => {
+    Object.keys(error).map((key) => {
+      validateInput(key as keyof TFormError);
+    });
+    console.log(error);
+  }, [validate]);
 
   const yearOfStudy = [1, 2, 3, 4, 5];
   const positions = [
@@ -66,23 +93,59 @@ const ApplyForm = () => {
     });
   };
 
+  const validateInput = (key: keyof TFormError): void => {
+    setError((prevError) => {
+      let newError = prevError;
+      if (key === "phoneNumber" || key === "email" || key === "positions") {
+        if (key === "phoneNumber") {
+          newError = {
+            ...prevError,
+            [key]: form[key].trim().length !== 8,
+          };
+        } else if (key === "email") {
+          newError = {
+            ...prevError,
+            [key]:
+              /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])".test(form[key])/.test(
+                form[key]
+              ),
+          };
+        } else {
+          newError = {
+            ...prevError,
+            [key]: form["positions"].length === 0,
+          };
+        }
+      } else {
+        newError = {
+          ...prevError,
+          [key]: form[key].trim().length === 0,
+        };
+      }
+      return newError;
+    });
+  };
+
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(form);
+    setValidate(true);
   };
 
   return (
     <Layout>
       <form onSubmit={onSubmit} className="flex justify-center">
-        <div className="flex flex-col mt-24 w-3/5 gap-8">
+        <div className="flex flex-col mt-24 w-4/5 md:w-3/5 gap-8">
           <section className=" flex flex-col gap-4">
             <Input
               name="name"
               placeholder="Name Nameson"
               value={form.name}
-              onChange={(e) => handleChange(e.currentTarget.value, "name")}
+              onChange={(e) => {
+                handleChange(e.currentTarget.value, "name");
+              }}
             >
               Full name
+              {error.name && <h1>Failed!</h1>}
             </Input>
             <Input
               type="email"
@@ -102,15 +165,13 @@ const ApplyForm = () => {
               NTNU username (used for card access)
             </Input>
             <Input
-              type="number"
+              type="text"
               name="phone"
               placeholder="444 55 999"
               value={form.phoneNumber}
               onChange={(e) =>
                 handleChange(
-                  e.currentTarget.valueAsNumber
-                    ? e.currentTarget.valueAsNumber
-                    : e.currentTarget.value,
+                  normalize(e.currentTarget.value, form.phoneNumber),
                   "phoneNumber"
                 )
               }
@@ -126,7 +187,7 @@ const ApplyForm = () => {
               Field of study
             </Input>
             <div className="flex flex-col-reverse gap-2">
-              <div className="flex gap-2 peer">
+              <div className="flex flex-col md:flex-row gap-2 peer">
                 {yearOfStudy.map((year) => {
                   return (
                     <Radio
@@ -151,7 +212,7 @@ const ApplyForm = () => {
           </section>
           <section className="flex flex-col gap-4">
             <div className="flex flex-col-reverse gap-2 mb-5">
-              <div className="peer grid grid-cols-4 gap-2">
+              <div className="peer grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
                 {positions.map((position) => {
                   return (
                     <Checkbox
@@ -228,24 +289,21 @@ const ApplyForm = () => {
                 opportunities arise later? We're recruiting twice a year, and we
                 sometimes have positions appearing during the year!
               </label>
-              <div className="flex gap-4">
-                <Radio
-                  name="save"
-                  id="yes"
-                  value={"Yes"}
-                  onClick={() => handleChange(true, "save")}
-                >
-                  Yes
-                </Radio>
-                <Radio
-                  name="save"
-                  id="no"
-                  value={"No"}
-                  onClick={() => handleChange(false, "save")}
-                >
-                  No
-                </Radio>
-              </div>
+              <Checkbox
+                name="save"
+                value={"Yes"}
+                onChange={() =>
+                  setForm((prevForm) => {
+                    const newForm = {
+                      ...prevForm,
+                      save: !prevForm.save,
+                    };
+                    return newForm;
+                  })
+                }
+              >
+                Yes
+              </Checkbox>
             </div>
           </section>
           <button className="bg-orbit-blue hover:bg-blue-800 my-8 p-4 text-xl font-bold">
