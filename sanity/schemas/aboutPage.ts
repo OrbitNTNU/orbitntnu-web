@@ -26,6 +26,13 @@ export default {
       description: "Top Image Shown On Page",
     },
     {
+      name: "infoSectionGallery",
+      title: "Info Section Gallery",
+      type: "array",
+      of: [{ type: "infoSection" }],
+      description: "Info section in a gallery form",
+    },
+    {
       name: "header1",
       type: "string",
       title: "First Header",

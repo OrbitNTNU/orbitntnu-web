@@ -9,6 +9,7 @@ import someLink from "./someLink";
 import textLink from "./textLink";
 import member from "./member";
 import team from "./team";
+import infoSection from "./infoSection"
 import position from "./position";
 import joinPage from "./joinPage";
 import aboutPage from "./aboutPage";
@@ -17,6 +18,8 @@ import teamsPage from "./teamsPage";
 import sponsorsPage from "./sponsorsPage";
 import notFoundPage from "./notFoundPage";
 import blogPage from "./blogPage";
+import mentor from "./mentor";
+import mentorsPage from "./mentorsPage";
 import galleryPage from "./galleryPage";
 import suborbitalPage from "./suborbitalPage";
 import sponsor from "./sponsor";
@@ -33,6 +36,9 @@ export default createSchema({
     landingPage,
     selfiesatPage,
     aboutPage,
+    infoSection,
+    mentor,
+    mentorsPage,
     sponsorsPage,
     contactPage,
     teamsPage,

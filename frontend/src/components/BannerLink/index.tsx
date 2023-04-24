@@ -14,17 +14,19 @@ interface BannerLinkProps {
   };
 }
 
+
 export const BannerLink = ({ link }: BannerLinkProps) => (
   <Link to={link.url} className="group">
-    <div className="relative">
+    <div className="relative flex flex-col w-52 items-center justify-center">
+      {/* <p className="mb-2">
+        {link.title}
+      </p> */}
       <GatsbyImage
         image={link.image.asset.gatsbyImageData}
         alt="banner"
-        className="w-full h-32 md:h-48 transition-all duration-500 group-hover:opacity-80"
+        className={`flex ml-2 h-max transition-all duration-500  ${link.title === "BIOSAT" ? "w-[225px] mt-2 hover:w-[257px]" : "w-52 hover:w-[15rem]"}`}
       />
-      <p className="absolute bottom-2 left-4 font-bold md:text-xl transition-all duration-500 group-hover:bottom-4">
-        {link.title}
-      </p>
+
     </div>
   </Link>
 );

@@ -1,8 +1,18 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Layout } from "../templates/Layout";
 import { AboutUsBanner } from "../components/AboutUsBanner";
 import { BannerLinkList } from "../components/BannerLinkList";
+import { InfoSection } from "../components/ScrollToSection";
 import { graphql } from "gatsby";
+import { Container, Button, Alert } from 'react-bootstrap';
+import { CSSTransition } from 'react-transition-group';
+import '../styles/indexStyle.css';
+import {
+  FaCircle,
+  FaCircleNotch,
+  FaChevronDown,
+  FaChevronUp
+} from "react-icons/fa";
 import firebase from "gatsby-plugin-firebase";
 import { FadeInSection } from "../components/FadeInSection";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -13,6 +23,30 @@ import { isBrowser } from "../utils/isBrowser";
 const IndexPage = ({ data }) => {
   const { sanityLandingPage, sanityAboutPage } = data;
   const aboutSection = useRef(null);
+  const positionSection = useRef(null);
+  const missionSection = useRef(null);
+  const infoSection = useRef(null);
+  const sections = [aboutSection, positionSection, missionSection, infoSection]
+  const [currentSection, setCurrentSection] = useState(0)
+
+  const executeScroll = (sectionId) => {
+    sections[sectionId].current.scrollIntoView({ behavior: "smooth", block: "center" });
+    setCurrentSection(sectionId)
+  }
+
+  // function DisplayScroll() {
+  //   return(
+  //     {currentSection == 0
+  //       ? <button onClick={() => executeScroll(0)}>
+  //         <FaCircle className="text-xs" />
+  //       </button>
+  //       : <button onClick={() => executeScroll(0)}>
+  //         <FaCircleNotch className="text-xs" />
+  //       </button>
+  //     }
+  //   )
+  // }
+
 
   useEffect(() => {
     if (!firebase) {
@@ -22,22 +56,44 @@ const IndexPage = ({ data }) => {
     firebase.analytics().logEvent("visited_home_page");
   }, [firebase]);
 
-  const executeScroll = () =>
-    aboutSection.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  const handleBottomClick = () => {
+    if (currentSection === sections.length - 1) {
+      sections[0].current.scrollIntoView({ behavior: "smooth", block: "center" });
+      setCurrentSection(0);
+    } else {
+      sections[currentSection + 1].current.scrollIntoView({ behavior: "smooth", block: "center" });
+      setCurrentSection(currentSection + 1);
+    }
+  };
+
+  const handleTopClick = () => {
+    if (currentSection === 0) {
+      sections[0].current.scrollIntoView({ behavior: "smooth", block: "center" });
+      setCurrentSection(0);
+    } else {
+      sections[currentSection - 1].current.scrollIntoView({ behavior: "smooth", block: "center" });
+      setCurrentSection(currentSection - 1);
+    }
+  }
+
+
 
   const width = (isBrowser()) ? useWindowSize().width : 600;
 
   return (
     <Layout>
-      <AboutUsBanner
-        title={sanityLandingPage.aboutSectionTitle}
-        aboutText={sanityLandingPage.aboutSectionText}
-        buttonText={sanityLandingPage.aboutSectionButtonText}
-        image={sanityLandingPage.aboutSectionImage}
-        executeScroll={executeScroll}
-      />
+      <section ref={aboutSection} className={`relative flex flex-col items-center`}>
+        <AboutUsBanner
+          title={sanityLandingPage.aboutSectionTitle}
+          aboutText={sanityLandingPage.aboutSectionText}
+          buttonText={sanityLandingPage.aboutSectionButtonText}
+          image={sanityLandingPage.aboutSectionImage}
+          executeScroll={() => executeScroll(missionSection)}
+        />
+      </section>
+
       <FadeInSection>
-        <section className={`relative flex flex-col justify-center sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""} ${width < 350 ? "mt-44" : ""}`}>
+        <section ref={positionSection} className={`relative flex flex-col items-center sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""} ${width < 350 ? "mt-44" : ""}`}>
           <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">We are seeking a new Chief Marketing Officer</h2>
           <p className="text-center md:text-lg">
             Do you have a passion for communication, creativity, and outreach?
@@ -61,14 +117,22 @@ const IndexPage = ({ data }) => {
           </div>
         </section>
       </FadeInSection>
-      <h2 className="text-center text-2xl mt-24 mb-2 md:text-4xl">
-        MISSIONS
-      </h2>
-      <BannerLinkList links={sanityLandingPage.links} />
 
-      <section
+      <FadeInSection>
+        <h2 className="text-center text-2xl mt-24 mb-2 md:text-4xl" ref={missionSection}>
+          MISSIONS
+        </h2>
+
+        <BannerLinkList links={sanityLandingPage.links} />
+
+      </FadeInSection>
+
+      <section ref={infoSection} className="relative md:flex md:flex-col md:justify-center m-auto items-center">
+        <InfoSection section={sanityAboutPage.infoSectionGallery} />
+      </section>
+      {/* <section
         className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto"
-        ref={aboutSection}
+        ref={infoSection}
       >
         <div className="md:flex md:gap-8 md:basis-0">
           <div>
@@ -119,7 +183,33 @@ const IndexPage = ({ data }) => {
             />
           </FadeInSection>
         </div>
-      </section>
+      </section> */}
+
+      <div className={`fixed top-[50%] h-max right-4 flex flex-col gap-4 items-center p-4`}>
+
+        <button onClick={() => handleTopClick()}>
+          <FaChevronUp className="text-2xl" />
+        </button>
+
+        {sections.map(function (_, i) {
+          if (currentSection == i) {
+            return (
+              <button onClick={() => executeScroll(i)}>
+                <FaCircle className="text-xs" key={i} />
+              </button>
+            );
+          }
+          return (
+            <button onClick={() => executeScroll(i)}>
+              <FaCircleNotch className="text-xs" key={i} />
+            </button>
+          );
+        })}
+
+        <button onClick={() => handleBottomClick()}>
+          <FaChevronDown className="text-2xl" />
+        </button>
+      </div>
     </Layout>
   );
 };
@@ -157,6 +247,15 @@ export const query = graphql`
         asset {
           gatsbyImageData
         }
+      }
+      infoSectionGallery {
+        image {
+          asset {
+            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
+          }
+        }
+        header
+        text
       }
       title
       text3
