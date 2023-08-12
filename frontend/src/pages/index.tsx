@@ -38,7 +38,9 @@ const IndexPage = ({ data }) => {
       />
       <FadeInSection>
         <section className={`relative flex flex-col justify-center sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""} ${width < 350 ? "mt-44" : ""}`}>
-          <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">We are seeking Team Leads and Project Engineers</h2>
+          <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">
+            We are seeking new members
+            </h2>
           <div className="flex gap-3 mt-2 justify-center">
             <a
               href="https://forms.gle/UwdrNMdT25Gus3sPA"
