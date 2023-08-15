@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Layout } from "../templates/Layout";
+import { LandingHero } from "../components/LandingHero";
 import { AboutUsBanner } from "../components/AboutUsBanner";
 import { BannerLinkList } from "../components/BannerLinkList";
 import { graphql } from "gatsby";
@@ -8,7 +9,6 @@ import { FadeInSection } from "../components/FadeInSection";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useWindowSize } from "../utils/hooks/useWindowSize";
 import { isBrowser } from "../utils/isBrowser";
-
 
 const IndexPage = ({ data }) => {
   const { sanityLandingPage, sanityAboutPage } = data;
@@ -25,10 +25,14 @@ const IndexPage = ({ data }) => {
   const executeScroll = () =>
     aboutSection.current.scrollIntoView({ behavior: "smooth", block: "start" });
 
-  const width = (isBrowser()) ? useWindowSize().width : 600;
+  const width = isBrowser() ? useWindowSize().width : 600;
 
   return (
     <Layout>
+      <LandingHero
+        topText={sanityLandingPage.topText}
+        mobileImage={sanityLandingPage.mobileTopImage}
+      />
       <AboutUsBanner
         title={sanityLandingPage.aboutSectionTitle}
         aboutText={sanityLandingPage.aboutSectionText}
@@ -37,10 +41,14 @@ const IndexPage = ({ data }) => {
         executeScroll={executeScroll}
       />
       <FadeInSection>
-        <section className={`relative flex flex-col justify-center sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""} ${width < 350 ? "mt-44" : ""}`}>
+        <section
+          className={`relative flex flex-col justify-center sm:-mt-20 px-4 ${
+            width < 450 && width >= 300 ? "mt-28" : ""
+          } ${width < 350 ? "mt-44" : ""}`}
+        >
           <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">
             We are seeking new members
-            </h2>
+          </h2>
           <div className="flex gap-3 mt-2 justify-center">
             <a
               href="https://forms.gle/UwdrNMdT25Gus3sPA"
@@ -57,9 +65,7 @@ const IndexPage = ({ data }) => {
           </div>
         </section>
       </FadeInSection>
-      <h2 className="text-center text-2xl mt-24 mb-2 md:text-4xl">
-        MISSIONS
-      </h2>
+      <h2 className="text-center text-2xl mt-24 mb-2 md:text-4xl">MISSIONS</h2>
       <BannerLinkList links={sanityLandingPage.links} />
 
       <section
