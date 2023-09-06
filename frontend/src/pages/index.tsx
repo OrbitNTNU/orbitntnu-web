@@ -6,13 +6,14 @@ import { BannerLinkList } from "../components/BannerLinkList";
 import { graphql } from "gatsby";
 import firebase from "gatsby-plugin-firebase";
 import { FadeInSection } from "../components/FadeInSection";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import { useWindowSize } from "../utils/hooks/useWindowSize";
 import { isBrowser } from "../utils/isBrowser";
 
 const IndexPage = ({ data }) => {
   const { sanityLandingPage, sanityAboutPage } = data;
   const aboutSection = useRef(null);
+  const aboutUs = useRef(null);
 
   useEffect(() => {
     if (!firebase) {
@@ -24,22 +25,53 @@ const IndexPage = ({ data }) => {
 
   const executeScroll = () =>
     aboutSection.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  
+  const executeScrollToAboutUs = () =>
+    aboutUs.current.scrollIntoView({ behavior: "smooth", blcok: "start"})
 
   const width = isBrowser() ? useWindowSize().width : 600;
+  const height = isBrowser() ? useWindowSize().height : 300;
+
 
   return (
     <Layout>
-      <LandingHero
-        topText={sanityLandingPage.topText}
-        mobileImage={sanityLandingPage.mobileTopImage}
-      />
-      <AboutUsBanner
-        title={sanityLandingPage.aboutSectionTitle}
-        aboutText={sanityLandingPage.aboutSectionText}
-        buttonText={sanityLandingPage.aboutSectionButtonText}
-        image={sanityLandingPage.aboutSectionImage}
-        executeScroll={executeScroll}
-      />
+      <div className="flex flex-col items-center">
+        <div className="">
+          <LandingHero
+            topText={sanityLandingPage.topText}
+            mobileImage={sanityLandingPage.mobileTopImage}
+          />
+        </div>
+        { width > 640 && height < width*4/3 ? (
+          <div className={`sticky-bottom scroll-smooth -mt-12 mb-4`}>
+            <a 
+              onClick={executeScrollToAboutUs}
+              className="flex flex-col items-center"
+              >
+              <h2 className="flex text-bold text-sm md:text-lg">
+                Scroll down
+              </h2>
+              <div className="flex text-center width-30px" style={{width:'15px'}}>
+                <StaticImage
+                  src="../images/arrow-down.png"
+                  alt="Arrow down"
+                />
+              </div>
+            </a>
+          </div>
+          )
+          : false
+        }
+      </div>
+      <div id="about" ref={aboutUs}>
+        <AboutUsBanner
+          title={sanityLandingPage.aboutSectionTitle}
+          aboutText={sanityLandingPage.aboutSectionText}
+          buttonText={sanityLandingPage.aboutSectionButtonText}
+          image={sanityLandingPage.aboutSectionImage}
+          executeScroll={executeScroll}
+        />
+      </div>
       <FadeInSection>
         <section
           className={`relative flex flex-col justify-center sm:-mt-20 px-4 ${
