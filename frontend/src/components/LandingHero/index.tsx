@@ -21,7 +21,7 @@ export const LandingHero = ({ topText, mobileImage }: LandingHeroProps) => {
   return (
     <div className="relative">
       {width > 640 ? (
-        <div className="w-full h-full min-h-screen">
+        <div className="w-full h-full">
           <video
             autoPlay
             loop
