@@ -5,6 +5,7 @@ interface ITextInput extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string;
   cols?: number;
   rows?: number;
+  valid: boolean;
 }
 
 const TextInput = ({

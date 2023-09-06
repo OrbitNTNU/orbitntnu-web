@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Layout } from "../templates/Layout";
 import Checkbox from "../components/Inputs/Checkbox";
 import TextInput from "../components/Inputs/TextInput";
@@ -6,7 +6,6 @@ import Radio from "../components/Inputs/Radio";
 import Input from "../components/Inputs/Input";
 import Sortable from "../views/apply-form/Sortable";
 import { normalize } from "../utils/normalizePhoneNumber";
-import { useOnChange } from "../utils/hooks/useOnChange";
 
 export type TForm = {
   name: string;
@@ -21,17 +20,19 @@ export type TForm = {
   save: boolean;
 };
 
-type TFormError = {
+type TValid = {
   name: boolean;
   email: boolean;
+  username: boolean;
   phoneNumber: boolean;
+  study: boolean;
+  year: boolean;
   positions: boolean;
   experience: boolean;
   about: boolean;
 };
 
 const ApplyForm = () => {
-  const [validate, setValidate] = useState(false);
   const [form, setForm] = useState<TForm>({
     name: "",
     email: "",
@@ -44,21 +45,18 @@ const ApplyForm = () => {
     about: "",
     save: false,
   });
-  const [error, setError] = useState<TFormError>({
-    name: false,
-    email: false,
-    phoneNumber: false,
-    positions: false,
-    experience: false,
-    about: false,
-  });
 
-  useOnChange(() => {
-    Object.keys(error).map((key) => {
-      validateInput(key as keyof TFormError);
-    });
-    console.log(error);
-  }, [validate]);
+  const [valid, setValid] = useState<TValid>({
+    name: true,
+    email: true,
+    username: true,
+    phoneNumber: true,
+    study: true,
+    year: true,
+    positions: true,
+    experience: true,
+    about: true,
+  });
 
   const yearOfStudy = [1, 2, 3, 4, 5];
   const positions = [
@@ -93,42 +91,33 @@ const ApplyForm = () => {
     });
   };
 
-  const validateInput = (key: keyof TFormError): void => {
-    setError((prevError) => {
-      let newError = prevError;
-      if (key === "phoneNumber" || key === "email" || key === "positions") {
-        if (key === "phoneNumber") {
-          newError = {
-            ...prevError,
-            [key]: form[key].trim().length !== 8,
-          };
-        } else if (key === "email") {
-          newError = {
-            ...prevError,
-            [key]:
-              /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])".test(form[key])/.test(
-                form[key]
-              ),
-          };
-        } else {
-          newError = {
-            ...prevError,
-            [key]: form["positions"].length === 0,
-          };
-        }
-      } else {
-        newError = {
-          ...prevError,
-          [key]: form[key].trim().length === 0,
-        };
-      }
-      return newError;
+  const validateForm = () => {
+    let returnVal = "-1";
+    Object.keys(form).forEach((key, idx) => {
+      if (form[key].length < 1) returnVal += `${idx}`;
     });
+    if (form.phoneNumber.length !== 11) returnVal += "a";
+    return returnVal;
   };
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setValidate(true);
+    const validation = validateForm();
+    if (validation !== "-1") {
+      for (let i = 0; i < 10; i++) {
+        if (validation.includes(`${i}`)) {
+          // TODO: Styling
+          console.log(Object.keys(form)[i], "is required");
+        }
+      }
+      if (validation.includes("a")) {
+        // TODO: Styling
+        console.log("Phonenumber is not valid");
+      }
+
+      return;
+    }
+    console.log(form);
   };
 
   return (
@@ -137,6 +126,7 @@ const ApplyForm = () => {
         <div className="flex flex-col mt-24 w-4/5 md:w-3/5 gap-8">
           <section className=" flex flex-col gap-4">
             <Input
+              valid={valid.name}
               name="name"
               placeholder="Name Nameson"
               value={form.name}
@@ -145,9 +135,9 @@ const ApplyForm = () => {
               }}
             >
               Full name
-              {error.name && <h1>Failed!</h1>}
             </Input>
             <Input
+              valid={valid.email}
               type="email"
               name="email"
               placeholder="name.nameson@email.co"
@@ -157,6 +147,7 @@ const ApplyForm = () => {
               Email
             </Input>
             <Input
+              valid={valid.username}
               name="username"
               placeholder="namenam"
               value={form.username}
@@ -165,7 +156,8 @@ const ApplyForm = () => {
               NTNU username (used for card access)
             </Input>
             <Input
-              type="text"
+              valid={valid.phoneNumber}
+              type="tel"
               name="phone"
               placeholder="444 55 999"
               value={form.phoneNumber}
@@ -179,6 +171,7 @@ const ApplyForm = () => {
               Phone number
             </Input>
             <Input
+              valid={valid.study}
               name="study"
               placeholder="Your study"
               value={form.study}
@@ -261,6 +254,7 @@ const ApplyForm = () => {
           </section>
           <section className="flex flex-col gap-4">
             <TextInput
+              valid={valid.experience}
               name="experience"
               placeholder="Tell us about your relevant experience and knowlege!"
               value={form.experience}
@@ -273,6 +267,7 @@ const ApplyForm = () => {
               organizations, personal projects, achievements, etc.)
             </TextInput>
             <TextInput
+              valid={valid.about}
               name="about"
               placeholder="We want to know more about you. Why do you want to join Orbit NTNU?"
               value={form.about}
