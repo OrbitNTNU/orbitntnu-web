@@ -72,9 +72,10 @@ const IndexPage = ({ data }) => {
           executeScroll={executeScroll}
         />
       </div>
+      {false ?
       <FadeInSection>
         <section
-          className={`relative flex flex-col justify-center sm:-mt-20 px-4 ${
+          className={`relative flex flex-col justify-center mb-24 sm:-mt-20 px-4 ${
             width < 450 && width >= 300 ? "mt-28" : ""
           } ${width < 350 ? "mt-44" : ""}`}
         >
@@ -97,7 +98,10 @@ const IndexPage = ({ data }) => {
           </div>
         </section>
       </FadeInSection>
-      <h2 className="text-center text-2xl mt-24 mb-2 md:text-4xl">MISSIONS</h2>
+      :
+      null
+      }
+      <h2 className="text-center text-2xl mb-2 md:text-4xl">MISSIONS</h2>
       <BannerLinkList links={sanityLandingPage.links} />
 
       <section
