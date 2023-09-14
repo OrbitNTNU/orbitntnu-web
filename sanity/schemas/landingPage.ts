@@ -46,6 +46,11 @@ export default {
       },
     },
     {
+      name: "newMembers",
+      type: "boolean",
+      title: "Show 'We are seeking new members' on front page",
+    },
+    {
       name: "links",
       title: "Links",
       type: "array",
