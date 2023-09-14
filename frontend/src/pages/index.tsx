@@ -101,7 +101,7 @@ const IndexPage = ({ data }) => {
       :
       null
       }
-      <h2 className="text-center text-2xl mb-2 md:text-4xl">MISSIONS</h2>
+      <h2 className="text-center mt-16 sm:mt-0 text-2xl mb-2 md:text-4xl">MISSIONS</h2>
       <BannerLinkList links={sanityLandingPage.links} />
 
       <section
