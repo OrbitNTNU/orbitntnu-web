@@ -72,7 +72,7 @@ const IndexPage = ({ data }) => {
           executeScroll={executeScroll}
         />
       </div>
-      {false ?
+      {sanityLandingPage.newMembers ?
       <FadeInSection>
         <section
           className={`relative flex flex-col justify-center mb-24 sm:-mt-20 px-4 ${
@@ -179,6 +179,7 @@ export const query = graphql`
           gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
         }
       }
+      newMembers
       links {
         url
         title
