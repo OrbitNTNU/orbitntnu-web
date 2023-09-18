@@ -70,3 +70,50 @@ Any changes made to the `main` branch in the repository will automaticly be buil
 ### Hosting
 
 This project uses Netlify hosting.
+
+### Adding Sanity components
+
+#### Add component
+
+Find the schema to which you want to add a component in /sanity/schemas\
+[Documentation for Sanity components](https://www.sanity.io/docs/schema-types)
+```typescript
+# Add your component
+{
+  name: "exampleName",
+  type: "Text",
+  title: "Title in Sanity"
+}
+```
+Push and merge to the main branch.
+
+#### Log in to Sanity
+
+```bash
+# Installing the Sanity CLI globally
+npm install --global sanity@latest    # This worked for Windows
+sanity login
+
+# Alternatively
+yarn global add sanity@latest
+pnpm install --global sanity@latest
+sanity login
+
+# Running the CLI without global installation
+npx -y sanity@latest login        # This worked for Linux
+```
+
+#### Deploy graphql
+
+```bash
+cd sanity
+yarn run build
+yarn run graphql-deploy
+```
+
+#### Add to code
+
+Add ```exampleName``` to the graphql query at the bottom of the page you're
+changing in /frontend.
+
+You can now use ```nameOfSanitySchema.exampleName``` in your code with the 
