@@ -14,35 +14,25 @@ export type TForm = {
   phoneNumber: string;
   study: string;
   year: number | string;
-  positions: string[];
+  positions: String[];
   experience: string;
   about: string;
   save: boolean;
 };
 
-type TValid = {
-  name: boolean;
-  email: boolean;
-  username: boolean;
-  phoneNumber: boolean;
-  study: boolean;
-  year: boolean;
-  positions: boolean;
-  experience: boolean;
-  about: boolean;
-};
-
 const ApplyForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState<number | string>("");
-  const [study, setStudy] = useState("");
-  const [year, setYear] = useState<number | string>("");
-  const [wantedPosition, setWantedPosition] = useState<String[]>([]);
-  const [experience, setExperience] = useState("");
-  const [about, setAbout] = useState("");
-  const [save, setSave] = useState(false);
+  const [form, setForm] = useState<TForm>({
+    name: "",
+    email: "",
+    username: "",
+    phoneNumber: "",
+    study: "",
+    year: "",
+    positions: [],
+    experience: "",
+    about: "",
+    save: false,
+  });
 
   const yearOfStudy = [1, 2, 3, 4, 5];
   const positions = [
@@ -64,6 +54,17 @@ const ApplyForm = () => {
     "Place me where I belong",
   ];
 
+  const updateForm = (key: keyof TForm) => {
+    return function (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) {
+      setForm((prev) => ({
+        ...prev,
+        [key]: e.target.value,
+      }));
+    };
+  };
+
   return (
     <Layout>
       <div className="flex justify-center">
@@ -71,8 +72,8 @@ const ApplyForm = () => {
           <Input
             name="name"
             placeholder="Name Nameson"
-            value={name}
-            onChange={(e) => setName(e.currentTarget.value)}
+            value={form.name}
+            onChange={updateForm("name")}
           >
             Full name
           </Input>
@@ -80,16 +81,16 @@ const ApplyForm = () => {
             type="email"
             name="email"
             placeholder="name.nameson@email.co"
-            value={email}
-            onChange={(e) => setEmail(e.currentTarget.value)}
+            value={form.email}
+            onChange={updateForm("email")}
           >
             Email
           </Input>
           <Input
             name="username"
             placeholder="namenam"
-            value={username}
-            onChange={(e) => setUsername(e.currentTarget.value)}
+            value={form.username}
+            onChange={updateForm("username")}
           >
             NTNU username (used for card access)
           </Input>
@@ -97,13 +98,15 @@ const ApplyForm = () => {
             type="number"
             name="phone"
             placeholder="444 55 999"
-            value={phoneNumber}
+            value={form.phoneNumber}
             onChange={(e) =>
-              setPhoneNumber(
-                e.currentTarget.valueAsNumber
-                  ? e.currentTarget.valueAsNumber
-                  : e.currentTarget.value
-              )
+              setForm((prev) => {
+                let newNum = normalize(e.target.value, prev.phoneNumber);
+                return {
+                  ...prev,
+                  phoneNumber: newNum,
+                };
+              })
             }
           >
             Phone number
@@ -111,22 +114,27 @@ const ApplyForm = () => {
           <Input
             name="study"
             placeholder="Your study"
-            value={study}
-            onChange={(e) => setStudy(e.currentTarget.value)}
+            value={form.study}
+            onChange={updateForm("study")}
           >
             Field of study
           </Input>
           <div className="flex flex-col-reverse gap-2">
             <div className="flex gap-2 peer">
-              {yearOfStudy.map((year) => {
+              {yearOfStudy.map((chosenYear) => {
                 return (
                   <Radio
                     name="year"
-                    id={`year-${year}`}
-                    key={`year-${year}`}
-                    onClick={() => setYear(year)}
+                    id={`year-${chosenYear}`}
+                    key={`year-${chosenYear}`}
+                    onClick={() =>
+                      setForm((prev) => ({
+                        ...prev,
+                        year: chosenYear,
+                      }))
+                    }
                   >
-                    {year}
+                    {chosenYear}
                   </Radio>
                 );
               })}
@@ -146,15 +154,18 @@ const ApplyForm = () => {
                     name={position}
                     key={`position-${position}`}
                     value={position}
-                    onChange={() => {
-                      if (wantedPosition.includes(position)) {
-                        setWantedPosition((prevPos) => {
-                          return prevPos.filter((pos) => pos !== position);
-                        });
-                      } else {
-                        setWantedPosition((prevPos) => [...prevPos, position]);
-                      }
-                    }}
+                    onChange={() =>
+                      setForm((prev) => {
+                        console.log(form);
+                        let newPos = prev.positions.includes(position)
+                          ? prev.positions.filter((pos) => pos !== position)
+                          : [...prev.positions, position];
+                        return {
+                          ...prev,
+                          positions: newPos,
+                        };
+                      })
+                    }
                   >
                     {position}
                   </Checkbox>
@@ -168,10 +179,10 @@ const ApplyForm = () => {
               What position(s) do you wish to apply for?
             </label>
           </div>
-          {wantedPosition.length > 1 && (
+          {form.positions.length > 1 && (
             <div className="flex flex-col-reverse gap-2 mb-8">
               <div className="peer">
-                <Sortable value={wantedPosition} setValue={setWantedPosition} />
+                <Sortable value={form.positions} setValue={setForm} />
               </div>
               <label
                 htmlFor=""
@@ -183,9 +194,9 @@ const ApplyForm = () => {
           )}
           <TextInput
             name="experience"
-            placeholder="Tell us about your relevant experience and knowlege!"
-            value={experience}
-            onChange={(e) => setExperience(e.currentTarget.value)}
+            placeholder="Tell us about your relevant experience and knowledge!"
+            value={form.experience}
+            onChange={updateForm("experience")}
           >
             Do you have any relevant experience or knowledge? (Please list
             earier experiences, such as military, volunteer work, organizations,
@@ -194,8 +205,8 @@ const ApplyForm = () => {
           <TextInput
             name="about"
             placeholder="We want to know more about you. Why do you want to join Orbit NTNU?"
-            value={about}
-            onChange={(e) => setAbout(e.currentTarget.value)}
+            value={form.about}
+            onChange={updateForm("about")}
           >
             Tell us a little bit about yourself, your hobbies, your motivation
             and why you want to join Orbit NTNU.
@@ -207,14 +218,28 @@ const ApplyForm = () => {
               sometimes have positions appearing during the year!
             </label>
             <div className="flex gap-4">
-              <Radio name="save" id="yes" onClick={() => setSave(true)}>
+              <Radio
+                name="save"
+                id="yes"
+                onClick={() => setForm((prev) => ({ ...prev, save: true }))}
+              >
                 Yes
               </Radio>
-              <Radio name="save" id="no" onClick={() => setSave(false)}>
+              <Radio
+                name="save"
+                id="no"
+                onClick={() => setForm((prev) => ({ ...prev, save: false }))}
+              >
                 No
               </Radio>
             </div>
           </div>
+          <button
+            onClick={() => console.log(form)}
+            className="bg-orbit-blue hover:bg-orbit-yellow my-8 py-4 px-6 rounded"
+          >
+            Submit
+          </button>
         </section>
       </div>
     </Layout>
