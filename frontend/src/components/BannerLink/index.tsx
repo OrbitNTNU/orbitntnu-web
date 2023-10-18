@@ -16,15 +16,15 @@ interface BannerLinkProps {
 
 export const BannerLink = ({ link }: BannerLinkProps) => (
   <Link to={link.url} className="group">
-    <div className="relative">
+    <div className={`relative flex flex-col w-[200px] h-[216px] justify-center items-center`}>
       <GatsbyImage
         image={link.image.asset.gatsbyImageData}
         alt="banner"
-        className="w-full h-32 md:h-48 transition-all duration-500 group-hover:opacity-80"
+        className={`${link.title === "BIOSAT" ?
+        "w-[200px] hover:w-[212px] mt-2"
+        :
+        "w-[184px] hover:w-[196px]"}`}
       />
-      <p className="absolute bottom-2 left-4 font-bold md:text-xl transition-all duration-500 group-hover:bottom-4">
-        {link.title}
-      </p>
     </div>
   </Link>
 );
