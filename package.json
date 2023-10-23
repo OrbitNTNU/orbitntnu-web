@@ -22,8 +22,14 @@
     "lerna": "^4.0.0"
   },
   "dependencies": {
+    "@sanity/vision": "^3.18.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
     "react-countdown": "^2.3.5",
+    "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
-    "shortid": "^2.2.16"
+    "sanity": "^3.18.1",
+    "shortid": "^2.2.16",
+    "styled-components": "^5.3.11"
   }
 }

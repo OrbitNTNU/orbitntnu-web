@@ -1,7 +1,3 @@
-import createSchema from "part:@sanity/base/schema-creator";
-
-import schemaTypes from "all:part:@sanity/base/schema-type";
-
 import landingPage from "./landingPage";
 import cardLink from "./cardLink";
 import footer from "./footer";
@@ -27,32 +23,29 @@ import selfiesatPage from "./selfiesatPage";
 import nextSatPage from "./nextSatPage";
 import framsatPage from "./framsatPage";
 
-export default createSchema({
-  name: "pages",
-  types: schemaTypes.concat([
-    landingPage,
-    selfiesatPage,
-    aboutPage,
-    sponsorsPage,
-    contactPage,
-    teamsPage,
-    joinPage,
-    blogPage,
-    galleryPage,
-    suborbitalPage,
-    notFoundPage,
-    position,
-    cardLink,
-    footer,
-    someLink,
-    textLink,
-    member,
-    team,
-    sponsor,
-    mainSponsorImage,
-    mainSponsorLargeImage,
-    specification,
-    nextSatPage,
-    framsatPage,
-  ]),
-});
+export default [
+  landingPage,
+  selfiesatPage,
+  aboutPage,
+  sponsorsPage,
+  contactPage,
+  teamsPage,
+  joinPage,
+  blogPage,
+  galleryPage,
+  suborbitalPage,
+  notFoundPage,
+  position,
+  cardLink,
+  footer,
+  someLink,
+  textLink,
+  member,
+  team,
+  sponsor,
+  mainSponsorImage,
+  mainSponsorLargeImage,
+  specification,
+  nextSatPage,
+  framsatPage,
+]
