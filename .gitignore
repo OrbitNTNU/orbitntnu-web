@@ -11,4 +11,4 @@
 .vscode/
 
 # Sanity files
-.sanity/
+/.sanity
