@@ -1,6 +1,6 @@
-import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import transparent1u3uCropped from "../../../images/Transparent1u3uCropped.png";
 
 interface SpecsProps {
   name: string;
@@ -8,7 +8,7 @@ interface SpecsProps {
     name: string;
     text: string;
   }[];
-  image: IGatsbyImageData;
+  image: IGatsbyImageData | String;
 }
 
 export const Specs = ({ name, specs, image }: SpecsProps) => (
@@ -18,11 +18,19 @@ export const Specs = ({ name, specs, image }: SpecsProps) => (
       SPECIFICATIONS
     </h2>
     <div className="flex flex-col justify-center md:flex-row-reverse">
+      {typeof image === "string" ?
+      <img
+        src={transparent1u3uCropped}
+        alt="Framsat"
+        className="max-w-[270px] m-auto"
+      />
+      :
       <GatsbyImage
         image={image}
         alt="Open Framsat"
         className="max-w-[270px] m-auto"
       />
+      }
       <ul className="w-[290px] md:w-[300px] m-auto md:mr-28">
         {specs.map((stat) => (
           <li
