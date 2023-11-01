@@ -49,6 +49,7 @@ const FramSatContainer = ({info}: FramSatContainerInfo) => {
                 </div>
                 </FadeInSection>
             </section>
+
             <section>
                 <FadeInSection>
                     <div className="mt-16 mb-8">
@@ -59,9 +60,32 @@ const FramSatContainer = ({info}: FramSatContainerInfo) => {
                         />
                     </div>
                 </FadeInSection>
+            </section>
+
+            <section>
+                <FadeInSection>
                     <p className="mx-8 md:max-w-2xl md:m-auto">
                         {info.firstSectionText}
                     </p>
+                    {info.title.includes("FramSat-1") ?
+                    <p className="mx-8 md:max-w-2xl md:m-auto">
+                        You can find the budget 
+                        <a 
+                            href="/framsat-1-doc/framsat1_budget.pdf" 
+                            target="_blank" rel="noopener noreferrer" 
+                            className="text-[#1e90ff]" 
+                            onMouseOver={e => e.target.style.color="#0e71d4"}
+                            onMouseOut={e => e.target.style.color="#1e90ff"}
+                            > here
+                        </a>.
+                    </p>
+                    :
+                    false
+                    }
+                </FadeInSection>
+            </section>
+            
+            <section>
                 <FadeInSection>
                     <div className="flex justify-center mt-8">
                         {info.firstSectionImage.asset.gatsbyImageData ?
