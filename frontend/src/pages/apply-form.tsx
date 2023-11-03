@@ -6,6 +6,7 @@ import Radio from "../components/Inputs/Radio";
 import Input from "../components/Inputs/Input";
 import Sortable from "../views/apply-form/Sortable";
 import { normalize } from "../utils/normalizePhoneNumber";
+import studiesData from "../../static/ntnuStudies/ntnuStudies.json";
 
 export type TForm = {
   name: string;
@@ -33,6 +34,12 @@ const ApplyForm = () => {
     about: "",
     save: false,
   });
+
+  const [error, setError] = useState<string[]>([]);
+
+  const [studies, setStudies] = useState(studiesData);
+
+  const [accordion, setAccordion] = useState(false);
 
   const yearOfStudy = [1, 2, 3, 4, 5];
   const positions = [
@@ -65,9 +72,21 @@ const ApplyForm = () => {
     };
   };
 
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(() =>
+      Object.keys(form).filter((key) => {
+        if (key === "positions") return form.positions.length === 0;
+        return form[key] === "";
+      })
+    );
+
+    console.log(error);
+  };
+
   return (
     <Layout>
-      <div className="flex justify-center">
+      <form className="flex justify-center" onSubmit={handleFormSubmit}>
         <section className="flex flex-col mt-24 w-3/5 gap-4">
           <Input
             name="name"
@@ -95,7 +114,7 @@ const ApplyForm = () => {
             NTNU username (used for card access)
           </Input>
           <Input
-            type="number"
+            type="text"
             name="phone"
             placeholder="444 55 999"
             value={form.phoneNumber}
@@ -111,14 +130,48 @@ const ApplyForm = () => {
           >
             Phone number
           </Input>
-          <Input
-            name="study"
-            placeholder="Your study"
-            value={form.study}
-            onChange={updateForm("study")}
+          <div
+            onFocus={() => setAccordion(true)}
+            onBlur={() => setAccordion(false)}
+            className="flex flex-col relative w-96"
           >
-            Field of study
-          </Input>
+            <Input
+              name="study"
+              placeholder="Your study"
+              value={form.study}
+              onChange={(e) => {
+                setForm((prev) => ({
+                  ...prev,
+                  study: e.target.value,
+                }));
+                setStudies(
+                  studiesData.filter((study) =>
+                    study.name
+                      .toLowerCase()
+                      .includes(e.target.value.toLowerCase())
+                  )
+                );
+              }}
+            >
+              Field of study
+            </Input>
+            {accordion && (
+              <ul className="bg-black overflow-auto max-h-72 absolute top-16 w-96 px-2 p-2 rounded scrollbar-hide">
+                {studies.map((study) => (
+                  <li
+                    key={study.code}
+                    className="py-1 cursor-pointer hover:bg-orbit-yellow px-2 rounded"
+                    onMouseOver={() => {
+                      setForm((prev) => ({ ...prev, study: study.name }));
+                    }}
+                  >
+                    {study.name}, {""}
+                    <span className="font-extrabold">{study.code}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
           <div className="flex flex-col-reverse gap-2">
             <div className="flex gap-2 peer">
               {yearOfStudy.map((chosenYear) => {
@@ -156,7 +209,6 @@ const ApplyForm = () => {
                     value={position}
                     onChange={() =>
                       setForm((prev) => {
-                        console.log(form);
                         let newPos = prev.positions.includes(position)
                           ? prev.positions.filter((pos) => pos !== position)
                           : [...prev.positions, position];
@@ -221,27 +273,25 @@ const ApplyForm = () => {
               <Radio
                 name="save"
                 id="yes"
-                onClick={() => setForm((prev) => ({ ...prev, save: true }))}
+                onChange={() => setForm((prev) => ({ ...prev, save: true }))}
               >
                 Yes
               </Radio>
               <Radio
                 name="save"
                 id="no"
-                onClick={() => setForm((prev) => ({ ...prev, save: false }))}
+                checked={!form.save}
+                onChange={() => setForm((prev) => ({ ...prev, save: false }))}
               >
                 No
               </Radio>
             </div>
           </div>
-          <button
-            onClick={() => console.log(form)}
-            className="bg-orbit-blue hover:bg-orbit-yellow my-8 py-4 px-6 rounded"
-          >
+          <button className="bg-orbit-blue hover:bg-orbit-yellow my-8 py-4 px-6 rounded">
             Submit
           </button>
         </section>
-      </div>
+      </form>
     </Layout>
   );
 };

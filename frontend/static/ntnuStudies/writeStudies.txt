@@ -1,0 +1,20 @@
+import requests
+import json
+
+APIURL = "https://www.ntnu.no/web/studier/alle?p_p_id=studyprogrammelistportlet_WAR_studyprogrammelistportlet&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&p_p_resource_id=searchStudies&p_p_cacheability=cacheLevelPage&city=Trondheim&field=&query=&studyLevel=&open=&taughtInEnglish=undefined";
+
+
+res = requests.get(APIURL)
+response = json.loads(res.text)
+
+studier = []
+
+for study in response.get("docs"):
+  temp = {
+    "name": study.get("studyprogName"),
+    "code": study.get("studyprogCode")
+  }
+  studier.append(temp)
+
+with open('ntnuStudies.json', 'w') as outfile:
+  json.dump(studier, outfile)

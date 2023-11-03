@@ -4,13 +4,22 @@ interface IRadio {
   children: React.ReactNode;
   name: string;
   id: string;
-  onClick: React.MouseEventHandler<HTMLLabelElement>;
+  onClick?: React.MouseEventHandler<HTMLLabelElement>;
+  checked?: boolean;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const Radio = ({ children, name, id, onClick }: IRadio) => {
+const Radio = ({ children, name, id, onClick, checked, onChange }: IRadio) => {
   return (
     <div className="flex flex-row">
-      <input type="radio" id={id} name={name} className="hidden peer" />
+      <input
+        type="radio"
+        id={id}
+        name={name}
+        className="hidden peer"
+        checked={checked}
+        onChange={onChange}
+      />
       <label
         htmlFor={id}
         onClick={onClick}

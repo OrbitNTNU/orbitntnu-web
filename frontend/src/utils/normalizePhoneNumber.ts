@@ -2,6 +2,7 @@ export const normalize = (value: string, previousValue: string) => {
   if (!value) return value;
   const currentValue = value.replace(/[^\d]/g, "");
   const cvLength = currentValue.length;
+  if (cvLength > 8) return currentValue;
 
   if (!previousValue || value.length > previousValue.length) {
     if (cvLength < 4) return currentValue;
