@@ -26,6 +26,7 @@ import specification from "./specification";
 import selfiesatPage from "./selfiesatPage";
 import nextSatPage from "./nextSatPage";
 import framsatPage from "./framsatPage";
+import applicationForm from "./applicationForm";
 
 export default createSchema({
   name: "pages",
@@ -54,5 +55,6 @@ export default createSchema({
     specification,
     nextSatPage,
     framsatPage,
+    applicationForm,
   ]),
 });

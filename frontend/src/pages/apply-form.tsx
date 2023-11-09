@@ -7,6 +7,7 @@ import Input from "../components/Inputs/Input";
 import Sortable from "../views/apply-form/Sortable";
 import { normalize } from "../utils/normalizePhoneNumber";
 import studiesData from "../../static/ntnuStudies/ntnuStudies.json";
+import { graphql } from "gatsby";
 
 export type TForm = {
   name: string;
@@ -22,7 +23,8 @@ export type TForm = {
   save: boolean;
 };
 
-const ApplyForm = () => {
+const ApplyForm = ({ data }) => {
+  const { sanityApplicationform } = data;
   const [form, setForm] = useState<TForm>({
     name: "",
     email: "",
@@ -44,24 +46,7 @@ const ApplyForm = () => {
   const [accordion, setAccordion] = useState(false);
 
   const yearOfStudy = [1, 2, 3, 4, 5];
-  const positions = [
-    "Key Account Manager",
-    "Website Design, UI/UX",
-    "Event Manager",
-    "Social Media Manager",
-    "Graphic Designer",
-    "Art Director",
-    "Director of Photography",
-    "Cinematographer and Video Manager",
-    "Chief Marketing Officer (CMO)",
-    "Sponsor Team Lead",
-    "System Engineering Team Lead",
-    "ADCS (Control Systems) Team Leader",
-    "DevOps Team Leader",
-    "Project Manager",
-    "Human Resources Manager",
-    "Place me where I belong",
-  ];
+  const positions = sanityApplicationform.positions;
 
   const updateForm = (key: keyof TForm) => {
     return function (
@@ -331,3 +316,11 @@ const ApplyForm = () => {
 };
 
 export default ApplyForm;
+
+export const query = graphql`
+  query ApplicationFormQuery {
+    sanityApplicationform {
+      positions
+    }
+  }
+`;
