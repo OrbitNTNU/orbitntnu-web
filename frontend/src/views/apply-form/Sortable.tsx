@@ -47,7 +47,7 @@ const Sortable = ({ value, setValue }: ISortable) => {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      className="px-4 py-3 hover:bg-blue-800 active:bg-blue-800 bg-orbit-blue rounded my-2 w-96 flex justify-between items-center"
+                      className="px-4 py-3 hover:bg-blue-800 active:bg-blue-800 bg-orbit-blue rounded my-2 w-full text-sm md:text-base md:w-96 flex justify-between items-center"
                     >
                       <p className="gap-3">
                         <span className="font-semibold">{idx + 1}. </span>
