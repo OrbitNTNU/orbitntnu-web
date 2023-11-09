@@ -5,9 +5,10 @@ interface ICheckbox {
   name: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   value: string;
+  error?: boolean;
 }
 
-const Checkbox = ({ children, name, onChange, value }: ICheckbox) => {
+const Checkbox = ({ children, name, onChange, value, error }: ICheckbox) => {
   return (
     <div className="flex flex-row">
       <input
@@ -20,7 +21,9 @@ const Checkbox = ({ children, name, onChange, value }: ICheckbox) => {
       />
       <label
         htmlFor={name}
-        className="flex items-center justify-center text-center px-4 py-2 cursor-pointer bg-orbit-blue hover:bg-blue-800 rounded peer-checked:bg-orbit-yellow w-44"
+        className={`flex items-center justify-center text-center px-4 py-2 cursor-pointer bg-orbit-blue hover:bg-blue-800 rounded peer-checked:bg-orbit-yellow w-full md:w-44 ${
+          error ? "border border-red-500" : ""
+        }`}
       >
         {children}
       </label>

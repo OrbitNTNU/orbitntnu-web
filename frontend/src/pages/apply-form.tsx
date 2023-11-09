@@ -18,6 +18,7 @@ export type TForm = {
   positions: String[];
   experience: string;
   about: string;
+  additionalComments: string | null;
   save: boolean;
 };
 
@@ -32,6 +33,7 @@ const ApplyForm = () => {
     positions: [],
     experience: "",
     about: "",
+    additionalComments: null,
     save: false,
   });
 
@@ -72,16 +74,25 @@ const ApplyForm = () => {
     };
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(() =>
+  const checkErrors = () =>
+    setError(
       Object.keys(form).filter((key) => {
         if (key === "positions") return form.positions.length === 0;
+        if (key === "additionalComments") return false;
         return form[key] === "";
       })
     );
 
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    checkErrors();
+    if (error.length > 0) return;
     console.log(error);
+  };
+
+  const updateError = (key: keyof TForm) => {
+    if (error.includes(key)) return true;
+    return false;
   };
 
   return (
@@ -93,6 +104,7 @@ const ApplyForm = () => {
             placeholder="Name Nameson"
             value={form.name}
             onChange={updateForm("name")}
+            error={updateError("name")}
           >
             Full name
           </Input>
@@ -102,6 +114,7 @@ const ApplyForm = () => {
             placeholder="name.nameson@email.co"
             value={form.email}
             onChange={updateForm("email")}
+            error={updateError("email")}
           >
             Email
           </Input>
@@ -110,6 +123,7 @@ const ApplyForm = () => {
             placeholder="namenam"
             value={form.username}
             onChange={updateForm("username")}
+            error={updateError("username")}
           >
             NTNU username (used for card access)
           </Input>
@@ -127,13 +141,14 @@ const ApplyForm = () => {
                 };
               })
             }
+            error={updateError("phoneNumber")}
           >
             Phone number
           </Input>
           <div
             onFocus={() => setAccordion(true)}
             onBlur={() => setAccordion(false)}
-            className="flex flex-col relative w-96"
+            className="flex flex-col relative w-full md:w-96"
           >
             <Input
               name="study"
@@ -152,15 +167,16 @@ const ApplyForm = () => {
                   )
                 );
               }}
+              error={updateError("study")}
             >
               Field of study
             </Input>
             {accordion && (
-              <ul className="bg-black overflow-auto max-h-72 absolute top-16 w-96 px-2 p-2 rounded scrollbar-hide">
+              <ul className="bg-black overflow-auto max-h-72 absolute top-16 w-full text-sm md:w-96 px-2 p-2 rounded scrollbar-hide">
                 {studies.map((study) => (
                   <li
                     key={study.code}
-                    className="py-1 cursor-pointer hover:bg-orbit-yellow px-2 rounded"
+                    className="py-2 md:py-1 cursor-pointer hover:bg-orbit-yellow px-2 rounded"
                     onMouseOver={() => {
                       setForm((prev) => ({ ...prev, study: study.name }));
                     }}
@@ -173,7 +189,7 @@ const ApplyForm = () => {
             )}
           </div>
           <div className="flex flex-col-reverse gap-2">
-            <div className="flex gap-2 peer">
+            <div className="flex flex-col md:flex-row gap-2 peer">
               {yearOfStudy.map((chosenYear) => {
                 return (
                   <Radio
@@ -186,6 +202,7 @@ const ApplyForm = () => {
                         year: chosenYear,
                       }))
                     }
+                    error={updateError("year")}
                   >
                     {chosenYear}
                   </Radio>
@@ -194,13 +211,15 @@ const ApplyForm = () => {
             </div>
             <label
               htmlFor="year"
-              className="text-sm mt-4 peer-hover:text-orbit-yellow"
+              className={`text-sm mt-4 peer-hover:text-orbit-yellow ${
+                updateError("year") ? "text-red-500" : ""
+              }`}
             >
               Year of study
             </label>
           </div>
           <div className="flex flex-col-reverse gap-2 mb-5">
-            <div className="peer grid grid-cols-4 gap-2">
+            <div className="peer grid md:grid-cols-4 gap-2">
               {positions.map((position) => {
                 return (
                   <Checkbox
@@ -218,6 +237,7 @@ const ApplyForm = () => {
                         };
                       })
                     }
+                    error={updateError("positions")}
                   >
                     {position}
                   </Checkbox>
@@ -226,7 +246,9 @@ const ApplyForm = () => {
             </div>
             <label
               htmlFor="positions"
-              className="text-sm mt-4 peer-hover:text-orbit-yellow"
+              className={`text-sm mt-4 peer-hover:text-orbit-yellow ${
+                updateError("positions") ? "text-red-500" : ""
+              }`}
             >
               What position(s) do you wish to apply for?
             </label>
@@ -249,6 +271,7 @@ const ApplyForm = () => {
             placeholder="Tell us about your relevant experience and knowledge!"
             value={form.experience}
             onChange={updateForm("experience")}
+            error={updateError("experience")}
           >
             Do you have any relevant experience or knowledge? (Please list
             earier experiences, such as military, volunteer work, organizations,
@@ -259,9 +282,20 @@ const ApplyForm = () => {
             placeholder="We want to know more about you. Why do you want to join Orbit NTNU?"
             value={form.about}
             onChange={updateForm("about")}
+            error={updateError("about")}
           >
             Tell us a little bit about yourself, your hobbies, your motivation
             and why you want to join Orbit NTNU.
+          </TextInput>
+          <TextInput
+            name="comments"
+            value={form.additionalComments ? form.additionalComments : ""}
+            className="h-14"
+            placeholder="Not required"
+            onChange={updateForm("additionalComments")}
+          >
+            Do you have any additional comments you would like to mention in
+            your application?
           </TextInput>
           <div className="flex flex-col gap-2">
             <label htmlFor="save">

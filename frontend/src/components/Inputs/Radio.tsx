@@ -7,9 +7,18 @@ interface IRadio {
   onClick?: React.MouseEventHandler<HTMLLabelElement>;
   checked?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  error?: boolean;
 }
 
-const Radio = ({ children, name, id, onClick, checked, onChange }: IRadio) => {
+const Radio = ({
+  children,
+  name,
+  id,
+  onClick,
+  checked,
+  onChange,
+  error,
+}: IRadio) => {
   return (
     <div className="flex flex-row">
       <input
@@ -23,7 +32,9 @@ const Radio = ({ children, name, id, onClick, checked, onChange }: IRadio) => {
       <label
         htmlFor={id}
         onClick={onClick}
-        className="inline-block px-4 py-2 cursor-pointer bg-orbit-blue hover:bg-blue-800 rounded peer-checked:bg-orbit-yellow w-24 text-center"
+        className={`inline-block px-4 py-2 cursor-pointer bg-orbit-blue hover:bg-blue-800 rounded peer-checked:bg-orbit-yellow w-full md:w-24 text-center ${
+          error ? "border border-red-500" : ""
+        }`}
       >
         {children}
       </label>

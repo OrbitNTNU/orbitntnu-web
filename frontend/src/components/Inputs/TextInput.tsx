@@ -5,6 +5,7 @@ interface ITextInput extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string;
   cols?: number;
   rows?: number;
+  error?: boolean;
 }
 
 const TextInput = ({
@@ -15,6 +16,8 @@ const TextInput = ({
   placeholder,
   value,
   onChange,
+  error,
+  className,
 }: ITextInput) => {
   return (
     <div className="flex flex-col-reverse gap-1">
@@ -26,9 +29,16 @@ const TextInput = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="bg-white/10 px-4 py-2 outline-none peer w-auto h-44"
+        className={`bg-white/10 px-4 py-2 outline-none peer w-auto h-44 ${className} ${
+          error ? "border border-red-500" : ""
+        }`}
       ></textarea>
-      <label htmlFor={name} className="peer-focus:text-orbit-yellow text-sm">
+      <label
+        htmlFor={name}
+        className={`peer-focus:text-orbit-yellow text-sm ${
+          error ? "text-red-500" : ""
+        }`}
+      >
         {children}
       </label>
     </div>

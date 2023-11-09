@@ -5,6 +5,7 @@ interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
   children: React.ReactNode;
   name: string;
   type?: "email" | "password" | "text" | "number";
+  error?: boolean;
 }
 
 const Input = ({
@@ -16,9 +17,12 @@ const Input = ({
   onChange,
   onFocus,
   onBlur,
+  error,
 }: IInput) => {
   return (
-    <div className="flex flex-col-reverse gap-1">
+    <div
+      className={`flex flex-col-reverse gap-1 ${error ? "text-red-500" : ""}`}
+    >
       <input
         autoComplete="off"
         type={type ? type : "text"}
@@ -27,7 +31,9 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="bg-white/10 px-4 py-2 outline-none peer w-96"
+        className={`bg-white/10 px-4 py-2 outline-none peer w-full md:w-96 ${
+          error ? "border border-red-500" : ""
+        }`}
         onFocus={onFocus}
         onBlur={onBlur}
       />
