@@ -16,11 +16,6 @@ export default {
       title: "Top Text",
     },
     {
-      name: "shortTopText",
-      type: "string",
-      title: "Short Top Text",
-    },
-    {
       name: "launchDate",
       type: "datetime",
       title: "Launch Date",
