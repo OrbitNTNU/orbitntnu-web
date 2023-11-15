@@ -24,9 +24,9 @@ const SelfieSat = ({ data }) => {
   return (
     <Layout>
       <SelfieSatHeader
-        title={sanitySelfiesatPage.title}
-        name={sanitySelfiesatPage.topText}
-        text={sanitySelfiesatPage.shortTopText}
+        title={"Orbit NTNU"}
+        name={sanitySelfiesatPage.title}
+        text={sanitySelfiesatPage.topText}
       />
 
       <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
@@ -151,7 +151,6 @@ export const query = graphql`
     sanitySelfiesatPage {
       title
       topText
-      shortTopText
       launchDate
       specifications {
         name
