@@ -32,9 +32,9 @@ const FramSat = ({ data }) => {
   return (
     <Layout>
       <FramSatHeader
-        title={sanityFramsatPage.title}
-        name={sanityFramsatPage.topText}
-        text={sanityFramsatPage.shortTopText}
+        title={"Orbit NTNU"}
+        name={sanityFramsatPage.title}
+        text={sanityFramsatPage.topText}
       />
       <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
         <FadeInSection>
@@ -115,7 +115,6 @@ export const query = graphql`
     sanityFramsatPage {
       title
       topText
-      shortTopText
       missionTitle
       missionTextLeft
       missionTextRight

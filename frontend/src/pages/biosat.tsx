@@ -31,9 +31,9 @@ const NextSat = ({ data }) => {
   return (
     <Layout>
       <FramSatHeader
-        title="Orbit NTNU"
-        name="Biosat"
-        text="Bringing a plant to space."
+        title={"Orbit NTNU"}
+        name={sanityNextSatPage.title}
+        text={sanityNextSatPage.topText}
       />
 
       <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
@@ -152,7 +152,6 @@ export const query = graphql`
     sanityNextSatPage {
       title
       topText
-      shortTopText
       launchDate
       specifications {
         name
