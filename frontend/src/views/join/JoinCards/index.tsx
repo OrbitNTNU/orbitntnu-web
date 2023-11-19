@@ -23,8 +23,7 @@ export const JoinCards = ({ sectionTitle, positions }: JoinCardsProps) => (
     <section className="flex flex-col">
       <div className="flex flex-col items-center justify-center">
         {positions.filter((position) => 
-          position.title.includes("Chief") ||
-          position.title === "Marketing Manager")
+          position.title.includes("Chief"))
         .map((position) => (
           <JoinCard
             key={position.title}
@@ -41,8 +40,7 @@ export const JoinCards = ({ sectionTitle, positions }: JoinCardsProps) => (
     <div className="md:flex md:flex-wrap justify-center">
       {positions.filter((position) => 
         position.title.includes("Team Lead") || 
-        position.title.includes("Manager") &&
-        position.title !== "Marketing Manager")
+        position.title.includes("Manager"))
       .map((position) => (
         <JoinCard
           key={position.title}
