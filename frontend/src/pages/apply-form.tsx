@@ -64,15 +64,20 @@ const ApplyForm = ({ data }) => {
       Object.keys(form).filter((key) => {
         if (key === "positions") return form.positions.length === 0;
         if (key === "additionalComments") return false;
+        if (key === "study")
+          return (
+            studiesData.filter((study) => study.code === form[key]).length === 0
+          );
         return form[key] === "";
       })
     );
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     checkErrors();
     if (error.length > 0) return;
     console.log(error);
+    console.log(form);
   };
 
   const updateError = (key: keyof TForm) => {
