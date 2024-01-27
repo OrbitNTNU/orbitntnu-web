@@ -115,7 +115,7 @@ export const Navbar = () => {
                 satelliteLinks
               )}`}
             >
-              {"OUR SATTELITES"}
+              {"OUR SATELLITES"}
             </li>
         </button>
         {isDropdownOpen && (
