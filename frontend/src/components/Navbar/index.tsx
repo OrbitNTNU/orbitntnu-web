@@ -10,6 +10,46 @@ import { isBrowser } from "../../utils/isBrowser";
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false);
 
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setDropdownOpen(false);
+  };
+
+  const handleWho = () => {
+    // Redirect to the index page if not on it
+    if (window.location.pathname !== '/') {
+      window.location.href = '/';
+    }
+
+    // Scroll to the about
+    const modifyCoursesElement = document.getElementById('about');
+    if (modifyCoursesElement) {
+      modifyCoursesElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const handleWhy = () => {
+    // Redirect to the index page if not on it
+    if (window.location.pathname !== '/') {
+      window.location.href = '/';
+    }
+
+    // Scroll to the ModifyCourses component
+    const modifyCoursesElement = document.getElementById('whyInfo');
+    if (modifyCoursesElement) {
+      modifyCoursesElement.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  };
+
   const handleToggle = () => {
     setToggle(!toggle);
 
@@ -18,19 +58,31 @@ export const Navbar = () => {
       : (document.body.style.overflow = "hidden");
   };
 
-  const links = [
+  const satelliteLinks = [
     { name: "SELFIESAT", url: "/selfiesat" },
     { name: "FRAMSAT", url: "/framsat" },
     { name: "BIOSAT", url: "/biosat" },
     { name: "SUBORBITAL", url: "/suborbital" },
   ];
 
+  const links = [
+    { name: "WHO ARE WE", url: "/about" },
+    // { name: "WHY ORBIT", url: "/" },
+  ];
+
   const getSelectedStatus = (url: string) => {
     return isBrowser() && (window.location.pathname === url || window.location.pathname === url + "/") ? "border-b-2" : "";
   };
 
+  const isSatelliteSelected = (satelliteLinks: Record<string, string>[]) => {
+    return isBrowser() && satelliteLinks.some(link => (
+      window.location.pathname === link.url ||
+      window.location.pathname === link.url + "/"
+    )) ? "border-b-2" : "";
+  };
+
   return (
-    <nav className="text-white p-2 mb-2  w-full z-50 absolute top-0 left-0">
+    <nav className="text-white p-2 mb-2 w-full z-50 absolute top-0 left-0">
       <Link to="/">
         <StaticImage
           src="../../images/orbit-logo-white.png"
@@ -44,7 +96,8 @@ export const Navbar = () => {
         {links.map((link) => (
           <Link key={link.name} to={link.url}>
             <li
-              className={`inline-block mr-4 hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(
+              key={link.name}
+              className={`inline-block hover:border-b-2 mr-4 hover:border-yellow-500 ${getSelectedStatus(
                 link.url
               )}`}
             >
@@ -54,14 +107,49 @@ export const Navbar = () => {
         ))}
       </ul>
 
-      <Link
-        to="/join"
-        className={`invisible absolute right-16 top-7 md:visible hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(
-          "/join"
-        )}`}
-      >
-        JOIN
-      </Link>
+      <ul className="invisible inline-block mt-5 md:visible mr-4">
+        <button onClick={toggleDropdown}>
+          <li
+              key={"OURSATTELITES"}
+              className={`inline-block hover:border-b-2 hover:border-yellow-500 ${isSatelliteSelected(
+                satelliteLinks
+              )}`}
+            >
+              {"OUR SATTELITES"}
+            </li>
+        </button>
+        {isDropdownOpen && (
+          <ul className="absolute mt-2 bg-black border rounded-md shadow-lg">
+            {satelliteLinks.map((link) => (
+              <li
+                key={link.name}
+                className="block px-4 py-2 text-sm text-white cursor-pointer"
+              >
+                <Link key={link.name} to={link.url}>
+                  <li
+                    className={`inline-block hover:border-b-2 hover:border-green-500 ${getSelectedStatus(
+                      link.url
+                    )}`}
+                  >
+                    {link.name}
+                  </li>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </ul>
+
+      <ul className="invisible inline-block mt-5 md:visible">
+        <Link
+          to="/join"
+          className={`inline-block hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(
+            "/join"
+          )}`}
+        >
+          JOIN
+        </Link>
+      </ul>
 
       <FaBars
         onClick={handleToggle}

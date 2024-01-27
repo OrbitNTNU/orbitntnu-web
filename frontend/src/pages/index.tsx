@@ -23,35 +23,32 @@ const IndexPage = ({ data }) => {
     firebase.analytics().logEvent("visited_home_page");
   }, [firebase]);
 
-  const executeScroll = () =>
-    aboutSection.current.scrollIntoView({ behavior: "smooth", block: "start" });
-  
+
   const executeScrollToAboutUs = () =>
-    aboutUs.current.scrollIntoView({ behavior: "smooth", blcok: "start"})
+    aboutUs.current.scrollIntoView({ behavior: "smooth", blcok: "start" })
 
   const width = isBrowser() ? useWindowSize().width : 600;
   const height = isBrowser() ? useWindowSize().height : 300;
 
-
   return (
     <Layout>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center" id="orbitInfo">
         <div className="">
           <LandingHero
             topText={sanityLandingPage.topText}
             mobileImage={sanityLandingPage.mobileTopImage}
           />
         </div>
-        { width > 640 && height < width*4/3 ? (
+        {width > 640 && height < width * 4 / 3 ? (
           <div className={`sticky-bottom scroll-smooth -mt-12 mb-4`}>
-            <a 
+            <a
               onClick={executeScrollToAboutUs}
               className="flex flex-col items-center"
-              >
+            >
               <h2 className="flex text-bold text-sm md:text-lg">
                 Scroll down
               </h2>
-              <div className="flex text-center width-30px" style={{width:'15px'}}>
+              <div className="flex text-center width-30px" style={{ width: '15px' }}>
                 <StaticImage
                   src="../images/arrow-down.png"
                   alt="Arrow down"
@@ -59,7 +56,7 @@ const IndexPage = ({ data }) => {
               </div>
             </a>
           </div>
-          )
+        )
           : false
         }
       </div>
@@ -69,37 +66,35 @@ const IndexPage = ({ data }) => {
           aboutText={sanityLandingPage.aboutSectionText}
           buttonText={sanityLandingPage.aboutSectionButtonText}
           image={sanityLandingPage.aboutSectionImage}
-          executeScroll={executeScroll}
         />
       </div>
       {sanityLandingPage.newMembers ?
-      <FadeInSection>
-        <section
-          className={`relative flex flex-col justify-center mb-24 sm:-mt-20 px-4 ${
-            width < 450 && width >= 300 ? "mt-28" : ""
-          } ${width < 350 ? "mt-44" : ""}`}
-        >
-          <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">
-            We are seeking new members
-          </h2>
-          <div className="flex gap-3 mt-2 justify-center">
-            <a
-              href="https://forms.gle/UwdrNMdT25Gus3sPA"
-              className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
-            >
-              Apply
-            </a>
-            <a
-              href="/join"
-              className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
-            >
-              More information
-            </a>
-          </div>
-        </section>
-      </FadeInSection>
-      :
-      null
+        <FadeInSection>
+          <section
+            className={`relative flex flex-col justify-center mb-24 sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""
+              } ${width < 350 ? "mt-44" : ""}`}
+          >
+            <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">
+              We are seeking new members
+            </h2>
+            <div className="flex gap-3 mt-2 justify-center">
+              <a
+                href="https://forms.gle/UwdrNMdT25Gus3sPA"
+                className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
+              >
+                Apply
+              </a>
+              <a
+                href="/join"
+                className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
+              >
+                More information
+              </a>
+            </div>
+          </section>
+        </FadeInSection>
+        :
+        null
       }
       <h2 className="text-center mt-16 sm:mt-0 text-2xl mb-2 md:text-4xl">MISSIONS</h2>
       <BannerLinkList links={sanityLandingPage.links} />
