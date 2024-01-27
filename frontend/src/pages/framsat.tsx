@@ -27,8 +27,6 @@ const FramSat = ({ data }) => {
     if (teams.length > 0) setSelectedTeam(teams[0]);
   }, []);
 
-  console.log(data);
-
   return (
     <Layout>
       <FramSatHeader
