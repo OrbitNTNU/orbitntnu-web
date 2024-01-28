@@ -71,7 +71,14 @@ export const Navbar = () => {
   ];
 
   const getSelectedStatus = (url: string) => {
-    return isBrowser() && (window.location.pathname === url || window.location.pathname === url + "/") ? "border-b-2" : "";
+    return isBrowser() && (window.location.pathname === url || window.location.pathname === url + "/") ? "border-white" : "border-transparent";
+  };
+
+  const isSatelliteSelected = (satelliteLinks: Record<string, string>[]) => {
+    return isBrowser() && satelliteLinks.some(link => (
+      window.location.pathname === link.url ||
+      window.location.pathname === link.url + "/"
+    )) ? "border-white" : "border-transparent";
   };
 
   const isSatelliteSelected = (satelliteLinks: Record<string, string>[]) => {
@@ -97,7 +104,7 @@ export const Navbar = () => {
           <Link key={link.name} to={link.url}>
             <li
               key={link.name}
-              className={`inline-block hover:border-b-2 mr-4 hover:border-yellow-500 ${getSelectedStatus(
+              className={`inline-block border-b-2 mr-4 hover:border-yellow-500 ${getSelectedStatus(
                 link.url
               )}`}
             >
@@ -110,12 +117,12 @@ export const Navbar = () => {
       <ul className="invisible inline-block mt-5 md:visible mr-4">
         <button onClick={toggleDropdown}>
           <li
-              key={"OURSATTELITES"}
-              className={`inline-block hover:border-b-2 hover:border-yellow-500 ${isSatelliteSelected(
+              {"OUR SATTELITES"}
+              className={`inline-block border-b-2 hover:border-yellow-500 ${isDropdownOpen ? "border-yellow-500" : isSatelliteSelected(
                 satelliteLinks
               )}`}
             >
-              {"OUR SATTELITES"}
+              {"OUR SATELLITES"}
             </li>
         </button>
         {isDropdownOpen && (
@@ -127,7 +134,7 @@ export const Navbar = () => {
               >
                 <Link key={link.name} to={link.url}>
                   <li
-                    className={`inline-block hover:border-b-2 hover:border-green-500 ${getSelectedStatus(
+                    className={`inline-block border-b-2 hover:border-green-500 ${getSelectedStatus(
                       link.url
                     )}`}
                   >
@@ -143,7 +150,7 @@ export const Navbar = () => {
       <ul className="invisible inline-block mt-5 md:visible">
         <Link
           to="/join"
-          className={`inline-block hover:border-b-2 hover:border-yellow-500 ${getSelectedStatus(
+          className={`inline-block border-b-2 hover:border-yellow-500 ${getSelectedStatus(
             "/join"
           )}`}
         >
