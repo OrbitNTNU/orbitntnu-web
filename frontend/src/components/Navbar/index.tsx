@@ -16,40 +16,6 @@ export const Navbar = () => {
     setDropdownOpen(!isDropdownOpen);
   };
 
-  const closeDropdown = () => {
-    setDropdownOpen(false);
-  };
-
-  const handleWho = () => {
-    // Redirect to the index page if not on it
-    if (window.location.pathname !== '/') {
-      window.location.href = '/';
-    }
-
-    // Scroll to the about
-    const modifyCoursesElement = document.getElementById('about');
-    if (modifyCoursesElement) {
-      modifyCoursesElement.scrollIntoView({
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const handleWhy = () => {
-    // Redirect to the index page if not on it
-    if (window.location.pathname !== '/') {
-      window.location.href = '/';
-    }
-
-    // Scroll to the ModifyCourses component
-    const modifyCoursesElement = document.getElementById('whyInfo');
-    if (modifyCoursesElement) {
-      modifyCoursesElement.scrollIntoView({
-        behavior: 'smooth',
-      });
-    }
-  };
-
   const handleToggle = () => {
     setToggle(!toggle);
 
@@ -81,13 +47,6 @@ export const Navbar = () => {
     )) ? "border-white" : "border-transparent";
   };
 
-  const isSatelliteSelected = (satelliteLinks: Record<string, string>[]) => {
-    return isBrowser() && satelliteLinks.some(link => (
-      window.location.pathname === link.url ||
-      window.location.pathname === link.url + "/"
-    )) ? "border-b-2" : "";
-  };
-
   return (
     <nav className="text-white p-2 mb-2 w-full z-50 absolute top-0 left-0">
       <Link to="/">
@@ -117,7 +76,6 @@ export const Navbar = () => {
       <ul className="invisible inline-block mt-5 md:visible mr-4">
         <button onClick={toggleDropdown}>
           <li
-              {"OUR SATTELITES"}
               className={`inline-block border-b-2 hover:border-yellow-500 ${isDropdownOpen ? "border-yellow-500" : isSatelliteSelected(
                 satelliteLinks
               )}`}
