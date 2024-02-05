@@ -60,9 +60,9 @@ const MembersPage = ({ data }) => {
                 image={sanityTeamsPage.topImage}
             />
             {allTeams && (
-                <div className="pt-12">
+                <div className="pt-12 px-8">
                     <section className="items-center mt-16 flex md:flex-col md:max-w-5xl md:justify-center m-auto">
-                        <Link 
+                        <Link
                             to={"/teams"} className="items-center justify-center bg-blue-600 hover:bg-blue-800 py-2 px-4 m-auto">
                             {"Go to teams view"}
                         </Link>
@@ -73,7 +73,7 @@ const MembersPage = ({ data }) => {
                             <h1 className="text-3xl my-4 font-bold">
                                 {team.name}
                             </h1>
-                            <p className="p-4 mb-4 border-b border-yellow-500 md:w-1/2 md:mx-auto">
+                            <p className="p-4 my-4 border-t border-b border-yellow-500 md:max-w-4xl md:mx-auto">
                                 {team.description}
                             </p>
                             <div className="p-4 mt-4 mb-12 md:w-full md:mx-auto">
@@ -82,7 +82,7 @@ const MembersPage = ({ data }) => {
                         </div>
                     ))}
                     <section className="items-center mt-16 flex md:flex-col md:max-w-5xl md:justify-center m-auto">
-                        <Link 
+                        <Link
                             to={"/teams"} className="items-center justify-center bg-blue-600 hover:bg-blue-800 py-2 px-4 m-auto">
                             {"Go to teams view"}
                         </Link>
