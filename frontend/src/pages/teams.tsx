@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { Layout } from "../templates/Layout";
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import { TeamsContainer } from "../views/teams/TeamsContainer";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import firebase from "gatsby-plugin-firebase";
+import { Button } from "../components/Button";
 
 export interface Member {
   name: string;
@@ -63,6 +64,12 @@ const Teams = ({ data }) => {
           setSelectedTeam={setSelectedTeam}
         />
       )}
+      <section className="items-center mt-16 flex md:flex-col md:max-w-5xl md:justify-center m-auto">
+        <Link
+          to={"/members"} className="items-center justify-center bg-blue-600 hover:bg-blue-800 py-2 px-4 m-auto">
+          {"Go to list view"}
+        </Link>
+      </section>
     </Layout>
   );
 };

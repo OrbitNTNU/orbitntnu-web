@@ -31,9 +31,13 @@ export const Navbar = () => {
     { name: "SUBORBITAL", url: "/suborbital" },
   ];
 
-  const links = [
+  const beforeDropdownLins = [
     { name: "WHO ARE WE", url: "/about" },
-    // { name: "WHY ORBIT", url: "/" },
+  ];
+
+  const afterDropDownLinks = [
+    { name: "TEAMS", url: "/teams" },
+    { name: "JOIN", url: "/join" },
   ];
 
   const getSelectedStatus = (url: string) => {
@@ -59,7 +63,7 @@ export const Navbar = () => {
       </Link>
 
       <ul className="invisible inline-block mt-5 ml-8 md:visible">
-        {links.map((link) => (
+        {beforeDropdownLins.map((link) => (
           <Link key={link.name} to={link.url}>
             <li
               key={link.name}
@@ -106,14 +110,18 @@ export const Navbar = () => {
       </ul>
 
       <ul className="invisible inline-block mt-5 md:visible">
-        <Link
-          to="/join"
-          className={`inline-block border-b-2 hover:border-yellow-500 ${getSelectedStatus(
-            "/join"
-          )}`}
-        >
-          JOIN
-        </Link>
+        {afterDropDownLinks.map((link) => (
+          <Link key={link.name} to={link.url}>
+            <li
+              key={link.name}
+              className={`inline-block border-b-2 mr-4 hover:border-yellow-500 ${getSelectedStatus(
+                link.url
+              )}`}
+            >
+              {link.name}
+            </li>
+          </Link>
+        ))}
       </ul>
 
       <FaBars
