@@ -97,6 +97,12 @@ const IndexPage = ({ data }) => {
         null
       }
 
+      <section className="w-full flex justify-center px-8 py-16">
+        <div className="w-full flex justify-center md:max-w-4xl">
+          <StaticImage src="../images/recruitment-timeline.jpg" alt="recruitment period timeline" className="rounded-sm"/>
+        </div>
+      </section>
+
       <h2 className="text-center mt-16 sm:mt-0 text-2xl mb-2 md:text-4xl">MISSIONS</h2>
       <BannerLinkList links={sanityLandingPage.links} />
 
