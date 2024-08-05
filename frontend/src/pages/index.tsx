@@ -98,7 +98,7 @@ const IndexPage = ({ data }) => {
       }
 
       <section className="w-full flex justify-center px-8 py-16">
-        <div className="w-full flex justify-center md:max-w-4xl">
+        <div className="w-full flex justify-center max-w-4xl">
           <StaticImage src="../images/recruitment-timeline.jpg" alt="recruitment period timeline" className="rounded-sm"/>
         </div>
       </section>
