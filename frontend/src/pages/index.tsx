@@ -68,6 +68,14 @@ const IndexPage = ({ data }) => {
           image={sanityLandingPage.aboutSectionImage}
         />
       </div>
+
+      <section className="w-full flex justify-center px-8 pb-20">
+        <div className="w-full flex justify-center w-screen pb-20">
+          <StaticImage src="../images/recruitment-timeline.jpg" alt="recruitment period timeline" className="rounded-sm"/>
+        </div>
+      </section>
+
+      
       {sanityLandingPage.newMembers ?
         <FadeInSection>
           <section
@@ -96,12 +104,6 @@ const IndexPage = ({ data }) => {
         :
         null
       }
-
-      <section className="w-full flex justify-center px-8 py-16">
-        <div className="w-full flex justify-center max-w-4xl">
-          <StaticImage src="../images/recruitment-timeline.jpg" alt="recruitment period timeline" className="rounded-sm"/>
-        </div>
-      </section>
 
       <h2 className="text-center mt-16 sm:mt-0 text-2xl mb-2 md:text-4xl">MISSIONS</h2>
       <BannerLinkList links={sanityLandingPage.links} />
