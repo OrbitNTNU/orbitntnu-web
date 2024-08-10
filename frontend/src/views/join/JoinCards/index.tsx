@@ -22,8 +22,29 @@ export const JoinCards = ({ sectionTitle, positions }: JoinCardsProps) => (
     <span className=" col-span-1" />
     <section className="flex flex-col">
       <div className="flex flex-col items-center justify-center">
-        {positions.filter((position) => 
-          position.title.includes("Chief"))
+        {positions
+          .sort((a, b) => a.title.localeCompare(b.title))
+          .filter((position) =>
+            position.title.includes("Chief"))
+          .map((position) => (
+            <JoinCard
+              key={position.title}
+              title={position.title}
+              text={position.text}
+              applyLink={position.positionLink}
+              image={position.image}
+              classname="md:max-w-2xl"
+            />
+          ))}
+      </div>
+    </section>
+
+    <div className="md:flex md:flex-wrap justify-center">
+      {positions
+        .sort((a, b) => a.title.localeCompare(b.title))
+        .filter((position) =>
+          position.title.includes("Team Lead") ||
+          position.title.includes("Manager"))
         .map((position) => (
           <JoinCard
             key={position.title}
@@ -31,43 +52,28 @@ export const JoinCards = ({ sectionTitle, positions }: JoinCardsProps) => (
             text={position.text}
             applyLink={position.positionLink}
             image={position.image}
-            classname="md:max-w-2xl"
+            classname="md:max-w-md"
           />
         ))}
-      </div>
-    </section>
-
-    <div className="md:flex md:flex-wrap justify-center">
-      {positions.filter((position) => 
-        position.title.includes("Team Lead") || 
-        position.title.includes("Manager"))
-      .map((position) => (
-        <JoinCard
-          key={position.title}
-          title={position.title}
-          text={position.text}
-          applyLink={position.positionLink}
-          image={position.image}
-          classname="md:max-w-md"
-        />
-      ))}
     </div>
 
     <div className="md:flex md:flex-wrap justify-center">
-      {positions.filter((position) => 
-        !position.title.includes("Chief") && 
-        !position.title.includes("Manager") && 
-        !position.title.includes("Team Lead"))
-      .map((position) => (
-        <JoinCard
-          key={position.title}
-          title={position.title}
-          text={position.text}
-          applyLink={position.positionLink}
-          image={position.image}
-          classname="md:max-w-md"
-        />
-      ))}
+      {positions
+        .sort((a, b) => a.title.localeCompare(b.title))
+        .filter((position) =>
+          !position.title.includes("Chief") &&
+          !position.title.includes("Manager") &&
+          !position.title.includes("Team Lead"))
+        .map((position) => (
+          <JoinCard
+            key={position.title}
+            title={position.title}
+            text={position.text}
+            applyLink={position.positionLink}
+            image={position.image}
+            classname="md:max-w-md"
+          />
+        ))}
     </div>
   </React.Fragment>
 );
