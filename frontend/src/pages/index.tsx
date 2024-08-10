@@ -69,12 +69,11 @@ const IndexPage = ({ data }) => {
         />
       </div>
 
-      <section className="w-full flex justify-center px-8 pb-20">
-        <div className="w-full flex justify-center w-screen pb-20">
+      <section className="w-full flex justify-center mt-20 sm:mt-0 px-4 mb-20">
+        <div className="w-full flex justify-center w-screen sm:mb-20">
           <StaticImage src="../images/recruitment-timeline.jpg" alt="recruitment period timeline" className="rounded-sm"/>
         </div>
       </section>
-
       
       {sanityLandingPage.newMembers ?
         <FadeInSection>
