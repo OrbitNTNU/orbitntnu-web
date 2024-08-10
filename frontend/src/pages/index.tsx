@@ -68,6 +68,14 @@ const IndexPage = ({ data }) => {
           image={sanityLandingPage.aboutSectionImage}
         />
       </div>
+
+      <section className="w-full flex justify-center px-8 pb-20">
+        <div className="w-full flex justify-center w-screen pb-20">
+          <StaticImage src="../images/recruitment-timeline.jpg" alt="recruitment period timeline" className="rounded-sm"/>
+        </div>
+      </section>
+
+      
       {sanityLandingPage.newMembers ?
         <FadeInSection>
           <section
@@ -79,7 +87,7 @@ const IndexPage = ({ data }) => {
             </h2>
             <div className="flex gap-3 mt-2 justify-center">
               <a
-                href="https://forms.gle/UwdrNMdT25Gus3sPA"
+                href="https://forms.gle/VeDNJRUBqwZgXS8g9"
                 className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
               >
                 Apply
