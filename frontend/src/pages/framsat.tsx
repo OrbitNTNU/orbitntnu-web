@@ -132,7 +132,7 @@ export const query = graphql`
         }
       }
     }
-    allSanityTeam(filter: { name: { eq: "Project Management" } }) {
+    allSanityTeam(filter: { name: { eq: "Project Management Office" } }) {
       nodes {
         description
         members {
