@@ -29,7 +29,7 @@ export const JoinCard = ({ title, text, applyLink, image, classname }: JoinCardP
         />
       </div>
       <h2 className="mt-4 text-2xl">{title}</h2>
-      <p className={`mt-2 mb-4 ${showMore ? "" : "line-clamp-5"}`}>{text}</p>
+      <p className={`mt-2 mb-4 whitespace-pre-wrap ${showMore ? "" : "line-clamp-5"}`}>{text}</p>
       <button
         className="text-blue-500 underline mb-4"
         onClick={toggleShowMore}
