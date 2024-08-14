@@ -1,15 +1,9 @@
 import React from "react";
-import { FadeInSection } from "../FadeInSection";
-import { isBrowser } from "../../utils/isBrowser";
-import { useWindowSize } from "../../utils/hooks/useWindowSize";
 import { graphql } from "gatsby";
 
 const SeekingMembers = ({ data }) => {
 
     const { sanityLandingPage } = data;
-
-    const width = isBrowser() ? useWindowSize().width : 600;
-    const height = isBrowser() ? useWindowSize().height : 300;
 
     return (
         <>
