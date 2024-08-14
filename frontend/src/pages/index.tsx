@@ -9,6 +9,7 @@ import { FadeInSection } from "../components/FadeInSection";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 import { useWindowSize } from "../utils/hooks/useWindowSize";
 import { isBrowser } from "../utils/isBrowser";
+import SeekingMembers from "../components/SeekingMembers";
 
 const IndexPage = ({ data }) => {
   const { sanityLandingPage, sanityAboutPage } = data;
@@ -74,35 +75,15 @@ const IndexPage = ({ data }) => {
           <StaticImage src="../images/recruitment-timeline.jpg" alt="recruitment period timeline" className="rounded-sm"/>
         </div>
       </section>
-      
-      {sanityLandingPage.newMembers ?
-        <FadeInSection>
-          <section
-            className={`relative flex flex-col justify-center mb-24 sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""
-              } ${width < 350 ? "mt-44" : ""}`}
-          >
-            <h2 className="text-3xl text-center md:text-4xl font-bold mb-2">
-              We are seeking new members
-            </h2>
-            <div className="flex gap-3 mt-2 justify-center">
-              <a
-                href="https://forms.gle/VeDNJRUBqwZgXS8g9"
-                className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
-              >
-                Apply
-              </a>
-              <a
-                href="/join"
-                className="bg-blue-600 py-2 px-4 sm:w-40 text-center md:text-lg block hover:bg-blue-800"
-              >
-                More information
-              </a>
-            </div>
-          </section>
-        </FadeInSection>
-        :
-        null
-      }
+
+      <FadeInSection>
+        <section
+          className={`relative flex flex-col justify-center mb-24 sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""
+          } ${width < 350 ? "mt-44" : ""}`}
+        >
+          <SeekingMembers data={data}/>
+        </section>
+      </FadeInSection>
 
       <h2 className="text-center mt-16 sm:mt-0 text-2xl mb-2 md:text-4xl">MISSIONS</h2>
       <BannerLinkList links={sanityLandingPage.links} />
