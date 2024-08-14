@@ -7,9 +7,10 @@ import { FadeInSection } from "../components/FadeInSection";
 import { Header } from "../components/Header";
 import { Layout } from "../templates/Layout";
 import { MissionText } from "../views/suborbital/MissionText";
+import SeekingMembers from "../components/SeekingMembers";
 
 const SubOrbital = ({ data }) => {
-  const { sanitySuborbitalPage } = data;
+  const { sanitySuborbitalPage, sanityLandingPage } = data;
 
   useEffect(() => {
     if (!firebase) {
@@ -28,6 +29,11 @@ const SubOrbital = ({ data }) => {
         image={sanitySuborbitalPage.topImage}
       />
       <section className="mt-24 px-8 relative md:flex md:flex-col md:max-w-4xl md:justify-center m-auto">
+
+        <div className="pb-20">
+          <SeekingMembers data={data}/>
+        </div>
+
         <div className="md:flex md:gap-8 md:basis-0">
           <div>
             <h2 className="text-2xl md:text-4xl">
@@ -112,6 +118,9 @@ export const query = graphql`
           gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
         }
       }
+    }
+    sanityLandingPage {
+      newMembers
     }
   }
 `;
