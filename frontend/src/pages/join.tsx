@@ -28,12 +28,6 @@ const Join = ({ data }) => {
         size="long"
       />
 
-      <section className="w-full flex justify-center px-4 pt-16">
-        <div className="w-full flex justify-center max-w-2xl">
-          <StaticImage src="../images/recruitment-timeline.jpg" alt="recruitment period timeline" className="rounded-sm"/>
-        </div>
-      </section>
-
       {allSanityPosition.nodes.length !== 0 ? (
         <JoinCards
           sectionTitle={sanityJoinPage.sectionTitle}

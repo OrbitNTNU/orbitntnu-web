@@ -70,12 +70,6 @@ const IndexPage = ({ data }) => {
         />
       </div>
 
-      <section className="w-full flex justify-center mt-20 sm:mt-0 px-4 mb-20">
-        <div className="w-full flex justify-center w-screen sm:mb-20">
-          <StaticImage src="../images/recruitment-timeline.jpg" alt="recruitment period timeline" className="rounded-sm"/>
-        </div>
-      </section>
-
       <FadeInSection>
         <section
           className={`relative flex flex-col justify-center mb-24 sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""
