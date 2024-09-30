@@ -7,8 +7,6 @@ import { graphql } from "gatsby";
 import firebase from "gatsby-plugin-firebase";
 import { FadeInSection } from "../components/FadeInSection";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
-import { useWindowSize } from "../utils/hooks/useWindowSize";
-import { isBrowser } from "../utils/isBrowser";
 import { Header } from "../components/Header";
 
 const AboutPage = ({ data }) => {
