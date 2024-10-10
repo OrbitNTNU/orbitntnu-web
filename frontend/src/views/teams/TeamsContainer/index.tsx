@@ -42,7 +42,7 @@ export const TeamsContainer = ({
       />
       {currentTeamData ? (
         <>
-          <p className="p-4 my-4 border-t border-b border-yellow-500 md:max-w-4xl md:mx-auto"  style={{ height: '150px' }}>
+          <p className="p-4 my-4 border-t border-b border-yellow-500 md:max-w-4xl md:mx-auto h-auto md:h-[150px]">
             {currentTeamData.description}
           </p>
           <Members members={currentTeamData.members ?? []}/>
