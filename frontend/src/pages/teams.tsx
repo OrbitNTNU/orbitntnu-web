@@ -3,51 +3,73 @@ import { Header } from "../components/Header";
 import { Layout } from "../templates/Layout";
 import { Link, graphql } from "gatsby";
 import { TeamsContainer } from "../views/teams/TeamsContainer";
-import { IGatsbyImageData } from "gatsby-plugin-image";
-import firebase from "gatsby-plugin-firebase";
-import { Button } from "../components/Button";
+import axios from 'axios';
 
 export interface Member {
   name: string;
   title: string;
-  email?: string;
-  phone?: string;
+  mail?: string;
+  phoneNumber?: string;
   linkedin?: string;
-  image?: {
-    asset: {
-      gatsbyImageData: IGatsbyImageData;
-    };
-  };
+  showPhoneNrOnWebsite: boolean;
+  privilege: string;
+  image?: string;
 }
 
 export interface Team {
-  members: Member[];
-  name: string;
+  teamID: number;
+  group: string;
   description: string;
+  teamName: string;
+  members: Member[];
 }
 
 const Teams = ({ data }) => {
-  const [selectedTeam, setSelectedTeam] = useState<Team>(null);
-  const { sanityTeamsPage, allSanityTeam } = data;
-
+  const [teamsData, setTeamsData] = useState<Team[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(true); // Loading state
+  const { sanityTeamsPage } = data;
+  
   useEffect(() => {
-    const teams: Team[] = allSanityTeam.nodes;
-    if (teams.length > 0) {
-      teams.sort((a, b) => (a.name > b.name ? -1 : 1));
-      teams.sort((a, b) => (a.name === "Mentors" ? 1 : -1));
-      teams.sort((a, b) => (a.name === "The Board" ? -1 : 1));
+    const fetchTeams = async () => {
+      try {
+        const response = await axios.get('https://lifesupport.orbitntnu.com/api/trpc/teams.getPublicTeamPageInfo');
+  
+        if (response.status === 200) {
+          // Navigate to the actual data inside the response
+          const teamsData = response.data.result.data.json;
+          setTeamsData(teamsData);
 
-      setSelectedTeam(teams[0]);
-    }
+          // Preload images
+          preloadImages(teamsData);
+        } else {
+          console.error(`Error: Received status code ${response.status}`);
+        }
+  
+      } catch (error) {
+        console.error('Error fetching teams:', error);
+      } finally {
+        setLoading(false); // Stop loading regardless of success or failure
+      }
+    };
+  
+    fetchTeams();
   }, []);
 
-  useEffect(() => {
-    if (!firebase) {
-      return;
-    }
+  // Preload images function
+  const preloadImages = (teams: Team[]) => {
+    teams.forEach(team => {
+      team.members.forEach(member => {
+        if (member.image) {
+          const img = new Image();
+          img.src = member.image;
+        }
+      });
+    });
+  };
 
-    firebase.analytics().logEvent("visited_teams_page");
-  }, [firebase]);
+  if (loading) {
+    return <div className="text-center">Loading...</div>; // Loading indicator
+  }
 
   return (
     <Layout>
@@ -57,11 +79,9 @@ const Teams = ({ data }) => {
         text={sanityTeamsPage.topText}
         image={sanityTeamsPage.topImage}
       />
-      {selectedTeam && (
+      {teamsData && (
         <TeamsContainer
-          teams={allSanityTeam.nodes}
-          selectedTeam={selectedTeam}
-          setSelectedTeam={setSelectedTeam}
+          teams={teamsData}
         />
       )}
       <section className="items-center mt-16 flex md:flex-col md:max-w-5xl md:justify-center m-auto">
@@ -85,36 +105,6 @@ export const query = graphql`
       }
       title
       fadedTitle
-    }
-    allSanityPosition {
-      nodes {
-        title
-        text
-        positionLink
-        image {
-          asset {
-            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
-          }
-        }
-      }
-    }
-    allSanityTeam {
-      nodes {
-        members {
-          image {
-            asset {
-              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
-            }
-          }
-          name
-          title
-          phone
-          email
-          linkedin
-        }
-        name
-        description
-      }
     }
   }
 `;

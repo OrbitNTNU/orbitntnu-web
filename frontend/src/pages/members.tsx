@@ -2,96 +2,133 @@ import React, { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { Layout } from "../templates/Layout";
 import { Link, graphql } from "gatsby";
-import { IGatsbyImageData } from "gatsby-plugin-image";
-import firebase from "gatsby-plugin-firebase";
 import { Members } from "../views/teams/Members";
-
-export interface Member {
-    name: string;
-    title: string;
-    email?: string;
-    phone?: string;
-    linkedin?: string;
-    image?: {
-        asset: {
-            gatsbyImageData: IGatsbyImageData;
-        };
-    };
-}
-
-export interface Team {
-    members: Member[];
-    name: string;
-    description: string;
-}
+import axios from 'axios';
+import { Team } from "./teams";
 
 const MembersPage = ({ data }) => {
-    const [allTeams, setAllTeams] = useState<Team[]>(null);
+  const [teamsData, setTeamsData] = useState<Team[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(true); // Loading state
+  const [galleryView, setGalleryView] = useState<boolean>(false); // State to toggle view mode
 
-    const { sanityTeamsPage, allSanityTeam } = data;
+  const { sanityTeamsPage } = data;
 
-    useEffect(() => {
-        const teams: Team[] = allSanityTeam.nodes;
-        if (teams.length > 0) {
-            teams.sort((a, b) => (a.name > b.name ? -1 : 1));
-            teams.sort((a, b) => (a.name === "Mentors" ? 1 : -1));
-            teams.sort((a, b) => (a.name === "The Board" ? -1 : 1));
+  useEffect(() => {
+    const fetchTeams = async () => {
+      try {
+        const response = await axios.get('https://lifesupport.orbitntnu.com/api/trpc/teams.getPublicTeamPageInfo');
 
-            setAllTeams(teams);
+        if (response.status === 200) {
+          // Navigate to the actual data inside the response
+          const teamsData = response.data.result.data.json;
+          setTeamsData(teamsData);
+
+          // Preload images
+          preloadImages(teamsData);
+        } else {
+          console.error(`Error: Received status code ${response.status}`);
         }
-    }, []);
 
-    useEffect(() => {
-        if (!firebase) {
-            return;
+      } catch (error) {
+        console.error('Error fetching teams:', error);
+      } finally {
+        setLoading(false); // Stop loading regardless of success or failure
+      }
+    };
+
+    fetchTeams();
+  }, []);
+
+  // Preload images function
+  const preloadImages = (teams) => {
+    teams.forEach(team => {
+      team.members.forEach(member => {
+        if (member.image) {
+          const img = new Image();
+          img.src = member.image; // This will start loading the image
         }
+      });
+    });
+  };
 
-        firebase.analytics().logEvent("visited_teams_page");
-    }, [firebase]);
+  const toggleGalleryView = () => {
+    setGalleryView(!galleryView);
+  };
 
-    console.log(allTeams);
+  if (loading) {
+    return <div className="text-center">Loading...</div>; // Loading indicator
+  }
+
+  const renderGalleryView = () => {
+    // Flatten all members from all teams
+    const allMembers = teamsData?.flatMap(team => team.members) || []; 
+
+    // Use a Set to remove duplicate members based on their 'name'
+    const uniqueMembers = Array.from(
+      new Map(allMembers.map(member => [member.name, member])).values()
+    );
+
+    // Sort members alphabetically by their 'name'
+    const sortedMembers = uniqueMembers.sort((a, b) => a.name.localeCompare(b.name));
 
     return (
-        <Layout>
-            <Header
-                title={sanityTeamsPage.fadedTitle}
-                name={sanityTeamsPage.title}
-                text={sanityTeamsPage.topText}
-                image={sanityTeamsPage.topImage}
-            />
-            {allTeams && (
-                <div className="pt-12 px-8">
-                    <section className="items-center mt-16 flex md:flex-col md:max-w-5xl md:justify-center m-auto">
-                        <Link
-                            to={"/teams"} className="items-center justify-center bg-blue-600 hover:bg-blue-800 py-2 px-4 m-auto">
-                            {"Go to teams view"}
-                        </Link>
-                    </section>
-                    {allTeams.map((team) => (
-                        <div key={team.name} className="text-center">
-                            <p className="p-4 mb-4 md:max-w-4xl md:mx-auto"></p>
-                            <h1 className="text-3xl my-4 font-bold">
-                                {team.name}
-                            </h1>
-                            <p className="p-4 my-4 border-t border-b border-yellow-500 md:max-w-4xl md:mx-auto">
-                                {team.description}
-                            </p>
-                            <div className="p-4 mt-4 mb-12 md:w-full md:mx-auto">
-                                <Members members={team.members} />
-                            </div>
-                        </div>
-                    ))}
-                    <section className="items-center mt-16 flex md:flex-col md:max-w-5xl md:justify-center m-auto">
-                        <Link
-                            to={"/teams"} className="items-center justify-center bg-blue-600 hover:bg-blue-800 py-2 px-4 m-auto">
-                            {"Go to teams view"}
-                        </Link>
-                    </section>
-                </div>
-            )}
-        </Layout>
-
+      <div className="text-center flex flex-col">
+        <Members members={sortedMembers} /> {/* Render each member individually */}
+      </div>
     );
+  };
+
+  const renderListView = () => {
+    return teamsData?.map((team) => (
+      <div key={team.teamName} className="text-center">
+        <h1 className="text-3xl my-4 font-bold">{team.teamName}</h1>
+        <p className="p-4 my-4 border-t border-b border-yellow-500 md:max-w-4xl md:mx-auto">{team.description}</p>
+        <div className="p-4 mt-4 mb-12 md:w-full md:mx-auto">
+          <Members members={team.members} />
+        </div>
+      </div>
+    ));
+  };
+
+  return (
+    <Layout>
+      <Header
+        title={sanityTeamsPage.fadedTitle}
+        name={sanityTeamsPage.title}
+        text={sanityTeamsPage.topText}
+        image={sanityTeamsPage.topImage}
+      />
+
+      {teamsData && (
+        <div className="pt-12 px-8">
+          <section className="items-center mt-16 flex md:flex-col md:max-w-5xl md:justify-center m-auto">
+            <Link
+              to={"/teams"} className="items-center justify-center bg-blue-600 hover:bg-blue-800 py-2 px-4 m-auto">
+              {"Go back to teams view"}
+            </Link>
+            <div className="text-center my-4">
+              <button
+                className={`cursor-pointer py-2 px-4 font-bold text-white border-b-2 ${galleryView ? 'border-white' : 'border-transparent'
+                  } hover:border-green-500`}
+                onClick={toggleGalleryView}
+              >
+                {'Gallery mode'}
+              </button>
+            </div>
+          </section>
+
+          {galleryView ? renderGalleryView() : renderListView()}
+
+          <section className="items-center mt-16 flex md:flex-col md:max-w-5xl md:justify-center m-auto">
+            <Link
+              to={"/teams"} className="items-center justify-center bg-blue-600 hover:bg-blue-800 py-2 px-4 m-auto">
+              {"Go to teams view"}
+            </Link>
+          </section>
+        </div>
+      )}
+    </Layout>
+  );
 };
 
 export const query = graphql`
@@ -105,36 +142,6 @@ export const query = graphql`
       }
       title
       fadedTitle
-    }
-    allSanityPosition {
-      nodes {
-        title
-        text
-        positionLink
-        image {
-          asset {
-            gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
-          }
-        }
-      }
-    }
-    allSanityTeam {
-      nodes {
-        members {
-          image {
-            asset {
-              gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
-            }
-          }
-          name
-          title
-          phone
-          email
-          linkedin
-        }
-        name
-        description
-      }
     }
   }
 `;

@@ -9,7 +9,7 @@ interface MembersProps {
 
 export const Members = ({ members, wide = false }: MembersProps) => (
   <ul className="flex flex-wrap justify-center">
-    {members.map((member) => (
+    {members?.map((member) => (
       <ProfileCard
         key={`${member.name}-${member.title}`}
         member={member}
