@@ -10,22 +10,50 @@ import { graphql } from "gatsby";
 import { Team } from "./teams";
 import { Members } from "../views/teams/Members";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import axios from 'axios';
 
 const FramSat = ({ data }) => {
   const [selectedTeam, setSelectedTeam] = useState<Team>();
   const { sanityFramsatPage, allSanityTeam } = data;
+  const [loading, setLoading] = useState<boolean>(true); // Loading state
+  
   useEffect(() => {
-    if (!firebase) {
-      return;
-    }
+    const fetchTeams = async () => {
+      try {
+        const response = await axios.get('https://lifesupport.orbitntnu.com/api/trpc/teams.getPublicTeamPageInfo');
+  
+        if (response.status === 200) {
+          // Navigate to the actual data inside the response
+          const teamsData = response.data.result.data.json;
+          setSelectedTeam(teamsData.find((team) => team.teamID === 17));
 
-    firebase.analytics().logEvent("visited_framsat_page");
-  }, [firebase]);
-
-  useEffect(() => {
-    const teams: Team[] = allSanityTeam.nodes;
-    if (teams.length > 0) setSelectedTeam(teams[0]);
+          // Preload images
+          preloadImages(teamsData);
+        } else {
+          console.error(`Error: Received status code ${response.status}`);
+        }
+  
+      } catch (error) {
+        console.error('Error fetching teams:', error);
+      } finally {
+        setLoading(false); // Stop loading regardless of success or failure
+      }
+    };
+  
+    fetchTeams();
   }, []);
+
+  // Preload images function
+  const preloadImages = (teams: Team[]) => {
+    teams.forEach(team => {
+      team.members.forEach(member => {
+        if (member.image) {
+          const img = new Image();
+          img.src = member.image;
+        }
+      });
+    });
+  };
 
   return (
     <Layout>
@@ -97,7 +125,7 @@ const FramSat = ({ data }) => {
             </p>
             <Members
               members={selectedTeam.members.filter((member) =>
-                member.title.includes("FramSat")
+                member.title.toLowerCase().includes("fs") || member.title.toLowerCase().includes("framsat")
               )}
               wide
             />
@@ -129,22 +157,6 @@ export const query = graphql`
       firstSectionImage {
         asset {
           gatsbyImageData(fit: FILLMAX, placeholder: BLURRED)
-        }
-      }
-    }
-    allSanityTeam(filter: { name: { eq: "Project Management Office" } }) {
-      nodes {
-        description
-        members {
-          title
-          phone
-          name
-          image {
-            asset {
-              gatsbyImageData
-            }
-          }
-          email
         }
       }
     }
