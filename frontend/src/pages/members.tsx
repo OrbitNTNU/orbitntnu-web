@@ -101,9 +101,9 @@ const MembersPage = ({ data }) => {
 
       {teamsData && (
         <div className="pt-12 px-8">
-          <section className="items-center mt-16 flex md:flex-col md:max-w-5xl md:justify-center m-auto">
+          <section className="items-center mt-16 flex flex-col md:max-w-5xl justify-center m-auto">
             <Link
-              to={"/teams"} className="items-center justify-center bg-blue-600 hover:bg-blue-800 py-2 px-4 m-auto">
+              to={"/teams"} className="items-center justify-center bg-blue-600 hover:bg-blue-800 py-2 px-4">
               {"Go back to teams view"}
             </Link>
             <div className="text-center my-4">
