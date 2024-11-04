@@ -23,10 +23,16 @@ export const Filter = ({
     return acc;
   }, {} as Record<string, Team[]>);
 
-  // Sort groups alphabetically
-  const sortedGroups = Object.keys(groupedTeams).sort((a, b) =>
-    a.localeCompare(b)
-  );
+  // Sort groups alphabetically, placing the 'mentor' group last
+  const sortedGroups = Object.keys(groupedTeams).sort((a, b) => {
+    const isMentorGroupA = groupedTeams[a].some(team => team.group.toLowerCase() === "mentors");
+    const isMentorGroupB = groupedTeams[b].some(team => team.group.toLowerCase() === "mentors");
+
+    if (isMentorGroupA && !isMentorGroupB) return 1; // 'mentor' group should appear last
+    if (!isMentorGroupA && isMentorGroupB) return -1; // 'mentor' group should appear last
+    
+    return a.localeCompare(b); // Sort alphabetically if neither or both are 'mentor' groups
+  });
 
   const handleGroupClick = (group: string) => {
     // Sort the teams in the selected group by team name

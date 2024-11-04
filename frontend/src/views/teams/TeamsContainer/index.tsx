@@ -15,20 +15,20 @@ export const TeamsContainer = ({
 
   useEffect(() => {
     if (teams && teams.length > 0) {
-      // Set current team to the first team if not set
+      // Set current team to the first team if not already set
       if (currentTeam === null) {
         setCurrentTeam(teams[0].teamID);
       }
-      setLoading(false); // Set loading to false when teams are ready
+      setLoading(false); // Stop loading when teams data is ready
     }
   }, [teams, currentTeam]);
 
   if (loading) {
-    return <p className="text-center">Loading...</p>; // Loading indicator
+    return <p className="text-center">Loading...</p>; // Display loading message
   }
 
-  if (!teams) {
-    return <p>No teams available.</p>; // Handle no teams case
+  if (!teams || teams.length === 0) {
+    return <p className="text-center">No teams available.</p>; // Handle no teams case
   }
 
   const currentTeamData = teams.find((team) => team.teamID === currentTeam);
@@ -48,7 +48,7 @@ export const TeamsContainer = ({
           <Members members={currentTeamData.members ?? []}/>
         </>
       ) : (
-        <p>No team found.</p> // Handle the case where the current team is not found
+        <p className="text-center">No team found.</p> // Handle missing current team data
       )}
     </section>
   );
