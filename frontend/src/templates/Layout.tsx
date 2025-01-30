@@ -20,7 +20,7 @@ export const Layout = ({ children }) => {
     <>
       <Helmet
         htmlAttributes={{
-          lang: "en"
+          lang: "en",
         }}
       >
         <title>Orbit NTNU</title>
