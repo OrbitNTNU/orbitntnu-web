@@ -31,7 +31,7 @@ export const Layout = ({ children }) => {
         <meta name="og:description" content="Student satellite organization" />
         <meta name="og:locale" content="en_US" />
         <meta name="og:url" content="https://orbitntnu.com" />
-        <meta name="google-site-verification" content="MiNvJKNigehQ-p3UdBvBr5b92q8YGJgmB1ij5WJq-D8" />
+        <meta name="google-site-verification" content="JsqNR0jccj4BEIF8V5mSid_7NV0z4b7Q0pDcZAPBQqg" />
         <link rel="canoical" href="https://orbitntnu.com" />
         <link rel="icon" href={favicon} />
       </Helmet>
