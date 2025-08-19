@@ -55,7 +55,7 @@ export const Footer = () => {
             <p>{sanityFooter.postal}</p>
           </div>
 
-          <div className="flex md:absolute md:top-8 md:right-0">
+          <div className="flex md:absolute md:top-2 md:right-0">
             <ul className="mr-16">
               {sanityFooter.otherLinks.map((link) => (
                 <li key={link.title} className="py-2">
