@@ -104,7 +104,7 @@ const IndexPage = ({ data }) => {
     };
   }, [width, height, popped]);
 
-  const circleSize = Math.min(160, Math.max(200, Math.floor(width * 0.45)));
+  const circleSize = Math.min(140, Math.max(140, Math.floor(width * 0.45)));
 
 
   return (
