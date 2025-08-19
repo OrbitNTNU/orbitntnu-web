@@ -11,6 +11,7 @@ import { useWindowSize } from "../utils/hooks/useWindowSize";
 import { isBrowser } from "../utils/isBrowser";
 import SeekingMembers from "../components/SeekingMembers";
 import { CollectionBanner } from "../components/CollectionBanner/CollectionBanner";
+import { CollectionBannerMobile } from "../components/CollectionBanner/CollectionBannerMobile";
 
 const IndexPage = ({ data }) => {
   const { sanityLandingPage, sanityAboutPage } = data;
@@ -72,8 +73,7 @@ const IndexPage = ({ data }) => {
         const impactClamped = Math.min(Math.max(impactRaw, 0), 1);
         const impact = 1 - Math.pow(1 - impactClamped, 3);
 
-        const snapX = leftX;
-        const xWall = arcX + (snapX - arcX) * impact;
+        const xWall = arcX + (leftX - arcX) * impact;
         const yWall = arcY;
 
         const sy = window.scrollY;
@@ -105,19 +105,32 @@ const IndexPage = ({ data }) => {
   }, [width, height, popped]);
 
   const circleSize = Math.min(140, Math.max(140, Math.floor(width * 0.45)));
+  const circleSizeMin = Math.min(90, Math.max(140, Math.floor(width * 0.45)));
 
 
   return (
 
     <Layout>
-      <CollectionBanner
-        size={circleSize}
+      <div className="hidden sm:flex">
+        <CollectionBanner
+          size={circleSize}
+          x={pos.x}
+          y={pos.y}
+          splashProgress={popped ? 0 : splash}
+          onClick={popped || impactVal >= 0.99 ? () => setPopped(true) : undefined}
+          style={{ cursor: popped || impactVal >= 0.99 ? "pointer" : "default" }}
+        />
+      </div>
+      <div className="flex sm:hidden">
+      <CollectionBannerMobile
+        size={circleSizeMin}
         x={pos.x}
         y={pos.y}
         splashProgress={popped ? 0 : splash}
         onClick={popped || impactVal >= 0.99 ? () => setPopped(true) : undefined}
         style={{ cursor: popped || impactVal >= 0.99 ? "pointer" : "default" }}
       />
+      </div>
       <div className="flex flex-col items-center" id="orbitInfo">
 
         <div className="">
@@ -128,23 +141,23 @@ const IndexPage = ({ data }) => {
 
         </div>
         {width > 640 && height < width * 4 / 3 ? (
-          <div className={`sticky-bottom scroll-smooth -mt-12 mb-4`}>
-            <a
-              onClick={executeScrollToAboutUs}
-              className="flex flex-col items-center"
-            >
-              <h2 className="flex text-bold text-sm md:text-lg">
-                Scroll down
-              </h2>
-              <div className="flex text-center width-30px" style={{ width: '15px' }}>
-                <StaticImage
-                  src="../images/arrow-down.png"
-                  alt="Arrow down"
-                />
-              </div>
-            </a>
-          </div>
-        )
+            <div className={`sticky-bottom scroll-smooth -mt-12 mb-4`}>
+              <a
+                onClick={executeScrollToAboutUs}
+                className="flex flex-col items-center"
+              >
+                <h2 className="flex text-bold text-sm md:text-lg">
+                  Scroll down
+                </h2>
+                <div className="flex text-center width-30px" style={{ width: "15px" }}>
+                  <StaticImage
+                    src="../images/arrow-down.png"
+                    alt="Arrow down"
+                  />
+                </div>
+              </a>
+            </div>
+          )
           : false
         }
       </div>
@@ -162,7 +175,7 @@ const IndexPage = ({ data }) => {
           className={`relative flex flex-col justify-center mb-24 sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""
           } ${width < 350 ? "mt-44" : ""}`}
         >
-          <SeekingMembers data={data}/>
+          <SeekingMembers data={data} />
         </section>
       </FadeInSection>
 

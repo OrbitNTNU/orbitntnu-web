@@ -1,23 +1,26 @@
 import * as React from "react";
 
-export interface BlueCircleProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CollectionBannerMobileProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   size?: number;
   ariaLabel?: string;
   x?: number;
   y?: number;
   splashProgress?: number;
+  onClick?: () => void;
 }
 
-export const CollectionBanner: React.FC<BlueCircleProps> = ({
-                                                              size = 200,
-                                                              ariaLabel = "Blue circle",
-                                                              className = "",
-                                                              style,
-                                                              x = 0,
-                                                              y = 0,
-                                                              splashProgress = 0,
-                                                              ...rest
-                                                            }) => {
+export const CollectionBannerMobile: React.FC<CollectionBannerMobileProps> = ({
+                                                                                size = 200,
+                                                                                ariaLabel = "Blue circle",
+                                                                                className = "",
+                                                                                style,
+                                                                                x = 0,
+                                                                                y = 0,
+                                                                                splashProgress = 0,
+                                                                                onClick,
+                                                                                ...rest
+                                                                              }) => {
   const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
   const targetHeight = lerp(size, size * 0.6, splashProgress);
   const targetWidth = lerp(targetHeight, targetHeight / 2, splashProgress);
@@ -27,23 +30,20 @@ export const CollectionBanner: React.FC<BlueCircleProps> = ({
   const borderRadius = splashProgress < 0.001 ? circleBR : halfLeftBR;
 
   const spinnerSize = Math.max(targetWidth, targetHeight);
-
   const propellerOpacity = Math.max(0, 1 - splashProgress * 2);
-
-
-  const INTERACT_THRESHOLD = 0.1;
-  const canInteract = propellerOpacity > INTERACT_THRESHOLD;
 
   return (
     <section
       role="img"
       aria-label={ariaLabel}
-      className={`fixed top-0 left-0 z-[9999] flex items-center gap-6 group ${className}`}
+      className={`fixed z-[9999] flex items-center gap-4 ${className}`}
       style={{
-        transform: `translate(${x}px, ${y}px)`,
-        willChange: "transform, width, height, border-radius",
+        left: `clamp(0px, ${x}px, calc(${targetWidth}px - 60px))`,
+        top: `clamp(0px, ${y}px, calc(100svh - ${targetHeight}px))`,
+        willChange: "left, top, width, height, border-radius",
         transition:
-          "transform 300ms ease-out, width 300ms ease-out, height 300ms ease-out, border-radius 300ms ease-out",
+          "left 300ms ease-out, top 300ms ease-out, width 300ms ease-out, height 300ms ease-out, border-radius 300ms ease-out",
+        transform: "translateZ(0)",
         ...style,
       }}
       {...rest}
@@ -86,20 +86,9 @@ export const CollectionBanner: React.FC<BlueCircleProps> = ({
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center relative z-10"
           aria-label="Innsamlingsaksjon"
-          aria-hidden={!canInteract}
-          tabIndex={canInteract ? 0 : -1}
-          onClick={(e) => {
-            if (!canInteract) e.preventDefault();
-          }}
-          onKeyDown={(e) => {
-            if (!canInteract && (e.key === "Enter" || e.key === " ")) {
-              e.preventDefault();
-            }
-          }}
           style={{
             opacity: propellerOpacity,
             transition: "opacity 300ms ease-out",
-            pointerEvents: canInteract ? "auto" : "none",
           }}
         >
           <img
@@ -111,18 +100,6 @@ export const CollectionBanner: React.FC<BlueCircleProps> = ({
         </a>
       </div>
 
-
-      <div className="flex flex-col space-y-2">
-        <p className="opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 delay-100 text-white text-lg">
-          YOUR SUPPORT MATTERS TO US!
-        </p>
-        <p className="opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 delay-300 text-white text-lg">
-          RELAY FOR LIFE!
-        </p>
-        <p className="opacity-0 translate-y-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 delay-500 text-white text-lg">
-          CLICK THE ICON TO DONATE!
-        </p>
-      </div>
     </section>
   );
 };
