@@ -21,6 +21,14 @@ const MembersPage = ({ data }) => {
         if (response.status === 200) {
           // Navigate to the actual data inside the response
           const teamsData = response.data.result.data.json;
+
+          // Sort it so members are last
+          teamsData.sort((a: Team, b: Team) => {
+            if (a.teamName === 'Mentors' && b.teamName !== 'Mentors') return 1; // a goes after b
+            if (a.teamName !== 'Mentors' && b.teamName === 'Mentors') return -1; // a goes before b
+            return 0;
+          });
+
           setTeamsData(teamsData);
 
           // Preload images
