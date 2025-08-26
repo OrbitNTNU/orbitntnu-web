@@ -7,12 +7,12 @@ export const OrbitTimeline = ({
   subtitle = "Key dates and deadlines for the Fall semester 2025",
   events = [
     {
-      date: "August 11-25, 2025",
+      date: "August 11-27, 2025",
       title: "Application Period",
-      description: "The application process starts at August 11th and the deadline is at August 25th.\n\nTo submit your application, go to the Join page."
+      description: "The application process starts at August 11th and the deadline is at August 27th at 23:59.\n\nTo submit your application, go to the Join page."
     },
     {
-      date: "August 25 - September 3, 2025",
+      date: "August 27 - September 3, 2025",
       title: "Interview Period",
       description: "During this period we hold interviews with the applicants.\n\nSelected candidates will be contacted for interviews after the application period."
     },
