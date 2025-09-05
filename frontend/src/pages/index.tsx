@@ -75,8 +75,7 @@ const IndexPage = ({ data }) => {
 
       <FadeInSection>
         <section
-          className={`relative flex flex-col justify-center mb-24 sm:-mt-20 px-4 ${width < 450 && width >= 300 ? "mt-28" : ""
-          } ${width < 350 ? "mt-44" : ""}`}
+          className={"relative flex flex-col justify-center mb-24 px-4 sm:-mt-20 xs:mt-28 mt-44"}
         >
           <SeekingMembers data={data} />
         </section>
