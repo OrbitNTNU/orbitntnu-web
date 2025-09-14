@@ -38,7 +38,6 @@ export const Navbar = () => {
   const afterDropDownLinks = [
     { name: "TEAMS", url: "/teams" },
     { name: "JOIN", url: "/join" },
-    { name: "RECRUITMENT DEADLINES", url: "/timeline"},
   ];
 
   const getSelectedStatus = (url: string) => {
