@@ -32,8 +32,7 @@ const Teams = ({ data }) => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        // const response = await axios.get('https://lifesupport.orbitntnu.com/api/trpc/teams.getPublicTeamPageInfo');
-        const response = await axios.get('http://localhost:3001/api/trpc/teams.getPublicTeamPageInfo');
+        const response = await axios.get('https://lifesupport.orbitntnu.com/api/trpc/teams.getPublicTeamPageInfo');
   
         if (response.status === 200) {
           // Navigate to the actual data inside the response
