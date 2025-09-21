@@ -34,7 +34,7 @@ export const TeamsContainer = ({
   const currentTeamData = teams.find((team) => team.teamID === currentTeam);
 
   return (
-    <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-5xl md:justify-center m-auto">
+    <section className="mt-16 px-8 relative md:flex md:flex-col md:max-w-6xl md:justify-center m-auto">
       <Filter
         teams={teams}
         selectedTeam={currentTeam!} // Non-null assertion since we have loading checks

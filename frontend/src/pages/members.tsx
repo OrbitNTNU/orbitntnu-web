@@ -16,8 +16,9 @@ const MembersPage = ({ data }) => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get('https://lifesupport.orbitntnu.com/api/trpc/teams.getPublicTeamPageInfo');
-
+        // const response = await axios.get('https://lifesupport.orbitntnu.com/api/trpc/teams.getPublicTeamPageInfo');
+        const response = await axios.get('http://localhost:3001/api/trpc/teams.getPublicTeamPageInfo');
+  
         if (response.status === 200) {
           // Navigate to the actual data inside the response
           const teamsData = response.data.result.data.json;
@@ -81,7 +82,7 @@ const MembersPage = ({ data }) => {
 
     return (
       <div className="text-center flex flex-col">
-        <Members members={sortedMembers} /> {/* Render each member individually */}
+        <Members members={sortedMembers} wide/> {/* Render each member individually */}
       </div>
     );
   };
@@ -92,7 +93,7 @@ const MembersPage = ({ data }) => {
         <h1 className="text-3xl my-4 font-bold">{team.teamName}</h1>
         <p className="p-4 my-4 border-t border-b border-yellow-500 md:max-w-4xl md:mx-auto">{team.description}</p>
         <div className="p-4 mt-4 mb-12 md:w-full md:mx-auto">
-          <Members members={team.members} />
+          <Members members={team.members} wide />
         </div>
       </div>
     ));
