@@ -36,7 +36,7 @@ export const Layout = ({ children }) => {
         <link rel="icon" href={favicon} />
       </Helmet>
       <Navbar />
-      <div>
+      <div className="min-h-screen flex flex-col">
         {children}
         <Footer />
       </div>
