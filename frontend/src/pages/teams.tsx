@@ -33,7 +33,7 @@ const Teams = ({ data }) => {
     const fetchTeams = async () => {
       try {
         const response = await axios.get('https://lifesupport.orbitntnu.com/api/trpc/teams.getPublicTeamPageInfo');
-  
+        
         if (response.status === 200) {
           // Navigate to the actual data inside the response
           const teamsData = response.data.result.data.json;
