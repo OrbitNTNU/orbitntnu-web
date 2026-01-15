@@ -4,25 +4,25 @@ import "./RecruitmentTimeline.css";
 
 export const OrbitTimeline = ({
   title = "Recruitment Timeline",
-  subtitle = "Key dates and deadlines for the Fall semester 2025",
+  subtitle = "Key dates and deadlines for the Spring semester 2026",
   events = [
     {
-      date: "January 14-29, 2025",
+      date: "January 14-29, 2026",
       title: "Application Period",
-      description: "The application process starts at August 11th and the deadline is at August 27th at 23:59.\n\nTo submit your application, go to the Join page."
+      description: "The application process starts at January 14th and the deadline is at January 29th at 23:59.\n\nTo submit your application, go to the Join page."
     },
     {
-      date: "January 30 - February 4, 2025",
+      date: "January 30 - February 4, 2026",
       title: "Interview Period",
       description: "During this period we hold interviews with the applicants.\n\nSelected candidates will be contacted for interviews after the application period."
     },
     {
-      date: "February 4, 2025",
+      date: "February 4, 2026",
       title: "Offers Sent Out",
       description: "We send out offers to all accepted members here.\n\nCongratulations to our new team members and welcome to Orbit!"
     },
     {
-      date: "February 6-7, 2025",
+      date: "February 6-7, 2026",
       title: "Onboarding Weekend",
       description: "Onboarding into the organization for all new members.\n\nA comprehensive weekend event to introduce you to Orbit's mission, values and members."
     }
